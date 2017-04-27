@@ -1,0 +1,31 @@
+1. For refrigerator :
+    1. Context : Time no constraint
+ 
+2. For AC:
+    1. Context : Divide operation over day & night [12 hour each]
+
+3. For Dryer/washing m-c:
+    1. Context : 
+
+4. For water heater:
+    1. Context : 
+
+5. For Microwave:
+    1. Context : 
+
+6. For Dishwasher:
+    1. Context : 
+
+
+7. For Dryer:
+    1. Context : 
+ ## LIST OF ANAOMLAIES
+ 1. AC
+    1. Blocked air filter[socketwatch]:
+    2. Air filter and coils become dirty and remain dirty[blog]: compressor and fans lifecycle decreases
+    3. Condenser fan disconnected[socketwatch]
+    4. Blower disconnected
+ 
+ 2. Refrigerator:
+    1. Refigerators door gasket is dry and cracked[paper socketwatch]: Symptom - Longer duty cycle
+    2. 

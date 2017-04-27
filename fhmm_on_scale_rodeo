@@ -1,0 +1,87 @@
+import warnings
+warnings.filterwarnings("ignore")
+import fhmm_support as fhm
+import numpy as np
+import pandas as pd
+np.random.seed(123)
+import matplotlib.pyplot as plt
+from collections import OrderedDict
+from hmmlearn import hmm
+from IPython import embed
+import time
+
+# List all houses in a directory
+dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
+houses = [f for f in os.listdir(dir)]
+df = pd.read_csv(dir+houses[0],index_col='localminute')
+df.index = pd.to_datetime(df.index)
+
+df = df["2014-06-01":"2014-08-30"]
+res = df.sum(axis=0)
+high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few applainces
+df_new = df[high_energy_apps]
+del df_new['use']# drop stale aggregate column
+df_new['use'] = df_new.sum(axis=1) # create new aggregate column
+
+
+def divide_dataset_in_appliances(df):
+    agg_meter = df['use']
+    meters = df.columns
+    #import ipdb;ipdb.set_trace()
+    meters = meters.drop('use')
+    sub_meters = df[meters]
+    return (agg_meter,sub_meters)
+    
+train_dset = df_new.truncate(before="2014-06-01", after="2014-06-10 23:59:59")
+test_dset = df_new.truncate(before="2014-06-11", after="2014-06-15 23:59:59")
+
+train_agg_meter,train_sub_meters = divide_dataset_in_appliances(train_dset)
+test_agg_meter,test_sub_meters = divide_dataset_in_appliances(test_dset)
+
+# train model for each applaince
+model = OrderedDict()
+appliances = train_sub_meters.columns
+for appliance in appliances:
+   # print appliance;
+    model[appliance] =  hmm.GaussianHMM(n_components=2,covariance_type="full")
+    temp =  train_sub_meters[appliance].values.reshape(len(train_sub_meters[appliance]),1)
+    model[appliance].fit(temp)
+# sort all the parameters and update new models with these 
+new_learnt_models= OrderedDict()
+for appliance in model:
+    #print appliance;
+    startprob, means, covars, transmat = fhm.sort_learnt_parameters(model[appliance].startprob_, model[appliance].means_, model[appliance].covars_ , model[appliance].transmat_) 
+    new_learnt_models[appliance]=hmm.GaussianHMM(startprob.size, "full")
+    new_learnt_models[appliance].startprob_ = startprob
+    new_learnt_models[appliance].transmat_ = transmat
+    new_learnt_models[appliance].means_ = means
+    new_learnt_models[appliance].covars_ = covars
+    
+# create aggregate model
+learnt_model_combined = fhm.create_combined_hmm(new_learnt_models)
+
+temp1 = test_agg_meter.values.reshape(len(test_agg_meter),1)
+start_time = time.time()
+new_learnt_states = learnt_model_combined.predict(temp1)
+print('time taken %f seconds' %(time.time() - start_time))
+
+temp_means = OrderedDict()
+for app in model:
+    temp_means[app] = new_learnt_models[app].means_
+    
+[decoded_states, decoded_power] = fhm.decode_hmm(len(new_learnt_states), temp_means, [appliance for appliance in model], new_learnt_states)
+
+# create dataframe of results
+decoded_power = pd.DataFrame(decoded_power)
+
+for appliance in model:
+    plt.figure(figsize=(8,4))
+    plt.subplot(2,1,1)
+    plt.plot(decoded_power[appliance])
+    plt.title("Predicted power of %s" %appliance)
+    plt.subplot(2,1,2)
+    #from IPython.core.debugger import Tracer
+    #Tracer()()
+    plt.plot(test_sub_meters[appliance].values)
+    plt.title("Actual power of %s" %appliance)
+    plt.tight_layout()
