@@ -33,14 +33,12 @@ test_dset = df_new.truncate(before="2014-06-21", after="2014-06-24 23:59:59")
 # keep tab on context option - creates day and night divison
 train_result = compute_appliance_statistic(train_dset,context=True) # training, using day and night context
 
-
-# NORMAL CASE WHEN ANAOMLALIES ARE NOT INSERTED
 fhmm_result  =  fhmm_decoding(train_dset,test_dset) # dissagreation
 plot_actual_vs_decoded(fhmm_result)
 sel_appliances = ["air1","refrigerator1"]
-localize_anomalous_appliance(fhmm_result['decoded_power'][sel_appliances],train_result) # appliance anomaly detection
+localize_anomalous_appliance(fhmm_result['decoded_power'][sel_appliances],train_result,appliance_count=100,take_context=True) # appliance anomaly detection
 
-# CASE WHEN ANAOMLALIES ARE INSERTED IN SELECTED APP
+# CASE WHEN ANAOMLALIES ARE INSERTED IN SELECTED APPLIANCE IN COMPLETE DATAFRAME
 anomalies = {
  1:generate_synthetic_timeseries_anomaly(timestart = '2014-06-21',hours = 7, upper_mag = 1100, frequency = 1/4, dutycycle = 0.7),
  2:generate_synthetic_timeseries_anomaly(timestart = '2014-06-22',hours = 8, upper_mag = 1100, frequency = 1/6, dutycycle = 0.7),
@@ -51,13 +49,17 @@ test_dset_anomalous = insert_anomaly_in_testframe(test_dset,anomalies,appliance_
 fhmm_result  =  fhmm_decoding(train_dset,test_dset_anomalous) # dissagreation
 plot_actual_vs_decoded(fhmm_result)
 sel_appliances = ["air1","refrigerator1"]
-localize_anomalous_appliance(fhmm_result['decoded_power'][sel_appliances],train_result,appliance_count=100) # appliance anomaly detection
+localize_anomalous_appliance(fhmm_result['decoded_power'][sel_appliances],train_result,appliance_count=100,take_context=True) # appliance anomaly detection
 
-# check at applaince level
-appliance ="air1"
+# check at applaince level when anomlaies are inserted in only selected appliance
+appliance ="refrigerator1"
 anomalous_appliance = insert_anomaly_in_appliance(test_dset,anomalies,appliance_name=appliance)
-localize_anomalous_appliance(anomalous_appliance,train_result[appliance],appliance_count=1) # appliance anomaly detection
+localize_anomalous_appliance(anomalous_appliance,train_result[appliance],appliance_count=1,take_context=True) # appliance anomaly detection
 
+# check at applaince level when NO anomlaies are inserted
+appliance ="refrigerator1"
+#anomalous_appliance = insert_anomaly_in_appliance(test_dset,anomalies,appliance_name=appliance)
+localize_anomalous_appliance(test_dset[appliance],train_result[appliance],appliance_count=1,take_context=True) # appliance anomaly detection
 
 
 

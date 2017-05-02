@@ -19,7 +19,7 @@ def plot_pandas(df_sub):
     df_sub.plot()
 
 def plot_actual_vs_decoded(fhmm_result):
-   """ function used to plot actual appliance vs dissagregated signal""" 
+    """ function used to plot actual appliance vs dissagregated signal""" 
     actual = fhmm_result['actaul_power']
     decoded = fhmm_result['decoded_power']
     appliances = actual.columns
