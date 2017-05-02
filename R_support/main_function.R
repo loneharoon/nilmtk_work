@@ -21,4 +21,9 @@ merge_end_date   <- as.POSIXct(strptime('2014-08-30',format = "%Y-%m-%d"))
 #confirm_validity(data_ob,merge_start_date,merge_end_date)
 my_range<- paste0(merge_start_date,'/',merge_end_date)
 sampled_ob <- combine_energy_weather(data_ob,my_range)
-SS
+train_data <- sampled_ob['2014-06-05/2014-06-21']
+test_data <- sampled_ob['2014-06-22/2014-06-30']
+
+neural_result <- neuralnetwork_procedure(train_data,test_data,hourwindow = 6, daywindow = 15)
+res_reg <- find_anomalous_status(test_data,result=neural_result,anomaly_window = 1,anomalythreshold_len = 60)
+res_reg[res_reg==TRUE]
