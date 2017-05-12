@@ -3,8 +3,6 @@ library(data.table)
 library(ggplot2)
 library(gtools)
 library(plotly)
-#library(changepoint)
-library(ecp)
 rm(list=ls())
 
 file1 <- "115.csv"
@@ -45,3 +43,17 @@ dat2 <- fortify(dat)
 colnames(dat2) <- c("Index","power")
 g <- ggplot(dat2,aes(Index,power)) + geom_line()
 ggplotly(g)
+
+#
+#VISUAULIZE  context data
+visualize_context_data_facet_form <- function(df,column_name){
+  month_data <- df
+  month_data <- month_data[,column_name]
+  colnames(month_data) <- "power"
+  #browser()
+  month_data$day <- lubridate::day(index(month_data))
+  month_data$time <- lubridate::hour(index(month_data)) * 60 + lubridate::minute(index(month_data))
+  # df_long <- reshape2::melt(coredata(month_data),id.vars=c("time","day"))
+  g <- ggplot(as.data.frame(coredata(month_data)),aes(time,power)) + geom_line() + facet_wrap(~day,ncol=7) 
+  print(g)
+}
