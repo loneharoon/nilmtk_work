@@ -8,8 +8,8 @@ library(HighDimOut) # to normalize output scores
 rm(list=ls())
 
 file1 <- "115.csv"
-#path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/" 
-path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
+path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/" 
+#path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/")
 df <- fread(paste0(path2,file1))
 df_xts <- xts(df[,2:dim(df)[2]],fasttime::fastPOSIXct(df$localminute)-19800)
@@ -27,43 +27,29 @@ energy_anom_score <- outlierfactor(mat_day)
 energy_anom_score_xts <- xts(energy_anom_score,as.Date(date_index))
 energy_anom_score_xts
 
-# with weather/context data
-occu_data <- create_time_series_occupancydata(dat,baseline_limit = 500)
+# READ CONTEXT DATA:
+# occu_data <- create_time_series_occupancydata(dat,baseline_limit = 500)
+occup_path <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/occupancy/"
+df_occup <- fread(paste0(occup_path,file1))
+df_occup_xts <- xts(df_occup[,2],fasttime::fastPOSIXct(df_occup$Index)-19800)
 weather_file <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/weather/Austin2014/minute_Austinweather.csv"
 df_con <- fread(weather_file)
 df_con_xts <- xts(df_con[,2:3],fasttime::fastPOSIXct(df_con$localminute) - 19800)
 df_sub <- df_con_xts['2014-06-01/2014-08-30']
-df_sub <- cbind(df_sub,occu_data)
+df_sub <- cbind(df_sub,df_occup_xts[index(df_sub)])
 dat_con_month <- split.xts(df_sub,"months",k=1)
 temp_data <- dat_con_month[[2]]
 
 con_anom_score_xts <- summarize_context_with_individual_features(temp_data)
 con_anom_score_xts
 
-anomaly_threshold = 0.8
+anomaly_threshold = 0.90
 decide_final_anomaly_status(energy_anom_score_xts,con_anom_score_xts,anomaly_threshold)
 
-decide_final_anomaly_status <- function(energy_anom_score_xts,con_anom_score_xts,anomaly_threshold){
-  
-  for(i in 1:length(energy_anom_score_xts)){
-    if(energy_anom_score_xts[i] >= anomaly_threshold & con_anom_score_xts[i] >= anomaly_threshold) {
-      print (paste0("Contextually non-anomalous: ",index(energy_anom_score_xts[i])))
-    } else if(energy_anom_score_xts[i] >= anomaly_threshold & con_anom_score_xts[i] <= anomaly_threshold){
-      print (paste0("anomaly on:) ",index(energy_anom_score_xts[i])) )
-     if(!exists("anom_vec")){
-       anom_vec <- energy_anom_score_xts[i]
-     } else{
-       anom_vec <- rbind(anom_vec,energy_anom_score_xts[i])
-     }
-    }
-  }
-  if(exists("anom_vec")){
-    return(anom_vec)
-  }else{
-    return (0)}
-}
+visualize_context_data_facet_form(temp_data,'occupancy')
+dataframe_visualize_all_columns(df_xts["2014-07-03"])
 
-plot(dat['2014-07-04'])
+plot(dat['2014-07-03'])
 plot(temp_data['2014-07-12','occupancy'])
 
 ###INJECTING  temperature SIGNATURE

@@ -31,11 +31,12 @@ summarize_context_with_individual_features <- function(temp_data){
     res <- outlierfactor(mat_day)
     return(res) 
   })
-  # browser()
+ # browser()
   f_scores<- apply(scores,1,max)
   date_index <- sapply(temp_data[,1],function(x) unique(as.Date(index(x),tz="Asia/Kolkata")))
   f_scores_xts <- xts(f_scores,as.Date(date_index))
   return (f_scores_xts)
+  
 }
 
 create_time_series_occupancydata <- function(power_data,baseline_limit){
@@ -79,3 +80,23 @@ outlierfactor <- function(daymat){
   return(anom_max)
 }
 
+
+decide_final_anomaly_status <- function(energy_anom_score_xts,con_anom_score_xts,anomaly_threshold){
+  
+  for(i in 1:length(energy_anom_score_xts)){
+    if(energy_anom_score_xts[i] >= anomaly_threshold & con_anom_score_xts[i] >= anomaly_threshold) {
+      print (paste0("Contextually non-anomalous: ",index(energy_anom_score_xts[i])))
+    } else if(energy_anom_score_xts[i] >= anomaly_threshold & con_anom_score_xts[i] <= anomaly_threshold){
+      print (paste0("anomaly on:) ",index(energy_anom_score_xts[i])) )
+      if(!exists("anom_vec")){
+        anom_vec <- energy_anom_score_xts[i]
+      } else{
+        anom_vec <- rbind(anom_vec,energy_anom_score_xts[i])
+      }
+    }
+  }
+  if(exists("anom_vec")){
+    return(anom_vec)
+  }else{
+    return (0)}
+}

@@ -57,3 +57,19 @@ visualize_context_data_facet_form <- function(df,column_name){
   g <- ggplot(as.data.frame(coredata(month_data)),aes(time,power)) + geom_line() + facet_wrap(~day,ncol=7) 
   print(g)
 }
+
+dataframe_visualize_all_columns <- function(dframe) {
+  library(RColorBrewer)# to increase no. of colors
+  library(plotly)
+  # VISUALIZE SPECiFIC PORTION OF DATA
+  #http://novyden.blogspot.in/2013/09/how-to-expand-color-palette-with-ggplot.html
+  #dframe <- data_10min["2014-08-9"]
+  dframe <- data.frame(timeindex=index(dframe),coredata(dframe))
+  # dframe$dataid <- NULL ; dframe$air1 <-NULL ; dframe$use<- NULL ; dframe$drye1 <- NULL
+  df_long <- reshape2::melt(dframe,id.vars = "timeindex")
+  colourCount = length(unique(df_long$variable))
+  getPalette = colorRampPalette(brewer.pal(8, "Dark2"))(colourCount) # brewer.pal(8, "Dark2") or brewer.pal(9, "Set1")
+  g <- ggplot(df_long,aes(timeindex,value,col=variable,group=variable))
+  g <- g + geom_line() + scale_colour_manual(values=getPalette)
+  ggplotly(g)
+}
