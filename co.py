@@ -1,8 +1,18 @@
 
-def co_training(train_dset):
+def co_decoding(train_dset,test_dset):
+    train_agg_meter,train_sub_meters = divide_dataset_in_appliances(train_dset)
+    test_agg_meter,test_sub_meters = divide_dataset_in_appliances(test_dset)
+    model = co_training(train_sub_meters)
+    state_combinations = None
+    mains = test_agg_meter
+    decoded_power = disaggregate_chunk(state_combinations,mains,model)
+    ret_result = {'actaul_power':test_sub_meters,'decoded_power':decoded_power}
+    return(ret_result)
+
+def co_training(train_sub_meters):
     model = []
     num_states_dict = {}
-    l= train_dset.columns
+    l = train_sub_meters.columns
     num_meters = len(l)
     if num_meters > 12:
         max_num_clusters = 2
@@ -11,7 +21,7 @@ def co_training(train_dset):
     for i in range(len(l)):
         #print("Training model for submeter '{}'".format(meter))
         #power_series = meter.power_series(**load_kwargs)
-        chunk = train_dset[l[i]]
+        chunk = train_sub_meters[l[i]]
         meter = l[i]
         #chunk = next(power_series)
         num_total_states = num_states_dict.get(meter)
@@ -23,12 +33,13 @@ def co_training(train_dset):
     return model
     
 def train_on_chunk(chunk, meter, max_num_clusters, num_on_states,model):
+    #from IPython import embed
+    #embed()
     states = cluster(chunk, max_num_clusters, num_on_states)
     model.append({
         'states': states,
         'meter': meter})
-model = co_training(train_dset)
-        
+
 def set_state_combinations_if_necessary(state_combinations, model):
     """Get centroids"""
     # If we import sklearn at the top of the file then auto doc fails.
@@ -37,11 +48,6 @@ def set_state_combinations_if_necessary(state_combinations, model):
         centroids = [model['states'] for model in model]
         state_combinations = cartesian(centroids)
         return (state_combinations)
-
-state_combinations = None
-mains = test_dset['use']
-
-appliance_powers = disaggregate_chunk(state_combinations,mains,model)
 
 def disaggregate_chunk(state_combinations,mains,model):
     import warnings
@@ -59,4 +65,13 @@ def disaggregate_chunk(state_combinations,mains,model):
         
     appliance_powers = pd.DataFrame(appliance_powers_dict, dtype='float32')
     return appliance_powers
+
+def divide_dataset_in_appliances(df):
+    agg_meter = df['use']
+    meters = df.columns
+    #import ipdb;ipdb.set_trace()
+    meters = meters.drop('use')
+    sub_meters = df[meters]
+    return (agg_meter,sub_meters)
+
 
