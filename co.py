@@ -17,7 +17,7 @@ def co_training(train_sub_meters):
     if num_meters > 12:
         max_num_clusters = 2
     else:
-        max_num_clusters = 3
+        max_num_clusters = 2
     for i in range(len(l)):
         #print("Training model for submeter '{}'".format(meter))
         #power_series = meter.power_series(**load_kwargs)
@@ -73,5 +73,7 @@ def divide_dataset_in_appliances(df):
     meters = meters.drop('use')
     sub_meters = df[meters]
     return (agg_meter,sub_meters)
+
+
 
 

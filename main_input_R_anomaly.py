@@ -39,7 +39,7 @@ test_dset = df_new.truncate(before = "2014-07-01 00:00:00", after = "2014-07-30 
 # keep tab on context option - creates day and night divison
 train_result = compute_appliance_statistic(train_dset,context=True) # training, using day and night context
 
-sel_dates=['2014-07-04','2014-07-11','2014-07-19','2014-07-27','2014-07-29']
+#sel_dates=['2014-07-04','2014-07-11','2014-07-19','2014-07-27','2014-07-29']
 test_dset = test_dset.query('@test_dset.index.normalize()in @sel_dates')
 
 fhmm_result  =  fhmm_decoding(train_dset,test_dset) # dissagreation
@@ -47,6 +47,13 @@ fhmm_result  =  fhmm_decoding(train_dset,test_dset) # dissagreation
 plot_actual_vs_decoded(fhmm_result)
 sel_appliances = ["air1","refrigerator1"]
 localize_anomalous_appliance(fhmm_result['decoded_power'][sel_appliances],train_result,appliance_count=100,take_context=True) # appliance anomaly detection
+
+fhmm_result['decoded_power']['refrigerator1']['2014-07-28'].plot()
+
+
+
+
+
 
 
 

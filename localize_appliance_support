@@ -271,5 +271,22 @@ def appliance_area_statistic_with_time_context(dat):
         context_result[key] = area_stat
     return(context_result)
     
+def compute_rmse(gt,pred):
+    from sklearn.metrics import mean_squared_error
+    rms_error = {}
+    for app in gt.columns:
+        rms_error[app] =  np.sqrt(mean_squared_error(gt[app],pred[app]))
+    return pd.Series(rms_error)
+
+def diss_accu_metric_kotler_1(dis_result,aggregate):
+    #dis_result = co_result
+    pred = dis_result['decoded_power']
+    gt = dis_result['actaul_power']
+    error = []
+    numerator = 0
+    for app in gt.columns:
+        numerator = numerator + sum(abs(pred[app].values - gt[app].values))
+    denominator = aggregate*1.0 # to make it float
+    return(1-2*(numerator/denominator))
 
 
