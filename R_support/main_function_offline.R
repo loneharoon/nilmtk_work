@@ -8,8 +8,11 @@ library(HighDimOut) # to normalize output scores
 rm(list=ls())
 
 file1 <- "115.csv"
-path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/" 
-#path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
+#path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/" 
+path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
+source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/R_support/support_functions_offline.R")
+source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/R_codesDirectory/R_Codes/Matrix_division/Samys_support.R") #
+source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/R_codesDirectory/R_Codes/Matrix_division/hp_support.R") #SAMY METHOD
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/")
 df <- fread(paste0(path2,file1))
 df_xts <- xts(df[,2:dim(df)[2]],fasttime::fastPOSIXct(df$localminute)-19800)
@@ -20,12 +23,33 @@ dat <- df_xts$use
 dat<- dat['2014-06-01/2014-08-30']
 colnames(dat) <- "power"
 dat_month <- split.xts(dat,"months",k=1)
-dat_day <- split.xts(dat_month[[2]],"days",k=1)
+#hp_score_xts <-  list()
+#res_samy <- list()
+#energy_anom_score_xts<- list()
+agg_score <- list()
+for (i in 1:length(dat_month)) {
+dat_day <- split.xts(dat_month[[i]],"days",k=1)
 date_index <- sapply(dat_day,function(x) unique(as.Date(index(x),tz="Asia/Kolkata")))
 mat_day <- create_feature_matrix(dat_day)
 energy_anom_score <- outlierfactor(mat_day)
 energy_anom_score_xts <- xts(energy_anom_score,as.Date(date_index))
-energy_anom_score_xts
+#energy_anom_score_xts
+
+res <- anomaly_detection_main_1minute_data_rate(dat_month[[i]])# call to samys method
+res_samy <- xts(round(res$score,2),res$timestamp)
+res_hp <- outlier_hp(mat_day)
+hp_score_xts <- xts(res_hp,as.Date(date_index))
+
+agg_score[[i]] <- cbind(energy_anom_score_xts,res_samy,hp_score_xts)
+colnames(agg_score[[i]]) <- c("lof","multi_user","hp")
+}
+
+base_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
+sub_dir <- strsplit(file1,'[.]')[[1]][1]
+dir.create(file.path(base_directory, sub_dir))
+agg_score <- do.call(rbind,agg_score)
+write.csv(fortify(agg_score),file=paste0(base_directory,sub_dir,"/","energy_score.csv"),row.names = FALSE)
+
 
 # READ CONTEXT DATA:
 # occu_data <- create_time_series_occupancydata(dat,baseline_limit = 500)
@@ -42,15 +66,19 @@ temp_data <- dat_con_month[[2]]
 
 con_anom_score_xts <- summarize_context_with_individual_features(temp_data)
 con_anom_score_xts
-
-anomaly_threshold = 0.90
-decide_final_anomaly_status(energy_anom_score_xts,con_anom_score_xts,anomaly_threshold)
+anomaly_threshold = 0.80
+f_result <- decide_final_anomaly_status(energy_anom_score_xts,con_anom_score_xts,anomaly_threshold)
+savedirec <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
+write.csv(fortify(f_result), file = paste0(savedirec,file1),row.names = FALSE )
 
 visualize_context_data_facet_form(temp_data,'occupancy')
 dataframe_visualize_all_columns(df_xts["2014-07-03"])
 
+dataframe_visualize_all_columns(temp_data["2014-07-03"])
+
 plot(dat['2014-07-03'])
 plot(temp_data['2014-07-12','occupancy'])
+
 
 ###INJECTING  temperature SIGNATURE
 df_change <- temp_data

@@ -37,8 +37,8 @@ lapply(appliances,function(x){
   dev.off()
 })
 
-dat = df_xts$waterheater1
-dat <-dat["2014-08-28/2014-08-28"]
+dat = df_xts$refrigerator1
+dat <-dat["2014-08-20/2014-08-21"]
 dat2 <- fortify(dat)
 colnames(dat2) <- c("Index","power")
 g <- ggplot(dat2,aes(Index,power)) + geom_line()
