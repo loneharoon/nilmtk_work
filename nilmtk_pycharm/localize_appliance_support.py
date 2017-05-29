@@ -198,7 +198,7 @@ def appliance_anomaly_result(test_day, area_stat, device, take_context):  # area
                     df = df.append({'Date': np.unique(test_day.index.date)[0].strftime(
                         '%Y-%m-%d'), 'air1': air_status, 'refrigerator1': refrigerator_status, 'context': key,
                         'Anom_type': anom_type}, ignore_index=True)
-         return df
+        return df
     else:
         test_res = cluster_appliance_testing_stage(test_day, device)
         test_res = test_res.sort_values(by='mean_mag', ascending=True)
@@ -311,9 +311,6 @@ def localize_anomalous_appliance(fhmm_result, train_result, appliance_count, tak
     return final_result
 
 
-
-
-
 def insert_anomaly_in_testframe(test_dset,anomalies,appliance_name):
     """  This function inserts anomalies provided in input anomalies dictionary in the applaiance_name column of 
     pandas test_dset dataframe"""
@@ -387,7 +384,10 @@ def diss_accu_metric_kotler_1(dis_result,aggregate):
     for app in gt.columns:
         numerator = numerator + sum(abs(pred[app].values - gt[app].values))
     denominator = aggregate*1.0 # to make it float
-    return(1-2*(numerator/denominator))
+    return (1 - (numerator / denominator))
+    #return(1-2*(numerator/denominator))
 
 
 
+
+diss_accu_metric_kotler_1(fhmm_result,dset_test['run'])
