@@ -45,5 +45,7 @@ train_result = compute_appliance_statistic(train_dset[sel_appliances], context=T
 #test_dset = test_dset.query('@test_dset.index.normalize()in @sel_dates')
 sel_appliances = ["air1","refrigerator1"]
 print "executing whole program"
-result = localize_anomalous_appliance(test_dset[sel_appliances], train_result, appliance_count=100, take_context=True)# appliance anomaly detect
 
+orac_results= localize_anomalous_appliance(test_dset[sel_appliances], train_result, appliance_count=100, take_context=True)# appliance anomaly detect
+save_path = aggregate_result + "oracle/"
+orac_results.to_csv(save_path+file1)
