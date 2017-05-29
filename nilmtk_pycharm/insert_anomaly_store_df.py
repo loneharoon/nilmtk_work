@@ -1,10 +1,11 @@
 from copy import deepcopy
+import pandas as pd
 from matplotlib import interactive
 # in this script, I take a home and insert anomalies in one of the appliance and perform necessary changes in aggregate consumption.Later we save 
 # all changes as a separate csv file.
 file = "115.csv"
 path = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/"
-execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support")
+execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
 
 df = pd.read_csv(path+file,index_col='localminute')
 df.index =  pd.to_datetime(df.index)
@@ -33,7 +34,7 @@ fridge_anomalies = {
 anomalous_df2 = insert_anomaly_in_testframe(anomalous_df,fridge_anomalies,appliance_name="refrigerator1")
 
 store_path = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
-#  anomalous_df2.to_csv(store_path+file)
+  anomalous_df2.to_csv(store_path+file)
 
 def generate_synthetic_timeseries_anomaly(timestart,hours, upper_mag=10, frequency = 1, dutycycle = 0.5):
     """ """
@@ -48,7 +49,7 @@ def generate_synthetic_timeseries_anomaly(timestart,hours, upper_mag=10, frequen
     syn_df = pd.DataFrame(sig2,index=ind)
     return(syn_df)
 
-l = generate_synthetic_timeseries_anomaly(timestart = '2014-08-03 04:00:00',hours = 8, upper_mag = 110, frequency = 1/8., dutycycle = 0.9)
-l.plot()
+#l = generate_synthetic_timeseries_anomaly(timestart = '2014-08-03 04:00:00',hours = 8, upper_mag = 110, frequency = 1/8., dutycycle = 0.9)
+#l.plot()
 
 

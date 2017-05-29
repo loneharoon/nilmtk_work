@@ -169,11 +169,11 @@ def appliance_anomaly_result(test_day, area_stat, device, take_context):  # area
         area_stat = area_stat[device]
         for key, context in area_stat.iteritems():
             test = test_res[key]  # area_stat -> context,test_res - > test
-            print "context is:"
-            print key
-            print context
-            print "test day is"
-            print test
+            # print "context is:"
+            # print key
+            # print context
+            # print "test day is"
+            # print test
             for i in range(context.shape[0]):  # for no. of rows corresponding to no.of clusters/states
                 states = test.shape[0]-1 #no. of states found during clustering in the concerned data
                 if i > states:
@@ -205,11 +205,6 @@ def appliance_anomaly_result_version2(test_day,area_stat,take_context): # area_s
         test_res = cluster_appliance_testing_stage_with_time_context(test_day,"input_appliance")
         for key,context in area_stat.iteritems():
             test = test_res[key] # area_stat -> context,test_res - > test
-            print "context is:"
-            print key
-            print context
-            print "test day is"
-            print test
             for i in range(context.shape[0]): # for no. of rows corresponding to no.of clusters/states
                 if(test.loc[i].mean_area <= context.loc[i].mean_area - 1.5 * context.loc[i].sd_area):
                     print " Frequent Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') +" at "+ key + " time"
@@ -262,7 +257,7 @@ def appliance_area_statistic_with_time_context(dat, appliance):
             mean_usage = round(temp_obj['consump'].mean(), 2)
             area_val = np.trapz(y=temp_obj['consump'])
             df_pd.loc[i] = [np.unique(temp_obj['cluster'])[0], mean_usage, duration_mins, area_val]
-        area_stat = compute_area_res_statistic(df_pd)
+        area_stat = compute_area_res_statistic(df_pd,appliance,key)
         area_stat = area_stat.sort_values(by='mean_mag', ascending=True)
         area_stat = area_stat.reset_index(drop=True)
         context_result[key] = area_stat
@@ -287,14 +282,14 @@ def localize_anomalous_appliance(fhmm_result, train_result, appliance_count, tak
     for key, value in day_dat:  # day level slicing
         daydat_temp = value
         #print 'stage1'
-        if (appliance_count == 1):  # of only one appliance, then appliance slicing level not required
+        if appliance_count == 1:  # of only one appliance, then appliance slicing level not required
             appliance_anomaly_result_version2(daydat_temp, train_result, take_context)
         else:
             # case when appliance level slicing required
             appliances = daydat_temp.columns
             #print 'stage2'
             for i in range(len(appliances)):  # appliance level slicing
-                if (any(daydat_temp[appliances[i]])):
+                if any(daydat_temp[appliances[i]]):
                     appliance_anomaly_result(daydat_temp[appliances[i]], train_result, appliances[i], take_context)
                     #print appliances[i]
                 else:
@@ -329,13 +324,6 @@ def insert_anomaly_in_appliance(test_dset,anomalies,appliance_name):
         data[appliance_name][value.index] = value.values
     return (data)
 
-def compute_area_res_statistic(area_res):
-    """ computes various statistic corresponing to each state/cluster """
-    dframe = pd.DataFrame(columns=['cluster', 'mean_mag', 'mean_duration', 'mean_area', 'sd_area'])
-    for i in range(np.unique(area_res['cluster']).size):
-        temp = area_res.loc[area_res['cluster'] == i]
-        dframe.loc[i] = [i, temp['magnitude'].mean(), temp['duration'].mean(), temp['area'].mean(), temp['area'].std()]
-    return (dframe)
 
 def compute_appliance_statistic(train_data, context=False):
     """ works on training data, i.e. creates one time statistic corresponding to applainces in a home;
