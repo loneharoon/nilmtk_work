@@ -15,12 +15,13 @@ df_ref = deepcopy(df['2014-06-01':'2014-08-30 23:59:59'])
 
 ac_anomalies = {
     # first two correspond to elongated and last two with frequent anomalies
- 1:generate_synthetic_timeseries_anomaly(timestart = '2014-07-30 00:00:00',hours = 9, upper_mag = 4000, frequency = 1/3., dutycycle = 0.9),
- 2:generate_synthetic_timeseries_anomaly(timestart = '2014-08-30 18:00:00',hours = 6, upper_mag = 4000, frequency = 1/7., dutycycle = 0.9),
- 3:generate_synthetic_timeseries_anomaly(timestart = '2014-07-25 06:00:00',hours = 12, upper_mag = 4000, frequency = 1/4., dutycycle = 0.8),
- 4:generate_synthetic_timeseries_anomaly(timestart = '2014-08-25 11:00:00',hours = 9, upper_mag = 4000,frequency = 1/3., dutycycle = 0.8),
- 5:generate_synthetic_timeseries_anomaly(timestart = '2014-07-01 00:00:00',hours = 6, upper_mag = 4000, frequency = 3., dutycycle = 0.5),
- 6:generate_synthetic_timeseries_anomaly(timestart = '2014-08-01 09:00:00',hours = 8, upper_mag = 4000, frequency = 6., dutycycle = 0.5)
+ 1:generate_synthetic_timeseries_anomaly(timestart = '2014-07-30 00:00:00',hours = 8, upper_mag = 1800, frequency = 1/3., dutycycle = 0.8),
+ 2:generate_synthetic_timeseries_anomaly(timestart = '2014-08-30 18:00:00',hours = 6, upper_mag = 1800, frequency = 1/4., dutycycle = 0.8),
+ 3:generate_synthetic_timeseries_anomaly(timestart = '2014-07-25 06:00:00',hours = 12, upper_mag = 1800, frequency = 1/3., dutycycle = 0.8),
+ 4:generate_synthetic_timeseries_anomaly(timestart = '2014-08-25 11:00:00',hours = 6, upper_mag = 1800,frequency = 1/3.,  dutycycle = 0.9),
+ 5:generate_synthetic_timeseries_anomaly(timestart = '2014-07-01 00:00:00',hours = 6, upper_mag = 1800, frequency = 6.,  dutycycle = 0.6),
+ 6:generate_synthetic_timeseries_anomaly(timestart = '2014-08-01 09:00:00',hours = 8, upper_mag = 1800, frequency = 10., dutycycle = 0.5),
+ 7:generate_synthetic_timeseries_anomaly(timestart = '2014-08-26 10:00:00',hours = 7, upper_mag = 1800, frequency = 10., dutycycle = 0.3)
 }
 
 
@@ -29,10 +30,10 @@ anomalous_df = insert_anomaly_in_testframe(df_ref,ac_anomalies,appliance_name="a
 
 fridge_anomalies = {
     # first two correspond to elongated and last two with frequent anomalies
- 1:generate_synthetic_timeseries_anomaly(timestart = '2014-07-04 06:00:00',hours = 10, upper_mag = 90, frequency = 1/3., dutycycle = 0.9),
- 2:generate_synthetic_timeseries_anomaly(timestart = '2014-07-18 18:00:00',hours = 6, upper_mag = 90, frequency = 1/3.,dutycycle = 0.7 ),
- 3:generate_synthetic_timeseries_anomaly(timestart = '2014-07-21 07:00:00',hours = 8, upper_mag = 90, frequency = 12., dutycycle = 0.8),
- 4:generate_synthetic_timeseries_anomaly(timestart = '2014-07-06 00:00:00',hours = 6, upper_mag = 90, frequency = 10., dutycycle = 0.3)
+ 1:generate_synthetic_timeseries_anomaly(timestart = '2014-07-04 06:00:00',hours = 8, upper_mag = 140, frequency = 1/2., dutycycle = 0.8),
+ 2:generate_synthetic_timeseries_anomaly(timestart = '2014-07-18 18:00:00',hours = 6, upper_mag = 140, frequency = 1/3.,dutycycle = 0.7 ),
+ 3:generate_synthetic_timeseries_anomaly(timestart = '2014-07-21 07:00:00',hours = 8, upper_mag = 140, frequency = 12., dutycycle = 0.5),
+ 4:generate_synthetic_timeseries_anomaly(timestart = '2014-07-06 00:00:00',hours = 6, upper_mag = 140, frequency = 10., dutycycle = 0.3)
  }
 
 anomalous_df2 = insert_anomaly_in_testframe(anomalous_df,fridge_anomalies,appliance_name="refrigerator1")
@@ -54,5 +55,5 @@ def generate_synthetic_timeseries_anomaly(timestart,hours, upper_mag=10, frequen
     return(syn_df)
 
 
-  p = generate_synthetic_timeseries_anomaly(timestart = '2014-07-25 06:00:00', hours = 3, upper_mag = 90, frequency = 1/3., dutycycle = 0.8)
-  p.plot()
+  #p = generate_synthetic_timeseries_anomaly(timestart = '2014-07-25 06:00:00', hours = 1, upper_mag = 90, frequency = 10., dutycycle = 0.3)
+  #p.plot()
