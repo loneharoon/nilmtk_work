@@ -5,13 +5,7 @@
 
 import json
 import numpy as np
-import matplotlib.pyplot as plt
-import hmmlearn
 from hmmlearn import hmm
-from sklearn.metrics import confusion_matrix
-from collections import OrderedDict
-#import hmmlearn
-import collections
 import itertools
 from copy import deepcopy
 import warnings

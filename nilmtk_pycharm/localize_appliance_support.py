@@ -384,10 +384,53 @@ def diss_accu_metric_kotler_1(dis_result,aggregate):
     for app in gt.columns:
         numerator = numerator + sum(abs(pred[app].values - gt[app].values))
     denominator = aggregate*1.0 # to make it float
-    return (1 - (numerator / denominator))
-    #return(1-2*(numerator/denominator))
+    #return (1 - (numerator / denominator))
+    return(1-2*(numerator/denominator))
 
+def diss_accu_metric_kotler_2(dis_result, aggregate):
+    # dis_result = co_result
+    pred = dis_result['decoded_power']
+    gt = dis_result['actaul_power']
+    error = []
+    numerator = 0
+    for app in gt.columns:
+        numerator = sum(abs(pred[app].values - gt[app].values))
+        denominator = aggregate * 1.0  # to make it float
+        print (1 - 2*(numerator / denominator))
+    #return (1 - (numerator / denominator))
 
+def accuracy_metric_gemello(dis_result):
+    '''This per appliance accuracy metric is used in Gamello. Paper mentions that it is based on works 1,7 mentioned in gamello paper'''
+    ### this fails when there are 0 values in the denominator
+    pred = dis_result['decoded_power']
+    gt = dis_result['actaul_power']
+    per_accu = {}
+    for app in gt.columns:
+        per_error = (abs(pred[app].values - gt[app].values)/ (gt[app] * 1.0)) * 100
+        per_accu[app] = np.mean(per_error)
+        # FIXME i am per error and not accuracy
+    result = pd.DataFrame.from_dict(per_accu, orient='index')
+    return result
 
+def accuracy_metric_norm_error(dis_result):
+    '''Metric taken from Nipuns NILMTK paper:Normalised error in assigned power'''
+    pred = dis_result['decoded_power']
+    gt = dis_result['actaul_power']
+    error = {}
+    for app in gt.columns:
+        numerator = sum(abs(pred[app].values - gt[app].values))
+        denominator = sum(gt[app]) * 1.0
+        error[app] = np.divide(numerator,denominator)
+    result = pd.DataFrame.from_dict(error, orient='index')
+    return result
 
-diss_accu_metric_kotler_1(fhmm_result,dset_test['run'])
+#diss_accu_metric_kotler_1(fhmm_result,dset_test['run'])
+
+#diss_accu_metric_kotler_2(fhmm_result,sum(test_dset['use']))
+
+# readdir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
+# fls = [f for f in listdir(readdir,"norm_rmse_*")]
+# dfs = {}
+# for i in range(len(fls)):
+#     print i
+#     dfs[i] = pd.read_csv(readdir+fls[i])

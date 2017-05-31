@@ -19,7 +19,7 @@ def fhmm_decoding(train_dset,test_dset):
     appliances = train_sub_meters.columns
     for appliance in appliances:
     # print appliance;
-        model[appliance] =  hmm.GaussianHMM(n_components=2,covariance_type="full")
+        model[appliance] =  hmm.GaussianHMM(n_components=3,covariance_type="full")
         temp =  train_sub_meters[appliance].values.reshape(len(train_sub_meters[appliance]),1)
         model[appliance].fit(temp)
     # sort all the parameters and update new models with these 
