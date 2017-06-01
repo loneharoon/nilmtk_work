@@ -62,16 +62,17 @@ outlierfactor <- function(daymat){
   # daymat1 <- as.xts(t(apply(daymat,1, function(x) abs(fft(x-mean(x)))^2/length(x))) ) # form 1
   # daymat2 <- as.xts(t(apply(daymat,1, function(x) abs(fft(x-mean(x)))/length(x))) )  # form 2
   # daymat1 <- as.xts(t(apply(daymat,1, function(x) Mod(Re(fft(x-mean(x)))))) )   #form 3
-  daymat <- daymat
+  #daymat <- daymat
   # browser()
   #dis_mat <- dist(t(daymat)) 
-  dis_mat <- compute_dtw_distance_matrix_ver2(daymat)
-  fit <- cmdscale(dis_mat, eig = TRUE, k = 2)
-  x <- scale(fit$points[, 1])
-  y <- scale(fit$points[, 2]);  # mymdsplot(x,y,"abc.pdf")
-  daymat <- data.frame(x,y)
+  dis_mat <- compute_dtw_distance_matrix(daymat)
+  # fit <- cmdscale(dis_mat, eig = TRUE, k = 2)
+  # x <- scale(fit$points[, 1])
+  # y <- scale(fit$points[, 2]);  # mymdsplot(x,y,"abc.pdf")
+  # daymat <- data.frame(x,y)
   
-  df.lof2 <- lof(daymat,c(4:6),cores = 2)
+  #df.lof2 <- lof(daymat,c(5:8),cores = 2)
+  df.lof2 <- lof(dis_mat,c(5:10),cores = parallel::detectCores()-1)
   #browser()
   #df.lof2 <- apply(df.lof2,2,normalizedata)
   df.lof2 <- apply(df.lof2,2,function(x) Func.trans(x,method = "FBOD"))
@@ -128,3 +129,36 @@ compute_dtw_distance_matrix  <- function(data_mat){
   row.names(dis_mat) <- colnames(data_mat)
   return(dis_mat)
 }
+
+compute_f_score <- function(res_df,gt,threshold){
+  if(is.xts(res_df)) {
+    res_df_xts =  res_df
+  }else{
+    res_df_xts <- xts(res_df[,2:NCOL(res_df)],as.Date(res_df$Index,tz="Asia/Kolkata"))
+  }
+  res_df_xts <- res_df_xts["2014-07-01/2014-08-30 23:59:59"]
+  print("Only retaining july and Aug res")
+  #threshold = 0.8
+  f_score <- vector(mode="numeric")
+  precise <- vector(mode="numeric")
+  recal <- vector(mode="numeric")
+  for (i in 1:NCOL(res_df_xts)){
+    dat <- res_df_xts[,i]
+    dat <- dat[dat >= threshold]
+    f_dates <- index(dat)
+    a_dates <- gt$Index
+    tp <- f_dates[f_dates %in% a_dates]
+    fp <- f_dates[!f_dates %in% a_dates]
+    fn <- a_dates[!a_dates %in% f_dates]
+    precision = length(tp)/(length(tp)+length(fp))
+    recall =  length(tp)/(length(tp)+length(fn))
+    f_score[i] <- round( 2*(precision*recall)/(precision+recall),2)
+    precise[i] <- round(precision,2)
+    recal[i] <- round(recall,2)
+  }
+  l <- rbind(f_score,precise,recal)
+  #colnames(l) <- colnames(res_df[,2:NCOL(res_df)])
+  #print(l)
+  return(l)
+}
+

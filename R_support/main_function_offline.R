@@ -8,7 +8,7 @@ library(TSdist)
 #library(HighDimOut) # to normalize output scores
 rm(list=ls())
 
-file1 <- "1463.csv"
+file1 <- "115.csv"
 #path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/" 
 path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/R_support/support_functions_offline.R")
@@ -21,18 +21,26 @@ head(df,2)[,1]
 head(df_xts,2)
 # with energy data
 dat <- df_xts$use
-dat <- dat['2014-06-01/2014-08-30 23:59:59']
+dat <- dat['2014-06-22/2014-08-30 23:59:59']
 colnames(dat) <- "power"
-#dat_month <- split.xts(dat,"months",k=1)
-dat_month <- split.xts(dat,"days",k=20)
-gp_len <- sapply(dat_month, function(x) length(x)/1440) # checking no. of days in each split
-dat_month <- dat_month[gp_len > 5] # dropping splits with less than 5 days.
-#hp_score_xts <-  list()
-#res_samy <- list()
-#energy_anom_score_xts<- list()
+temp = dat
+temp$day = rep(c(1:5),each=1440*14)#creating factors for grouping days, split.xts does not work perfectly
+dat_month <- split(temp,f=temp$day)
+dat_month <- lapply(dat_month, function(x){
+  p = as.xts(x) #x is a zoo object
+  q = p$power # droping day column
+  return(q)
+})
+
+# dat_month <- split.xts(dat,"days",k=21)
+# gp_len <- sapply(dat_month, function(x) length(x)/1440) # checking no. of days in each split
+# print(gp_len)
+# dat_month <- dat_month[gp_len > 5] # dropping splits with less than 5 days.
+
 agg_score <- list()
 
 for (i in 1:length(dat_month)) {
+  #dat_month[[i]] = subset(dat_month[[i]],select=c("power"))
   dat_day <- split.xts(dat_month[[i]],"days",k=1)
   date_index <- sapply(dat_day,function(x) unique(as.Date(index(x),tz="Asia/Kolkata")))
   mat_day <- create_feature_matrix(dat_day)
@@ -51,53 +59,27 @@ for (i in 1:length(dat_month)) {
   colnames(agg_score[[i]]) <- c("lof","multi_user","hp")
 }
 
+#file1 = "demo.csv"
 base_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
 sub_dir <- strsplit(file1,'[.]')[[1]][1]
 dir.create(file.path(base_directory, sub_dir))
 agg_score <- do.call(rbind,agg_score)
 write.csv(fortify(agg_score),file=paste0(base_directory,sub_dir,"/","energy_score.csv"),row.names = FALSE)
 
-house = "115.csv"
+
+house="115.csv"
 result <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/",strsplit(house,'[.]')[[1]][1],"/","energy_score.csv")
 #gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/ground_truth/"
 gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth/"
 gt <- fread(paste0(gt_directory,house))
+#gt <- fread(paste0(gt_directory,"490.csv"))
 gt$Index <- as.Date(gt$Index,tz="Asia/Kolkata")
-
 res_df <- fread(result)
 
-compute_f_score(res_df,gt,threshold = 0.75)
+compute_f_score(res_df,gt,threshold = 0.80)
 
-compute_f_score <- function(res_df,gt,threshold){
-  res_df_xts <- xts(res_df[,2:NCOL(res_df)],as.Date(res_df$Index,tz="Asia/Kolkata"))
-  res_df_xts <- res_df_xts["2014-07-01/2014-08-30 23:59:59"]
-  print("Only retaining july and Aug res")
-  #threshold = 0.8
-  f_score <- vector(mode="numeric")
-  precise <- vector(mode="numeric")
-  recal <- vector(mode="numeric")
-  for (i in 1:NCOL(res_df_xts)){
-    dat <- res_df_xts[,i]
-    dat <- dat[dat >= threshold]
-    f_dates <- index(dat)
-    a_dates <- gt$Index
-    tp <- f_dates[f_dates %in% a_dates]
-    fp <- f_dates[!f_dates %in% a_dates]
-    fn <- a_dates[!a_dates %in% f_dates]
-    precision = length(tp)/(length(tp)+length(fp))
-    recall =  length(tp)/(length(tp)+length(fn))
-    f_score[i] <- round( 2*(precision*recall)/(precision+recall),2)
-    precise[i] <- round(precision,2)
-    recal[i] <- round(recall,2)
-   }
-  names(f_score) <- colnames(res_df_xts)
-  names(precise) <- colnames(res_df_xts)
-  names(recal) <- colnames(res_df_xts)
-  print(f_score)
-  print(precise)
-  print(recal)
- # return(f_score)
-}
+
+
 
 
 # READ CONTEXT DATA:
@@ -125,8 +107,8 @@ dataframe_visualize_all_columns(df_xts["2014-07-03"])
 
 dataframe_visualize_all_columns(temp_data["2014-07-03"])
 
-plot(dat['2014-07-11'])
-plot(temp_data['2014-07-12','occupancy'])
+plot(dat['2014-07-30'])
+plot(df_xts['2014-07-01','use'])
 
 
 ###INJECTING  temperature SIGNATURE
