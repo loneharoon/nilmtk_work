@@ -53,7 +53,10 @@ create_time_series_occupancydata <- function(power_data,baseline_limit){
   colnames(occupancy_xts) <- "occupancy"
   return(occupancy_xts)
 }
+
 outlierfactor <- function(daymat){
+  library(Rlof)
+  library(HighDimOut)
   # all results in the paper have been presented using this function
   daymat <- daymat[complete.cases(daymat),] # removes rows containing NAs
   # daymat1 <- as.xts(t(apply(daymat,1, function(x) abs(fft(x-mean(x)))^2/length(x))) ) # form 1
@@ -61,7 +64,8 @@ outlierfactor <- function(daymat){
   # daymat1 <- as.xts(t(apply(daymat,1, function(x) Mod(Re(fft(x-mean(x)))))) )   #form 3
   daymat <- daymat
   # browser()
-  dis_mat <- dist(t(daymat)) 
+  #dis_mat <- dist(t(daymat)) 
+  dis_mat <- compute_dtw_distance_matrix_ver2(daymat)
   fit <- cmdscale(dis_mat, eig = TRUE, k = 2)
   x <- scale(fit$points[, 1])
   y <- scale(fit$points[, 2]);  # mymdsplot(x,y,"abc.pdf")
@@ -99,4 +103,28 @@ decide_final_anomaly_status <- function(energy_anom_score_xts,con_anom_score_xts
     return(anom_vec)
   }else{
     return (0)}
+}
+
+compute_dtw_distance_matrix  <- function(data_mat){
+  # this computes distance w.r.t columns
+  library(TSclust)
+  cols = dim(data_mat)[2]
+  dis_mat = matrix(0,nrow=cols,ncol=cols)
+  # compute only lower traingular matrix
+  for(row in 1:cols){
+    ref_col = data_mat[,row]
+    for(col in 1:row){
+      comp_col = data_mat[,col]
+      dis_mat[row,col] = DTWDistance(ref_col, comp_col)
+    }
+  }
+  # convert lower_triangular to full_symmetric matrix
+  for(i in 1:NROW(dis_mat)){
+    for(j in 1:NCOL(dis_mat)){
+      dis_mat[i,j] = dis_mat[j,i] 
+    }
+  }
+  colnames(dis_mat) <- colnames(data_mat)
+  row.names(dis_mat) <- colnames(data_mat)
+  return(dis_mat)
 }

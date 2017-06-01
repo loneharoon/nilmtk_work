@@ -1,3 +1,4 @@
+# main part of this script is used to plot the usage of each indiviual appliance of a home.
 library(xts)
 library(data.table)
 library(ggplot2)
@@ -5,8 +6,9 @@ library(gtools)
 library(plotly)
 rm(list=ls())
 
-file1 <- "115.csv"
-path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/" 
+file1 <- "434.csv"
+path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/" 
+#path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 #path = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/"
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/")
 df <- fread(paste0(path2,file1))
@@ -14,11 +16,12 @@ df_xts <- xts(df[,2:dim(df)[2]],fasttime::fastPOSIXct(df$localminute)-19800)
 head(df,2)[,1]
 head(df_xts,2)[,2]
 
-df_sub <- df_xts["2014-06-1/2014-08-30"]
+df_sub <- df_xts["2014-06-1/2014-08-30 23:59:59"]
 appliances <-colnames(df_sub)
 folder= strsplit(file1,"[.]")[[1]][1]
 dir.create(file.path("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/",folder))
 setwd(file.path("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/",folder))
+
 lapply(appliances,function(x){
   dat = df_sub[,x]  
   appliance = x
@@ -37,8 +40,11 @@ lapply(appliances,function(x){
   dev.off()
 })
 
-dat = df_xts$refrigerator1
-dat <-dat["2014-08-20/2014-08-21"]
+dframe = df_sub["2014-06-13",'refrigerator1']
+dataframe_visualize_all_columns(dframe)
+
+dat = df_sub$refrigerator1
+dat <-dat["2014-06-03/2014-06-03 23:59:59"]
 dat2 <- fortify(dat)
 colnames(dat2) <- c("Index","power")
 g <- ggplot(dat2,aes(Index,power)) + geom_line()
