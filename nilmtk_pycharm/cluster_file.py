@@ -31,7 +31,7 @@ def cluster(X, max_num_clusters=3, exact_num_clusters=None):
     centroids = np.append(centroids, 0)  # add 'off' state
     centroids = np.round(centroids).astype(np.int32)
     centroids = np.unique(centroids)  # np.unique also sorts
-    # TODO: Merge similar clusters
+    #
     return centroids
 
 

@@ -18,18 +18,18 @@
       <file leaf-file-name="localize_main_context_V_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/localize_main_context_V_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="37" />
+            <state relative-caret-position="429">
+              <caret line="43" column="38" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inserted_anomalies_home_wise" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inserted_anomalies_home_wise" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inserted_anomalies_home_wise">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1112">
-              <caret line="107" column="26" lean-forward="false" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+            <state relative-caret-position="-26">
+              <caret line="68" column="50" lean-forward="true" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -38,29 +38,46 @@
       <file leaf-file-name="insert_anomaly_store_df.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="36" selection-end-column="2" />
+            <state relative-caret-position="48">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scratchpad.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scratchpad.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scratchpad.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="haroon_utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/haroon_utils.py">
+      <file leaf-file-name="oracle_dissag_main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="2" column="9" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="55" />
+            <state relative-caret-position="29">
+              <caret line="17" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localize_appliance_support.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="486" column="83" lean-forward="true" selection-start-line="486" selection-start-column="83" selection-end-line="486" selection-end-column="83" />
+              <folding>
+                <element signature="e#62#96#0" expanded="true" />
+                <element signature="e#1639#3911#0" expanded="false" />
+                <element signature="e#5955#7761#0" expanded="false" />
+                <element signature="e#11531#13401#0" expanded="false" />
+                <element signature="e#17287#18208#0" expanded="false" />
+                <element signature="e#18283#18562#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,27 +104,29 @@
         <option value="$PROJECT_DIR$/hello.py" />
         <option value="$PROJECT_DIR$/scratch2" />
         <option value="$PROJECT_DIR$/../localize_fhmm.py" />
-        <option value="$PROJECT_DIR$/oracle_dissag_main.py" />
         <option value="$PROJECT_DIR$/../compare_dissagregation_algos.py" />
         <option value="$PROJECT_DIR$/temp_notebook.ipynb" />
         <option value="$PROJECT_DIR$/fhmm_support.py" />
-        <option value="$PROJECT_DIR$/localize_main_context_V_2.py" />
         <option value="$PROJECT_DIR$/haroon_utils.py" />
         <option value="$PROJECT_DIR$/localize_fhmm.py" />
-        <option value="$PROJECT_DIR$/localize_appliance_support.py" />
-        <option value="$PROJECT_DIR$/scratchpad.py" />
         <option value="$PROJECT_DIR$/find_good_homes.py" />
         <option value="$PROJECT_DIR$/compare_dissagregation_algos.py" />
-        <option value="$PROJECT_DIR$/script2.py" />
-        <option value="$PROJECT_DIR$/insert_anomaly_store_df.py" />
         <option value="$PROJECT_DIR$/inserted_anomalies_home_wise" />
+        <option value="$PROJECT_DIR$/cluster_file.py" />
+        <option value="$PROJECT_DIR$/localize_main_context_V_2.py" />
+        <option value="$PROJECT_DIR$/script2.py" />
+        <option value="$PROJECT_DIR$/localize_appliance_support.py" />
+        <option value="$PROJECT_DIR$/insert_anomaly_store_df.py" />
+        <option value="$PROJECT_DIR$/oracle_dissag_main.py" />
+        <option value="$PROJECT_DIR$/scratchpad.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1276" />
-    <option name="height" value="777" />
+    <option name="x" value="-1807" />
+    <option name="y" value="-162" />
+    <option name="width" value="1640" />
+    <option name="height" value="1004" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -124,6 +143,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -139,7 +159,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -161,7 +180,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.script2">
+  <component name="RunManager" selected="Python.scratchpad">
     <configuration default="false" name="oracle_dissag_main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -211,6 +230,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="nilmtk_pycharm" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/script2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="localize_main_context_V_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nilmtk_pycharm" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/localize_main_context_V_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -299,17 +336,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.scratchpad" />
       <item index="1" class="java.lang.String" itemvalue="Python.oracle_dissag_main" />
       <item index="2" class="java.lang.String" itemvalue="Python.scratch2" />
       <item index="3" class="java.lang.String" itemvalue="Python.script2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.localize_main_context_V_2" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.script2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.oracle_dissag_main" />
-        <item index="2" class="java.lang.String" itemvalue="Python.scratch2" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.localize_main_context_V_2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.script2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.oracle_dissag_main" />
+        <item index="3" class="java.lang.String" itemvalue="Python.scratch2" />
       </list>
     </recent_temporary>
   </component>
@@ -336,18 +375,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1276" height="777" extended-state="0" />
+    <frame x="-1807" y="-162" width="1640" height="1004" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.124797404" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16082603" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267544" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24817519" sideWeight="0.5083267" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277487" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267544" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3562044" sideWeight="0.48770818" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31688598" sideWeight="0.48770818" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24798061" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29343066" sideWeight="0.49167326" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31970802" sideWeight="0.49722442" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15570176" sideWeight="0.49167326" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3881579" sideWeight="0.49722442" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17828201" sideWeight="0.5084388" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1276252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -355,26 +395,25 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267544" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24817519" sideWeight="0.5083267" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267544" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3109489" sideWeight="0.48770818" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24817519" sideWeight="0.49167326" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1187399" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46820176" sideWeight="0.48770818" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15570176" sideWeight="0.49167326" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16082603" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24798061" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31970802" sideWeight="0.49722442" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3881579" sideWeight="0.49722442" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17828201" sideWeight="0.5084388" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1276252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
@@ -389,6 +428,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/localize_appliance_support.py</url>
+          <line>476</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -399,19 +445,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="37" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scratchpad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -433,14 +471,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -474,14 +508,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -515,14 +545,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -556,14 +582,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -590,14 +612,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,14 +649,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -672,14 +686,10 @@
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -714,22 +724,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="1584" column="0" lean-forward="false" selection-start-line="1584" selection-start-column="0" selection-end-line="1584" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scratch2.py" />
     <entry file="file://$PROJECT_DIR$/../localize_fhmm" />
-    <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="43" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../localize_fhmm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -756,7 +752,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1674">
           <caret line="141" column="57" lean-forward="false" selection-start-line="141" selection-start-column="57" selection-end-line="141" selection-end-column="57" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/find_good_homes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compare_dissagregation_algos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/localize_fhmm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="38" column="60" lean-forward="false" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -768,85 +784,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/find_good_homes.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        <state relative-caret-position="704">
+          <caret line="1584" column="0" lean-forward="false" selection-start-line="1584" selection-start-column="0" selection-end-line="1584" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluster_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-400">
+          <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="80">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#134#4136#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="408" column="71" lean-forward="false" selection-start-line="408" selection-start-column="71" selection-end-line="408" selection-end-column="71" />
+        <state relative-caret-position="510">
+          <caret line="486" column="83" lean-forward="true" selection-start-line="486" selection-start-column="83" selection-end-line="486" selection-end-column="83" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
             <element signature="e#1639#3911#0" expanded="false" />
-            <element signature="e#4607#5884#0" expanded="false" />
             <element signature="e#5955#7761#0" expanded="false" />
-            <element signature="e#11052#12922#0" expanded="false" />
-            <element signature="e#12993#14799#0" expanded="false" />
-            <element signature="e#14898#16491#0" expanded="false" />
-            <element signature="e#16567#17488#0" expanded="false" />
-            <element signature="e#17563#17842#0" expanded="false" />
-            <element signature="e#17909#18638#0" expanded="false" />
+            <element signature="e#11531#13401#0" expanded="false" />
+            <element signature="e#17287#18208#0" expanded="false" />
+            <element signature="e#18283#18562#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/compare_dissagregation_algos.py">
+    <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/localize_fhmm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="38" column="60" lean-forward="false" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
+        <state relative-caret-position="29">
+          <caret line="17" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/localize_main_context_V_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="36" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scratchpad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="429">
+          <caret line="43" column="38" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inserted_anomalies_home_wise">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1112">
-          <caret line="107" column="26" lean-forward="false" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+        <state relative-caret-position="-26">
+          <caret line="68" column="50" lean-forward="true" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scratchpad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
           <folding />
         </state>
       </provider>
