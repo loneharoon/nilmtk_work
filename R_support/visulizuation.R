@@ -6,11 +6,11 @@ library(gtools)
 library(plotly)
 rm(list=ls())
 
-file1 <- "434.csv"
-path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/" 
-#path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
+file1 <- "490.csv"
+#path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/" 
+path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 #path = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/"
-setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/")
+#setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/injected_homes/")
 df <- fread(paste0(path2,file1))
 df_xts <- xts(df[,2:dim(df)[2]],fasttime::fastPOSIXct(df$localminute)-19800)
 head(df,2)[,1]
@@ -19,8 +19,8 @@ head(df_xts,2)[,2]
 df_sub <- df_xts["2014-06-1/2014-08-30 23:59:59"]
 appliances <-colnames(df_sub)
 folder= strsplit(file1,"[.]")[[1]][1]
-dir.create(file.path("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/",folder))
-setwd(file.path("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/",folder))
+dir.create(file.path("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/injected_homes/",folder))
+setwd(file.path("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/injected_homes/",folder))
 
 lapply(appliances,function(x){
   dat = df_sub[,x]  
@@ -40,7 +40,9 @@ lapply(appliances,function(x){
   dev.off()
 })
 
-dframe = df_sub["2014-06-13",'refrigerator1']
+
+
+dframe = df_sub["2014-07-27",'air1']
 dataframe_visualize_all_columns(dframe)
 
 dat = df_sub$refrigerator1
