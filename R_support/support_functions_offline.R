@@ -155,6 +155,7 @@ compute_f_score <- function(res_df,gt,threshold){
     f_score[i] <- round( 2*(precision*recall)/(precision+recall),2)
     precise[i] <- round(precision,2)
     recal[i] <- round(recall,2)
+    #browser()
   }
   l <- rbind(f_score,precise,recal)
   #colnames(l) <- colnames(res_df[,2:NCOL(res_df)])

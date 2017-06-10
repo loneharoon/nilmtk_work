@@ -59,7 +59,7 @@ for (i in 1:length(dat_month)) {
   colnames(agg_score[[i]]) <- c("lof","multi_user","hp")
 }
 
-#file1 = "demo.csv"
+file1 = "3538.csv"
 base_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
 sub_dir <- strsplit(file1,'[.]')[[1]][1]
 dir.create(file.path(base_directory, sub_dir))

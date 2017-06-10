@@ -1,3 +1,4 @@
+# dissagregation
 # RMSE _NORMALISATION ERROR
 house_no = c(115,434,490,1463,3538)
 homes <- paste0("norm_rmse_",house_no,".csv")
@@ -31,6 +32,7 @@ accu[[j]] <- df
 do.call(rbind,accu)
 
 # COMPUTE APPLIANCE WISE ANOMALY DETECTION ACCURACY METRICS AFTER APPLYING DISSAGREGATION
+# stage 3: For appAD and Oracle
 
 home= "3538.csv"
 gt <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"

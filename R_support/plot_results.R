@@ -52,9 +52,11 @@ g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position="t
 g
 #ggsave("accuracy.pdf", width = 8, height = 6,units="cm") 
 ##############################APPLIANCE LEVEL SCORES#########################
+setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
+
 
 ac_fscore_df = data.frame("1463"=c(0.40,0.67),
-                          "3538"=c(0.71,0.70),
+                          "3538"=c(0.64,0.72),#"3538"=c(0.71,0.70),
                           "490"=c(0.70,0.82),
                           "115"=c(0.44,0.83))
 row.names(ac_fscore_df) <- c("FHMM","Oracle")
@@ -63,7 +65,7 @@ plot_bar_plots_appliance(df,"F-score","ac_fscore")
 
 
 ac_precision_df = data.frame("1463"=c(0.50,0.67),
-                             "3538"=c(0.86,0.70),
+                             "3538"=c(0.70,0.75), #"3538"=c(0.86,0.70),
                              "490"=c(0.70,0.82),
                              "115"=c(0.67,0.83))
 row.names(ac_precision_df) <- c("FHMM","Oracle")
@@ -89,7 +91,7 @@ df <- as.data.frame(t(fridge_fscore_df))
 plot_bar_plots_appliance(df,"F-score","fridge_fscore")
 
 fridge_precision_df = data.frame("1463"=c(0.08,1),
-                                 "3538"=c(0.04,0.1),
+                                 "3538"=c(0.04,1),
                                  "490"=c(0.16,0.77),
                                  "115"=c(0.09,0.86))
 row.names(fridge_precision_df) <- c("FHMM","Oracle")
@@ -109,6 +111,7 @@ plot_bar_plots_appliance(df,"Recall","fridge_recall")
 
 
 plot_bar_plots_appliance <- function(df,ylabel,savename){
+  library(ggplot2)
   df$idcol = seq(1,4)
   df_melt <- reshape2::melt(df,id.vars=c("idcol"))
   g <- ggplot(df_melt,aes(idcol,value,fill=variable)) + geom_bar(position="dodge",stat="identity",width = 0.7)
@@ -117,3 +120,47 @@ plot_bar_plots_appliance <- function(df,ylabel,savename){
   g
   ggsave(paste0(savename,".pdf"), width = 6, height = 6,units="cm") 
 }
+
+#####methodology figure########
+
+path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/methodolgy_figdata/three_ac_scenario.csv"
+df= read.csv(path)
+#df_xts <- xts(df[,2:4],fasttime::fastPOSIXct(df[,1])-19800)
+colnames(df) <- c("timestamp","Normal","Abnormal 1","Abnormal 2")
+df_melt <- reshape2::melt(df,id.vars=c("timestamp"))
+df_melt$timestamp <- fasttime::fastPOSIXct(df[,1])-19800
+
+f <- ggplot(df_melt,aes(timestamp,value/1000,ymin = 0,ymax=value/1000)) + facet_grid(variable~.,scales="free") 
+f <- f + geom_line(data=subset(df_melt,variable=="Normal"),colour="blue")  # require(plyr) for dot function
+f <- f + geom_line(data=subset(df_melt,variable=="Abnormal 1"),colour="red")  
+f <- f + geom_line(data=subset(df_melt,variable=="Abnormal 2"),colour="red") 
+f <- f + labs(x= "Timestamp(HH:MM)",y="Power (kW)") + theme(strip.text.y = element_text(size = 8,face="bold"))
+f <- f+ theme(axis.text = element_text(color="black",size=8)) + scale_y_continuous(breaks=scales::pretty_breaks(n=4))
+f
+setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
+#ggsave(filename="ac_consump_scenario.pdf",height = 7, width = 12, units="cm") #  FIGURE 1
+
+df2 <- subset(df_melt,variable=="Normal")
+g <- ggplot(df2,aes(timestamp,value/1000,ymin=-0.3,ymax=1.5)) + geom_line(color="blue")
+g <- g + labs(x= "Timestamp(HH:MM)",y="Power (kW)")+ theme(axis.text = element_text(color="black",size=8),axis.title  = element_text(size=9))
+g
+setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
+#ggsave(filename="clustering.pdf",height = 4, width = 12, units="cm") #  FIGURE 1
+######################
+library(data.table)
+library(scales)
+file1 <- "1086.csv"
+path2 <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/" 
+df <- fread(paste0(path2,file1))
+df_xts <- xts(df[,2:dim(df)[2]],fasttime::fastPOSIXct(df$localminute)-19800)
+df_ref <- df_xts["2014-07-25","refrigerator1"]
+g <- ggplot(fortify(df_ref),aes(Index,refrigerator1)) + geom_line(color="blue")
+g <- g + labs(x= "Timestamp(HH:MM)",y="Power (W)")+ theme(axis.text = element_text(color="black",size=8),axis.title  = element_text(size=9)) + scale_x_datetime(labels=date_format("%H:%M",tz="Asia/Kolkata"))
+g
+ggsave(filename="refrigerator.pdf",height = 4, width = 6, units="cm") #
+df_ref <- df_xts["2014-06-17","air1"]
+g <- ggplot(fortify(df_ref),aes(Index,air1/1000)) + geom_line(color="blue")
+g <- g + labs(x= "Timestamp(HH:MM)",y="Power (kW)")+ theme(axis.text = element_text(color="black",size=8),axis.title  = element_text(size=9)) + scale_x_datetime(labels=date_format("%H:%M",tz="Asia/Kolkata"))
+g
+ggsave(filename="ac.pdf",height = 4, width = 6, units="cm") #
+
