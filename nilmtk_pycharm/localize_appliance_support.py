@@ -305,7 +305,7 @@ def localize_anomalous_appliance(fhmm_result, train_result, appliance_count, tak
             #print 'stage2'
             for i in range(len(appliances)):  # appliance level slicing
                 if any(daydat_temp[appliances[i]]):
-                    # FIXME select proper fuction
+                    # FIXME select proper function
                     #result.append(appliance_anomaly_result(daydat_temp[appliances[i]], train_result, appliances[i], take_context))
                     result.append(appliance_anomaly_result_test_func(daydat_temp[appliances[i]], train_result, appliances[i], take_context))
                     #print appliances[i]
@@ -429,18 +429,6 @@ def accuracy_metric_norm_error(dis_result):
     result = pd.DataFrame.from_dict(error, orient='index')
     return result
 
-#diss_accu_metric_kotler_1(fhmm_result,dset_test['run'])
-
-#diss_accu_metric_kotler_2(fhmm_result,sum(test_dset['use']))
-
-# readdir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
-# fls = [f for f in listdir(readdir,"norm_rmse_*")]
-# dfs = {}
-# for i in range(len(fls)):
-#     print i
-#     dfs[i] = pd.read_csv(readdir+fls[i])
-
-
 
 def appliance_anomaly_result_test_func(test_day, area_stat, device, take_context):  # area_stat stores training models results
     """ function called by localize_anomalous_appliance,used at testing time.
@@ -476,10 +464,6 @@ def appliance_anomaly_result_test_func(test_day, area_stat, device, take_context
                 #"when person was out for long time and then suddenly he used ac is not an anomaly"
                 print device + " Not Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') + " at " + key + " time"
                 continue
-                #anom_type = "elongated"
-                #df = df.append({'Date': np.unique(test_day.index.date)[0].strftime(
-                    #'%Y-%m-%d'), 'air1': air_status, 'refrigerator1': refrigerator_status, 'context': key,
-                    #'Anom_type': anom_type, 'Magnitude': test.loc[1].mean_mag}, ignore_index=True)
             elif (test.loc[1].mean_area >= context.loc[1].mean_area + 1.5 * context.loc[1].sd_area):
                 #print "elongated case"
                 print device + " Elongated Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') + " at " + key + " time"
@@ -499,4 +483,95 @@ def appliance_anomaly_result_test_func(test_day, area_stat, device, take_context
                 print device + "Frequent Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
             elif (test_res.loc[i].mean_area >= area_stat.loc[i].mean_area + 1.5 * area_stat.loc[i].sd_area):
                 print device + "Elongated Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
+
+
+
+def sensitivity_localize_anomalous_appliance(fhmm_result, train_result, appliance_count, take_context,sigma):
+    """ Required at testing time
+    input: dissaggregated appliance data and the appliance statistics/models from training data
+    input : appliance_count: this parameter decides if we  have one appliance or more than one. for one appliance this should be
+    1 , and for rest any value will suffice: Basically using this parameter we call different functions
+    output:find whether appliance is anomalous on day basis"""
+    test_temp = deepcopy(fhmm_result)
+    m = map(str, test_temp.index.strftime('%m'))  # month
+    d = map(str, test_temp.index.strftime('%d'))  # days
+    import operator
+    ind = map(operator.add, m, d)  # create key using combination
+    day_dat = test_temp.groupby(ind)
+    result = []
+    for key, value in day_dat:  # day level slicing
+        daydat_temp = value
+        #print 'stage1'
+        if appliance_count == 1:  # of only one appliance, then appliance slicing level not required
+            appliance_anomaly_result_version2(daydat_temp, train_result, take_context)
+        else:
+            # case when appliance level slicing required
+            appliances = daydat_temp.columns
+            #print 'stage2'
+            for i in range(len(appliances)):  # appliance level slicing
+                if any(daydat_temp[appliances[i]]):
+                    # FIXME select proper function
+                    #result.append(appliance_anomaly_result(daydat_temp[appliances[i]], train_result, appliances[i], take_context))
+                    result.append(sensitivity_appliance_anomaly_result_test_func(daydat_temp[appliances[i]], train_result, appliances[i], take_context,sigma))
+                    #print appliances[i]
+                else:
+                    print 'stage__continue'
+                    continue
+    final_result = pd.concat(result)
+    return final_result
+
+def sensitivity_appliance_anomaly_result_test_func(test_day, area_stat, device, take_context,sigma):  # area_stat stores training models results
+    """ function called by localize_anomalous_appliance,used at testing time.
+     It works at day level data for each appliance separately"""
+    # print "start:"+device+":"+test_day.index.date[0].strftime('%d/%m/%Y')
+
+    if take_context:
+        test_res = cluster_appliance_testing_stage_with_time_context(test_day, device)
+        area_stat = area_stat[device]
+        df = pd.DataFrame()# for storing results
+        air_status = 0
+        refrigerator_status = 0
+        if device == "air1":
+            air_status = 1
+        else:
+            refrigerator_status = 1
+        for key, context in area_stat.iteritems():
+            test = test_res[key]  # corresponding context data from test day
+            #FIXME  TUNABLE PARAMETERS ARE PRESENT HERE
+            #for i in range(context.shape[0]):  # for no. of rows corresponding to no.of clusters/states
+            states = test.shape[0]-1 #no. of states found during clustering in the concerned data
+            if states == 0: # device remained off for full day
+                print "state " + str(1) + " is not in " + device + " on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') + " at " + key + " time"
+                continue
+            if ((test.loc[0].mean_area <= context.loc[0].mean_area - sigma * context.loc[0].sd_area) & (test.loc[1].mean_area <= context.loc[1].mean_area - sigma * context.loc[1].sd_area)):
+                #print "frequent case"
+                print device + " Frequent Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') + " at " + key + " time"
+                anom_type = "frequent"
+                df = df.append({'Date': np.unique(test_day.index.date)[0].strftime(
+                    '%Y-%m-%d'), 'air1': air_status, 'refrigerator1': refrigerator_status, 'context': key,
+                    'Anom_type': anom_type, 'Magnitude': test.loc[1].mean_mag}, ignore_index=True)
+            elif ((test.loc[1].mean_area >= context.loc[1].mean_area + sigma * context.loc[1].sd_area) & (test.loc[0].mean_duration > 2 * context.loc[0].mean_duration)):
+                #"when person was out for long time and then suddenly he used ac is not an anomaly"
+                print device + " Not Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') + " at " + key + " time"
+                continue
+            elif (test.loc[1].mean_area >= context.loc[1].mean_area + sigma * context.loc[1].sd_area):
+                #print "elongated case"
+                print device + " Elongated Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y') + " at " + key + " time"
+                anom_type = "elongated"
+                df = df.append({'Date': np.unique(test_day.index.date)[0].strftime(
+                    '%Y-%m-%d'), 'air1': air_status, 'refrigerator1': refrigerator_status, 'context': key,
+                    'Anom_type': anom_type, 'Magnitude': test.loc[1].mean_mag}, ignore_index=True)
+
+        return df
+    else:
+        test_res = cluster_appliance_testing_stage(test_day, device)
+        test_res = test_res.sort_values(by='mean_mag', ascending=True)
+        test_res = test_res.reset_index(drop=True)
+        area_stat = area_stat[device]
+        for i in range(area_stat.shape[0]):
+            if (test_res.loc[i].mean_area <= area_stat.loc[i].mean_area - 1.5 * area_stat.loc[i].sd_area):
+                print device + "Frequent Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
+            elif (test_res.loc[i].mean_area >= area_stat.loc[i].mean_area + 1.5 * area_stat.loc[i].sd_area):
+                print device + "Elongated Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
+
 
