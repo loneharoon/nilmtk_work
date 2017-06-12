@@ -1,5 +1,5 @@
+AGGREGATE_LEVLE <- function(){
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
-
 fscore_df = data.frame("1463"=c(0.81,0.70,0.50),
                        "3538"=c(0.83,0.52,0.28),
                        "490"=c(0.73,0.57,0.38),
@@ -34,6 +34,9 @@ plot_bar_plots <- function(df,ylabel){
   g
   ggsave(paste0(ylabel,".pdf"), width = 6, height = 6,units="cm") 
 }
+}
+
+dissagregation_accu <-function(){
 ######################################################Dissagregation accuracy score#####
 
 accu_df = data.frame("1463"=c(0.71,0.62),
@@ -51,9 +54,11 @@ g <- g +  labs(x="Home #",y = "Accuracy (%)") + theme_grey(base_size = 10)
 g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position="top",legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 9),legend.title=element_blank())
 g
 #ggsave("accuracy.pdf", width = 8, height = 6,units="cm") 
+}
+
+APPLIANCE_LEVEL <- function() {
 ##############################APPLIANCE LEVEL SCORES#########################
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
-
 
 ac_fscore_df = data.frame("1463"=c(0.40,0.67),
                           "3538"=c(0.64,0.72),#"3538"=c(0.71,0.70),
@@ -107,9 +112,6 @@ df <- as.data.frame(t(fridge_recall_df))
 plot_bar_plots_appliance(df,"Recall","fridge_recall")
 
 
-
-
-
 plot_bar_plots_appliance <- function(df,ylabel,savename){
   library(ggplot2)
   df$idcol = seq(1,4)
@@ -120,9 +122,10 @@ plot_bar_plots_appliance <- function(df,ylabel,savename){
   g
   ggsave(paste0(savename,".pdf"), width = 6, height = 6,units="cm") 
 }
+}
 
-#####methodology figure########
-
+methodology_figures <- function(){
+##### methodology figure ########
 path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/methodolgy_figdata/three_ac_scenario.csv"
 df= read.csv(path)
 #df_xts <- xts(df[,2:4],fasttime::fastPOSIXct(df[,1])-19800)
@@ -164,3 +167,4 @@ g <- g + labs(x= "Timestamp(HH:MM)",y="Power (kW)")+ theme(axis.text = element_t
 g
 ggsave(filename="ac.pdf",height = 4, width = 6, units="cm") #
 
+}
