@@ -4,18 +4,16 @@ import fhmm_support as fhm
 import numpy as np
 import pandas as pd
 np.random.seed(123)
-#import matplotlib.pyplot as plt
 from collections import OrderedDict
 from hmmlearn import hmm
-#from IPython import embed
 import time
 
 # List all houses in a directory
 dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
 savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
-execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/localize_fhmm")
-execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/localize_appliance_support")
-execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plot_functions.py")
+execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/localize_fhmm.py")
+execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/localize_appliance_support.py")
+#execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plot_functions.py")
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/cluster_file.py")
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/utils.py")
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/co.py")
@@ -27,7 +25,7 @@ def run_dissaggreation_algos():
         df.index = pd.to_datetime(df.index)
         df = df["2014-06-01":"2014-08-30"]
         res = df.sum(axis=0)
-        high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few applainces
+        high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
         df_new = df[high_energy_apps]
         del df_new['use']# drop stale aggregate column
         df_new['use'] = df_new.sum(axis=1) # create new aggregate column
@@ -40,6 +38,7 @@ def run_dissaggreation_algos():
         fhmm_result  =  fhmm_decoding(train_dset,test_dset) # dissagreation
         co_result = co_decoding(train_dset,test_dset)
         #plot_actual_vs_decoded(co_result)
+
         fhmm_rmse = compute_rmse(fhmm_result['actaul_power'],fhmm_result['decoded_power'])
         co_rmse = compute_rmse(co_result['actaul_power'],co_result['decoded_power'])
         fhmm_rmse = pd.DataFrame.from_dict(fhmm_rmse)
@@ -51,6 +50,10 @@ def run_dissaggreation_algos():
         fhmm_accu = diss_accu_metric_kotler_1(fhmm_result,aggregate)
         co_accu = diss_accu_metric_kotler_1(co_result,aggregate)
         res_frame = pd.DataFrame(data={'algo':['fhmm_acc','co_acc'],'accuracy':[fhmm_accu,co_accu]})
-        res_frame.to_csv(savedir+"accuracy_"+hos,index=False)
-        
+        res_frame.to_csv(savedir+"accuracy_kolter"+hos,index=False)
 
+        # METRICS TAKEN FROM GAMELLO PAPER
+        fhmm_accu = compute_dissagg_accuracy(fhmm_result)
+        co_accu = compute_dissagg_accuracy(co_result)
+        fhmm_accu.to_csv(savedir + "fhmm_gammello_accu" + hos)
+        co_accu.to_csv(savedir + "co_gamello_accu" + hos)
