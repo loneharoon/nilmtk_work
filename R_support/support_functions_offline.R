@@ -130,6 +130,7 @@ compute_dtw_distance_matrix  <- function(data_mat){
   return(dis_mat)
 }
 
+
 compute_f_score <- function(res_df,gt,threshold){
   if(is.xts(res_df)) {
     res_df_xts =  res_df

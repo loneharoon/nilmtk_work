@@ -1,7 +1,7 @@
 
 anomaly_score_threshold <- function() {
 # FOR  SENSITIVITY ANALYSIS OF on anomaly threshold score
-house="3538.csv"
+house="115.csv"
 result <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/",strsplit(house,'[.]')[[1]][1],"/","energy_score.csv")
 #gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/ground_truth/"
 gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth/"
@@ -15,7 +15,7 @@ for (i in 1:length(thresholds)){
  store[[i]] <- compute_f_score(res_df,gt,threshold = thresholds[i])
 }
 fin_result <- do.call(rbind,store)
-colnames(fin_result) <- c("aggAD","MBM","NNBM")
+colnames(fin_result) <- c("OMNI","MBM","NNBM")
 f_score <- data.frame(fin_result[row.names(fin_result)=='f_score',],row.names = NULL)
 precision <- data.frame(fin_result[row.names(fin_result)=='precise',],row.names = NULL)
 recall <- data.frame(fin_result[row.names(fin_result)=='recal',],row.names = NULL)
@@ -30,9 +30,9 @@ anom_score_threshold_sensitivity <- function(df,label,thresholds,house) {
   #ylabel = "value"
   house = strsplit(house,'[.]')[[1]][1]
   df_melt <- reshape2::melt(df,id.vars=c("thresholds")) 
-  g <- ggplot(df_melt,aes(thresholds,value,color=variable)) + geom_line()
-  g <- g +  labs(x="Threshold",y = label) 
-  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 8))
+  g <- ggplot(df_melt,aes(thresholds,value,color=variable)) + geom_line(size=0.6) + geom_point(aes(shape=variable))
+  g <- g +  labs(x="Threshold",y = label) + theme_grey(base_size = 10) 
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 9))
   g
   ggsave(paste0(house,"_",label,"_threshold.pdf"), width = 6, height = 6,units="cm") 
 }
@@ -102,9 +102,9 @@ effect_of_change_in_sigma <- function()
     #ylabel = "value"
     house = strsplit(house,'[.]')[[1]][1]
     df_melt <- reshape2::melt(df,id.vars=c("thresholds")) 
-    g <- ggplot(df_melt,aes(thresholds,value,color=variable)) + geom_line()
-    g <- g +  labs(x='Standard deviation',y = "Value")  
-    g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 8))
+    g <- ggplot(df_melt,aes(thresholds,value,color=variable)) + geom_line(size=0.6) + geom_point(aes(shape=variable))
+    g <- g +  labs(x='Standard deviation',y = "Accuracy Score")  + theme_grey(base_size = 11) 
+    g <- g + theme(axis.text = element_text(color="Black",size=11),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 10))
     g
     ggsave(paste0(house,"_",device,"_sigma.pdf"), width = 8, height = 7,units="cm") 
   }
@@ -179,6 +179,7 @@ k_sensitivity <- function() {
     norm_score[[i]] <- normalise_my_score(agg_score[[i]])
   }
   setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
+  
   plot_k_sensitivity(norm_score[[3]])
   
   outlierfactor_sensitivity <- function(daymat){
@@ -199,15 +200,15 @@ k_sensitivity <- function() {
     df_melt <-melt(df.lof2)
     names(df_melt) <- c("day","k","value")
     ggplot(df_melt,aes(day,value,shape=factor(k),color=factor(k)))+
-      geom_point(size=5)+
+      geom_point(size=2) + theme_grey(base_size = 8) +
       geom_vline(aes(xintercept=day),linetype = 3, show.legend=TRUE) +
       labs(x= "Day #", y="Anomaly Score")+
       scale_x_continuous(breaks=seq(1,15,4)) +
       scale_shape_manual(name="k", labels=c(3,4,5,6,7),values=c(15,16,17,18,25))+
       scale_color_manual(name="k", labels=c(3,4,5,6,7),values=c("brown","black","blue","green", "red"))+
-      theme(axis.text = element_text(color="Black",size=9),legend.position="top",
-            legend.title=element_text(size=9),axis.title = element_text(color="Black",size=9))
-    ggsave(file="k_sensitivity.pdf", width=10, height=8, units="cm")
+      theme(axis.text = element_text(color="Black",size=8),legend.position="top",
+            legend.title=element_text(size=8),axis.title = element_text(color="Black",size=8))
+    ggsave(file="k_sensitivity2.pdf", width=8, height=7, units="cm")
   }
   
   normalise_my_score <- function(df.lof2){
@@ -218,3 +219,80 @@ k_sensitivity <- function() {
 }
 
 
+paper_discussion_section <- function(){
+  # AT AGGREGATE LEVEL:
+  # FIND STATSTISTS WHICH OF THE ANOMALIES ARE GETTING MISSED.
+  library(xts)
+  library(data.table)
+  library(ggplot2)
+  library(gtools)
+  library(plotly)
+  
+  house = "115.csv"
+  result <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/",strsplit(house,'[.]')[[1]][1],"/","energy_score.csv")
+  gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth/"
+  
+  gt <- fread(paste0(gt_directory,house))
+  gt$Index <- as.Date(gt$Index,tz="Asia/Kolkata")
+  res_df <- fread(result)
+  res_df$Index <- as.Date(res_df$Index,tz="Asia/Kolkata") 
+  
+  res_above_th  <- res_df[res_df$lof>=0.8,]
+  missed <- gt[!gt$Index %in% res_above_th$Index,]
+  print(missed)
+  res_df[res_df$Index %in% missed$Index,] 
+  
+  
+  # AT APPLIANCE LEVEL
+  # ANOMALY DETECTION NUMBERS
+  house = "115.csv"
+  result <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/fhmm/")
+  gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"
+  gt <- fread(paste0(gt_directory,house))
+  gt$Index <- as.Date(gt$Index,tz="Asia/Kolkata")
+  res_df <- fread(paste0(result,house))
+  res_df$Date <- as.Date(res_df$Date,tz="Asia/Kolkata") 
+  missed <- gt[!gt$Index %in% res_df$Date,]
+  print(missed[missed$mis==0,])
+  
+  result_or <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/oracle/")
+  gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"
+  gt <- fread(paste0(gt_directory,house))
+  gt$Index <- as.Date(gt$Index,tz="Asia/Kolkata")
+  res_df2 <- fread(paste0(result_or,house))
+  res_df2$Date <- as.Date(res_df2$Date,tz="Asia/Kolkata") 
+  missed <- gt[!gt$Index %in% res_df2$Date,]
+  print(missed[missed$mis==0,])
+  
+}
+
+
+compute_score_sigma_constant  <- function(dat,obs_per_day) {
+  #browser()
+  daydat <- split.xts(dat,f="days",k=1)
+  daylen <- sapply(daydat,length)
+  keep <- daylen >= obs_per_day
+  daydat <-  daydat[keep]
+  daymat <- sapply(daydat,function(x) coredata(x))
+  # print(dim(daymat))
+  colnames(daymat) <- paste0('D',1:dim(daymat)[2])
+  flag <- apply(daymat,2,function(x) any(is.na(x)))
+  daymat <- daymat[,!flag]
+  daymat_xts <- xts(daymat, index(daydat[[1]]))
+  
+  rowMedian <- function(x, na.rm = FALSE)
+  {
+    apply(x, 1, median, na.rm = na.rm) 
+  }
+  # stat dataframe with mean and standard devation
+  stat <- xts(data.frame(rowmean = rowMeans(daymat_xts,na.rm = TRUE)),index(daydat[[1]]))
+  # stat <- xts(data.frame(rowmean = rowMedian(daymat_xts,na.rm = TRUE)),index(daydat[[1]]))
+  stat <- cbind(stat,xts(data.frame(rowsd=apply(as.matrix(coredata(daymat_xts)),1,sd,na.rm=TRUE)),index(daydat[[1]])))
+  status <- vector()
+  for( i in 1:dim(daymat_xts)[2]) {
+    status[i] <- all((daymat_xts[,i] <= (stat$rowmean + 2*stat$rowsd)) & ( daymat_xts[,i] >= (stat$rowmean - 2*stat$rowsd) ))
+  }
+  score <- round(sum(status,na.rm = TRUE)/length(status),2)
+  
+  return(score)
+}
