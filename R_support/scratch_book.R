@@ -1,30 +1,28 @@
 
-compute_score_sigma_constant  <- function(dat,obs_per_day) {
-   #browser()
-   daydat <- split.xts(dat,f="days",k=1)
-   daylen <- sapply(daydat,length)
-   keep <- daylen >= obs_per_day
-   daydat <-  daydat[keep]
-  daymat <- sapply(daydat,function(x) coredata(x))
- # print(dim(daymat))
-  colnames(daymat) <- paste0('D',1:dim(daymat)[2])
-  flag <- apply(daymat,2,function(x) any(is.na(x)))
-  daymat <- daymat[,!flag]
-  daymat_xts <- xts(daymat, index(daydat[[1]]))
+library(xts)
+library(data.table)
+library(ggplot2)
+path <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/iawe/"
 
-  rowMedian <- function(x, na.rm = FALSE)
-  {
-    apply(x, 1, median, na.rm = na.rm) 
-  }
-  # stat dataframe with mean and standard devation
-  stat <- xts(data.frame(rowmean = rowMeans(daymat_xts,na.rm = TRUE)),index(daydat[[1]]))
-  # stat <- xts(data.frame(rowmean = rowMedian(daymat_xts,na.rm = TRUE)),index(daydat[[1]]))
-  stat <- cbind(stat,xts(data.frame(rowsd=apply(as.matrix(coredata(daymat_xts)),1,sd,na.rm=TRUE)),index(daydat[[1]])))
-  status <- vector()
-   for( i in 1:dim(daymat_xts)[2]) {
-     status[i] <- all((daymat_xts[,i] <= (stat$rowmean + 2*stat$rowsd)) & ( daymat_xts[,i] >= (stat$rowmean - 2*stat$rowsd) ))
-   }
-  score <- round(sum(status,na.rm = TRUE)/length(status),2)
+home <- "iawe_dataset.csv"
+df <- fread(paste0(path,home),sep="auto")
 
-  return(score)
+df_xts <- xts(df[,-1],fasttime::fastPOSIXct(df$timestamp))
+colnames(df_xts)
+
+visualize_dataframe_all_columns(df_xts['2013-07-16/2013-07-16 23:59:59'])
+
+visualize_dataframe_all_columns(df_xts[,c("Freezer")]['2015-06-01/2015-06-25'])
+
+dsub <- df_xts['2013-07-13/2013-08-04 23:59:59']
+
+
+
+#storepath <- "/Volumes/MacintoshHD2/Users/haroonr/Downloads/"
+#write.csv(fortify(df_xts),paste0(storepath,"All_Data.csv"),row.names = FALSE)
+
+
+
+for (i in 2:NCOL(df)){
+  df[,i] <- as.numeric(unlist(df[,i,with=FALSE]))
 }
