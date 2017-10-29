@@ -16,7 +16,8 @@ execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm
 path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 aggregate_result = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
 
-homes = ["115.csv","434.csv","490.csv","1463.csv","3538.csv"]
+#homes = ["115.csv","434.csv","490.csv","1463.csv","3538.csv"]
+homes = ["115.csv"]
 #file1 ="101.csv"
 #houses = [f for f in os.listdir(dir)]
 #df = pd.read_csv(dir+houses[6],index_col='localminute') # USE HOUSE (6,115)

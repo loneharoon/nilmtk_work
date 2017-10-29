@@ -1,7 +1,8 @@
 from copy import deepcopy
 import pandas as pd
 from matplotlib import interactive
-# in this script, I take a home and insert anomalies in one of the appliance and perform necessary changes in aggregate consumption.Later we save 
+
+# in this script, I take a home and insert anomalies in one of the appliance and perform necessary changes in aggregate consumption.Later we save
 # all changes as a separate csv file.
 
 file = "490.csv"

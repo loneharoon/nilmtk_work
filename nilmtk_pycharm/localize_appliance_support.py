@@ -33,7 +33,6 @@ def cluster_appliance_testing_stage(test_dat,device):
     area_stat = compute_area_res_statistic(df_pd)
     return(area_stat)
 
-
 def cluster_appliance_testing_stage_with_time_context(test_dat, device):
     """runs over the appliances outtput from NILM stage
     test_dat: is time_series power consumption data
@@ -81,7 +80,6 @@ def cluster_appliance_testing_stage_with_time_context(test_dat, device):
         context_result[key] = temp_res
     return (context_result)
 
-    
 def cluster_appliance_usage(dat_app,appliance):
     """ performs clustering on consumption values. returns clustering label for each value
     """
@@ -98,7 +96,6 @@ def cluster_appliance_usage(dat_app,appliance):
     #from IPython import embed
     #embed()
     return temp
-
 
 def appliance_area_statistic(dat,appliance):
     """ called by fucntion compute_appliance_statistic at training stage"""
@@ -125,7 +122,6 @@ def appliance_area_statistic(dat,appliance):
     area_stat = area_stat.sort_values(by='mean_mag',ascending=True)
     area_stat = area_stat.reset_index(drop=True)
     return(area_stat)
-
 
 def appliance_area_statistic_with_time_context(dat, appliance):
     """ called by fucntion compute_appliance_statistic at training stage. This variant is used when we want to use time context"""
@@ -214,8 +210,6 @@ def appliance_anomaly_result(test_day, area_stat, device, take_context):  # area
             elif (test_res.loc[i].mean_area >= area_stat.loc[i].mean_area + 1.5 * area_stat.loc[i].sd_area):
                 print device + "Elongated Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
 
-
-
 def appliance_anomaly_result_version2(test_day,area_stat,take_context): # area_stat stores training models results
     """this variant is used when we have only one appliance """
     if take_context:
@@ -247,7 +241,6 @@ def appliance_anomaly_result_version2(test_day,area_stat,take_context): # area_s
     # import operator
     # ind1 = map(operator.add, m1, d1)  # create key using combination
 
-
 def appliance_area_statistic_with_time_context(dat, appliance):
     """ called by function compute_appliance_statistic at training stage. This variant is used when we want to use time context"""
     # df_sub = df["2014-06-10":"2014-06-14"]
@@ -260,7 +253,7 @@ def appliance_area_statistic_with_time_context(dat, appliance):
     data_contexts = {'day': day_data, 'night': night_data}
     context_result = {}
     for key, value in data_contexts.iteritems():  # no. of contexts, currently we have only day and night
-        clus_res = cluster_appliance_usage(value, appliance)
+        clus_res = cluster_appliance_usage(value, appliance) # provides cluster label for each observation
         rle_vector = [(k, sum(1 for i in g)) for k, g in groupby(clus_res['cluster'])] # like rle() in r. Here I save each in tuple form
         rle_df = pd.DataFrame(rle_vector, columns=["value", "count"])
         unique_labels = np.repeat(range(rle_df.shape[0]), rle_df['count'])
@@ -280,12 +273,11 @@ def appliance_area_statistic_with_time_context(dat, appliance):
         context_result[key] = area_stat
     return (context_result)
 
-
 def localize_anomalous_appliance(fhmm_result, train_result, appliance_count, take_context):
     """ Required at testing time
-    input: dissaggregated appliance data and the appliance statistics/models from training data
-    input : appliance_count: this parameter decides if we  have one appliance or more than one. for one appliance this should be
-    1 , and for rest any value will suffice: Basically using this parameter we call different functions
+    input: disaggregated appliance data and the appliance statistics/models from training data
+    input : appliance_count: this parameter decides if we have one appliance or more than one. for one appliance this should be
+    1 , and for rest any value will suffice. Basically using this parameter we call different functions
     output:find whether appliance is anomalous on day basis"""
     test_temp = deepcopy(fhmm_result)
     m = map(str, test_temp.index.strftime('%m'))  # month
@@ -315,7 +307,6 @@ def localize_anomalous_appliance(fhmm_result, train_result, appliance_count, tak
     final_result = pd.concat(result)
     return final_result
 
-
 def insert_anomaly_in_testframe(test_dset,anomalies,appliance_name):
     """  This function inserts anomalies provided in input anomalies dictionary in the applaiance_name column of 
     pandas test_dset dataframe"""
@@ -343,10 +334,9 @@ def insert_anomaly_in_appliance(test_dset,anomalies,appliance_name):
         data[appliance_name][value.index] = value.values
     return (data)
 
-
 def compute_appliance_statistic(train_data, context=False):
-    """ works on training data, i.e. creates one time statistic corresponding to applainces in a home;
-    Return: dictionay corresponding to each appliance"""
+    """ works on training data, i.e. creates one time statistic corresponding to appliances in a home;
+    Return: dictionary corresponding to each appliance"""
     train_temp = deepcopy(train_data)
     if ('use' in train_data.columns):
         del train_temp['use']
@@ -367,7 +357,6 @@ def compute_rmse(gt,pred):
         rms_error[app] =  np.sqrt(mean_squared_error(gt[app],pred[app]))
     return pd.Series(rms_error)
 
-
 def compute_area_res_statistic(area_res,appliance,key):
     """ computes various statistic corresponding to each state/cluster """
     dframe = pd.DataFrame(columns=['cluster', 'mean_mag', 'mean_duration', 'mean_area', 'sd_area'])
@@ -378,7 +367,6 @@ def compute_area_res_statistic(area_res,appliance,key):
         #FIXME : YOU CAN TUNE ABOVE LINE
         #print dframe.loc[i]
     return (dframe)
-
 
 def diss_accu_metric_kotler_1(dis_result,aggregate):
     #dis_result = co_result
@@ -428,7 +416,6 @@ def accuracy_metric_norm_error(dis_result):
         error[app] = np.divide(numerator,denominator)
     result = pd.DataFrame.from_dict(error, orient='index')
     return result
-
 
 def appliance_anomaly_result_test_func(test_day, area_stat, device, take_context):  # area_stat stores training models results
     """ function called by localize_anomalous_appliance,used at testing time.
@@ -483,8 +470,6 @@ def appliance_anomaly_result_test_func(test_day, area_stat, device, take_context
                 print device + "Frequent Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
             elif (test_res.loc[i].mean_area >= area_stat.loc[i].mean_area + 1.5 * area_stat.loc[i].sd_area):
                 print device + "Elongated Anomaly on " + np.unique(test_day.index.date)[0].strftime('%d/%m/%Y')
-
-
 
 def sensitivity_localize_anomalous_appliance(fhmm_result, train_result, appliance_count, take_context,sigma):
     """ Required at testing time
