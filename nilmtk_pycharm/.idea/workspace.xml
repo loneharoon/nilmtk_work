@@ -25,27 +25,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insert_anomaly_store_df.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
+      <file leaf-file-name="localize_appliance_support.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+            <state relative-caret-position="296">
+              <caret line="356" column="4" lean-forward="false" selection-start-line="356" selection-start-column="4" selection-end-line="356" selection-end-column="4" />
               <folding>
-                <element signature="e#0#25#0" expanded="true" />
-                <element signature="e#2687#3356#0" expanded="false" />
+                <element signature="e#62#96#0" expanded="true" />
+                <element signature="e#8540#12009#0" expanded="false" />
+                <element signature="e#12130#14000#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insert_anomaly_store_iawe+redd.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/insert_anomaly_store_iawe+redd.py">
+      <file leaf-file-name="oracle_disagg_main_iawe+redd.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oracle_disagg_main_iawe+redd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="12" column="52" lean-forward="false" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="185">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,43 +52,9 @@
       <file leaf-file-name="inserted_anomalies_home_wise" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inserted_anomalies_home_wise">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1228">
-              <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+            <state relative-caret-position="71">
+              <caret line="126" column="1" lean-forward="true" selection-start-line="126" selection-start-column="1" selection-end-line="126" selection-end-column="1" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="localize_appliance_support.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="419" column="82" lean-forward="false" selection-start-line="419" selection-start-column="82" selection-end-line="419" selection-end-column="82" />
-              <folding>
-                <element signature="e#62#96#0" expanded="true" />
-                <element signature="e#212#1559#0" expanded="false" />
-                <element signature="e#1638#3910#0" expanded="false" />
-                <element signature="e#3964#4549#0" expanded="false" />
-                <element signature="e#4600#5877#0" expanded="false" />
-                <element signature="e#5947#7753#0" expanded="false" />
-                <element signature="e#7876#11400#0" expanded="false" />
-                <element signature="e#11521#13391#0" expanded="false" />
-                <element signature="e#13461#15355#0" expanded="false" />
-                <element signature="e#15453#17244#0" expanded="false" />
-                <element signature="e#17319#18240#0" expanded="false" />
-                <element signature="e#18315#18594#0" expanded="false" />
-                <element signature="e#18660#19390#0" expanded="false" />
-                <element signature="e#19423#19620#0" expanded="false" />
-                <element signature="e#19682#20300#0" expanded="false" />
-                <element signature="e#20359#20728#0" expanded="false" />
-                <element signature="e#20788#21161#0" expanded="false" />
-                <element signature="e#20956#21161#0" expanded="false" />
-                <element signature="e#21208#21739#0" expanded="false" />
-                <element signature="e#21789#22220#0" expanded="false" />
-                <element signature="e#22353#26021#0" expanded="false" />
-                <element signature="e#26137#27948#0" expanded="false" />
-                <element signature="e#28099#31775#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -97,9 +62,31 @@
       <file leaf-file-name="localize_main_context_V_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/localize_main_context_V_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="18" column="62" lean-forward="false" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
+            <state relative-caret-position="272">
+              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="localize_main_context_V_2_iawe+Redd.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/localize_main_context_V_2_iawe+Redd.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insert_anomaly_store_iawe+redd.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/insert_anomaly_store_iawe+redd.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="46" selection-end-column="2" />
+              <folding>
+                <element signature="e#74#99#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,6 +106,9 @@
       <find>print</find>
       <find>compute_area_res_statistic</find>
       <find>deepc</find>
+      <find>air_status</find>
+      <find>not anomaly</find>
+      <find>only one state found during appliance training</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,18 +127,21 @@
         <option value="$PROJECT_DIR$/localize_fhmm.py" />
         <option value="$PROJECT_DIR$/find_good_homes.py" />
         <option value="$PROJECT_DIR$/compare_dissagregation_algos.py" />
-        <option value="$PROJECT_DIR$/inserted_anomalies_home_wise" />
         <option value="$PROJECT_DIR$/cluster_file.py" />
-        <option value="$PROJECT_DIR$/oracle_dissag_main.py" />
         <option value="$PROJECT_DIR$/generate_paper_figure_data.py" />
         <option value="$PROJECT_DIR$/script2.py" />
         <option value="$PROJECT_DIR$/sensitivity_analysis_sigma.py" />
-        <option value="$PROJECT_DIR$/localize_main_context_V_2.py" />
-        <option value="$PROJECT_DIR$/localize_appliance_support.py" />
         <option value="$PROJECT_DIR$/scratchpad.py" />
         <option value="$PROJECT_DIR$/zenatix_data_pull.py" />
         <option value="$PROJECT_DIR$/insert_anomaly_store_df.py" />
+        <option value="$PROJECT_DIR$/localize_main_context_V_2.py" />
+        <option value="$PROJECT_DIR$/localize_main_context_V_2_iawe+Redd.py" />
+        <option value="$PROJECT_DIR$/temp.py" />
+        <option value="$PROJECT_DIR$/oracle_dissag_main.py" />
+        <option value="$PROJECT_DIR$/oracle_disagg_main_iawe+redd.py" />
+        <option value="$PROJECT_DIR$/localize_appliance_support.py" />
         <option value="$PROJECT_DIR$/insert_anomaly_store_iawe+redd.py" />
+        <option value="$PROJECT_DIR$/inserted_anomalies_home_wise" />
       </list>
     </option>
   </component>
@@ -161,7 +154,7 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -174,7 +167,24 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nilmtk_pycharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nilmtk_pycharm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="pyconsole" />
@@ -195,7 +205,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scratchpad">
+  <component name="RunManager" selected="Python.oracle_disagg_main_iawe+redd">
     <configuration default="false" name="oracle_dissag_main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -263,6 +273,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="nilmtk_pycharm" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/localize_main_context_V_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="oracle_disagg_main_iawe+redd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="nilmtk_pycharm" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/oracle_disagg_main_iawe+redd.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -351,19 +379,21 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.scratchpad" />
       <item index="1" class="java.lang.String" itemvalue="Python.oracle_dissag_main" />
       <item index="2" class="java.lang.String" itemvalue="Python.scratch2" />
       <item index="3" class="java.lang.String" itemvalue="Python.script2" />
       <item index="4" class="java.lang.String" itemvalue="Python.localize_main_context_V_2" />
+      <item index="5" class="java.lang.String" itemvalue="Python.oracle_disagg_main_iawe+redd" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.localize_main_context_V_2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.script2" />
-        <item index="2" class="java.lang.String" itemvalue="Python.oracle_dissag_main" />
-        <item index="3" class="java.lang.String" itemvalue="Python.scratch2" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.oracle_disagg_main_iawe+redd" />
+        <item index="1" class="java.lang.String" itemvalue="Python.localize_main_context_V_2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.script2" />
+        <item index="3" class="java.lang.String" itemvalue="Python.oracle_dissag_main" />
+        <item index="4" class="java.lang.String" itemvalue="Python.scratch2" />
       </list>
     </recent_temporary>
   </component>
@@ -383,7 +413,7 @@
     </task>
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -393,17 +423,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1276" height="777" extended-state="0" />
+    <frame x="0" y="23" width="1276" height="777" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22366288" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32554746" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23419774" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2642336" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24817519" sideWeight="0.5083267" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32659933" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15350877" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44233575" sideWeight="0.48770818" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24798061" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18069585" sideWeight="0.49167326" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.49722442" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32554746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15328467" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10072993" sideWeight="0.48770818" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20259319" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17956205" sideWeight="0.49167326" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38832116" sideWeight="0.49722442" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17828201" sideWeight="0.5084388" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1276252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -411,7 +443,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -442,65 +473,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="59" />
+      <option name="time" value="76" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="46" column="72" lean-forward="false" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-          <folding>
-            <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scratchpad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -514,28 +491,8 @@
           <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
+            <element signature="e#8540#12009#0" expanded="false" />
+            <element signature="e#12130#14000#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -568,28 +525,8 @@
           <caret line="244" column="0" lean-forward="true" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
+            <element signature="e#8540#12009#0" expanded="false" />
+            <element signature="e#12130#14000#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -615,28 +552,8 @@
           <caret line="365" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
+            <element signature="e#8540#12009#0" expanded="false" />
+            <element signature="e#12130#14000#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -669,28 +586,8 @@
           <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
+            <element signature="e#8540#12009#0" expanded="false" />
+            <element signature="e#12130#14000#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -723,28 +620,8 @@
           <caret line="218" column="4" lean-forward="true" selection-start-line="218" selection-start-column="4" selection-end-line="218" selection-end-column="4" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
+            <element signature="e#8540#12009#0" expanded="false" />
+            <element signature="e#12130#14000#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -818,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="1584" column="0" lean-forward="false" selection-start-line="1584" selection-start-column="0" selection-end-line="1584" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cluster_file.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-400">
@@ -874,10 +744,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/zenatix_data_pull.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#25#0" expanded="false" />
+            <element signature="e#2687#3356#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp.py" />
     <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="61" lean-forward="false" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
+        <state relative-caret-position="240">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -889,79 +778,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zenatix_data_pull.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        <state relative-caret-position="143">
+          <caret line="1584" column="0" lean-forward="false" selection-start-line="1584" selection-start-column="0" selection-end-line="1584" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/insert_anomaly_store_df.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydevd_bundle/pydevd_exec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#2687#3356#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="32">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inserted_anomalies_home_wise">
+    <entry file="file://$PROJECT_DIR$/oracle_disagg_main_iawe+redd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1228">
-          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+        <state relative-caret-position="185">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="419" column="82" lean-forward="false" selection-start-line="419" selection-start-column="82" selection-end-line="419" selection-end-column="82" />
+        <state relative-caret-position="296">
+          <caret line="356" column="4" lean-forward="false" selection-start-line="356" selection-start-column="4" selection-end-line="356" selection-end-column="4" />
           <folding>
             <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#212#1559#0" expanded="false" />
-            <element signature="e#1638#3910#0" expanded="false" />
-            <element signature="e#3964#4549#0" expanded="false" />
-            <element signature="e#4600#5877#0" expanded="false" />
-            <element signature="e#5947#7753#0" expanded="false" />
-            <element signature="e#7876#11400#0" expanded="false" />
-            <element signature="e#11521#13391#0" expanded="false" />
-            <element signature="e#13461#15355#0" expanded="false" />
-            <element signature="e#15453#17244#0" expanded="false" />
-            <element signature="e#17319#18240#0" expanded="false" />
-            <element signature="e#18315#18594#0" expanded="false" />
-            <element signature="e#18660#19390#0" expanded="false" />
-            <element signature="e#19423#19620#0" expanded="false" />
-            <element signature="e#19682#20300#0" expanded="false" />
-            <element signature="e#20359#20728#0" expanded="false" />
-            <element signature="e#20788#21161#0" expanded="false" />
-            <element signature="e#20956#21161#0" expanded="false" />
-            <element signature="e#21208#21739#0" expanded="false" />
-            <element signature="e#21789#22220#0" expanded="false" />
-            <element signature="e#22353#26021#0" expanded="false" />
-            <element signature="e#26137#27948#0" expanded="false" />
-            <element signature="e#28099#31775#0" expanded="false" />
+            <element signature="e#8540#12009#0" expanded="false" />
+            <element signature="e#12130#14000#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/localize_main_context_V_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="62" lean-forward="false" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/insert_anomaly_store_iawe+redd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="12" column="52" lean-forward="false" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+        <state relative-caret-position="202">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="46" selection-end-column="2" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#74#99#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inserted_anomalies_home_wise">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="126" column="1" lean-forward="true" selection-start-line="126" selection-start-column="1" selection-end-line="126" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/localize_main_context_V_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/localize_main_context_V_2_iawe+Redd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

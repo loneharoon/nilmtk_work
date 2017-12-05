@@ -5,6 +5,7 @@ import pandas as pd
 np.random.seed(123)
 import os
 
+
 # List all houses in a directory
 #dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
@@ -13,8 +14,7 @@ path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_home
 aggregate_result = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
 
 homes = ["115.csv","434.csv","490.csv","1463.csv","3538.csv"]
-#homes = ["490.csv"]
-#file1 ="115.csv"
+
 #houses = [f for f in os.listdir(dir)]
 #df = pd.read_csv(dir+houses[6],index_col='localminute') # USE HOUSE (6,115)
 for i in range(len(homes)):

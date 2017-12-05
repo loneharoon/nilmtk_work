@@ -6,8 +6,6 @@ import pandas as pd
 import os
 np.random.seed(123)
 
-
-
 # List all houses in a directory
 #dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_fhmm.py")
@@ -26,7 +24,8 @@ for i in range(len(homes)):
     df = pd.read_csv(path2+homes[i],index_col='localminute') # INJECTED FILES
     df.index = pd.to_datetime(df.index)
 
-    df = df["2014-06-01":"2014-08-30 23:59:59"]
+    #df = df["2014-06-01":"2014-08-30 23:59:59"]# Dataport
+
 
     res = df.sum(axis=0)
     high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
