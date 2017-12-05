@@ -84,15 +84,21 @@ dframe2 <- data.frame(index(df_2),coredata(df_2))
  
  
  ####PLOT INJECTED ANOMALIES
+ #path <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
  path <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
-# file <- "meter_2.csv"
+ 
  home <- "meter_2.csv"
+# home <- "redd_home_6.csv"
  df <- fread(paste0(path,home),sep="auto")
- df_xts <- xts(df[,-1],fasttime::fastPOSIXct(df$localminute)-19800)
+ df_xts <- xts(df[,-1],fasttime::fastPOSIXct(df$localminute))
  colnames(df_xts)
  
- visualize_dataframe_one_column_facet_form_day_wise(df_xts$ac2,7)
+ visualize_dataframe_one_column_facet_form_day_wise(df_xts$air,7)
  
- visualize_dataframe_all_columns(df_xts["2013-07-21"]$ac2)
+ visualize_dataframe_all_columns(df_xts["2013-08-02"]$air1)
  
+ data <- df_xts
+ data_sub <- data["2011-06-13"]$refrigerator1
+ #temp <- df_xts["2011-05-31"]$refrigerator1
+ summary(data_sub)
  

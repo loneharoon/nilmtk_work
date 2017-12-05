@@ -80,6 +80,22 @@ visualise_specific_data_portions <- function() {
   
   visualize_dataframe_one_column_facet_form_day_wise(df_xts$refrigerator,7)
   
-  visualize_dataframe_all_columns(df_xts["2011-05-26"]$refrigerator)
+  visualize_dataframe_all_columns(df_xts["2011-06-12"]$refrigerator)
 
 }
+
+pathxx <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/redd_home_6.csv"
+
+visualise_anomaly_injected_data_portions <- function() {
+  path <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
+  home <- "redd_home_6.csv"
+  df <- fread(paste0(path,home),sep="auto")
+  df_xts <- xts(df[,-1],fasttime::fastPOSIXct(df$localminute))
+  colnames(df_xts)
+  
+  visualize_dataframe_one_column_facet_form_day_wise(df_xts$refrigerator,7)
+  
+  visualize_dataframe_all_columns(df_xts["2011-05-28"]$air1)
+  
+}
+train_dset['2011-5-25']['refrigerator1'].plot()

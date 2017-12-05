@@ -55,8 +55,10 @@ df_melt <- reshape2::melt(df,id.vars=c("idcol"))
 
 g <- ggplot(df_melt,aes(idcol,value,fill=variable)) + geom_bar(position="dodge",stat="identity",width = 0.7)
 g <- g +  labs(x="Home #",y = "Accuracy (%)") + theme_grey(base_size = 10) 
-g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position="top",legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 9),legend.title=element_blank())
+g <- g + theme(axis.text = element_text(color="Black",size=9,family = "Arial"),legend.position="right",legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 9),legend.title=element_blank()) + scale_fill_manual(values=c('#800000','#9ebcda'))
 g
+
+scale_fill_manual(values=c('#8856a7','#9ebcda'))
 #ggsave("accuracy.pdf", width = 8, height = 6,units="cm") 
 }
 
