@@ -100,3 +100,62 @@ fridge_anomalies = {
  4:generate_synthetic_timeseries_anomaly(timestart = '2014-07-06 00:00:00',hours = 6, upper_mag = 140, frequency = 10., dutycycle = 0.3)
  }
  -------------------------
+ iawe, meter_2 :
+
+  ac_anomalies = {
+    # first two correspond to elongated and last two with frequent anomalies
+ 0:generate_synthetic_seconds_timeseries_anomaly( timestart= '2013-07-21 01:00:00', hours = 3, upper_mag  = 1800,  frequency = 4., dutycycle = 0.5),
+ 1:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-21 18:00:00', hours = 6,  upper_mag = 1800,  frequency = 4., dutycycle = 0.5),
+ 2:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-25 00:00:00', hours = 6,  upper_mag = 1800,  frequency = 2., dutycycle = 0.7),
+ 3:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-25 18:00:00', hours = 6,  upper_mag = 1800,  frequency = 2., dutycycle = 0.7),
+ 4:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-29 01:00:00', hours = 4,  upper_mag = 1800,  frequency = 2., dutycycle = 0.9),
+ 5:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-29 18:00:00', hours = 6,  upper_mag = 1800, frequency =  2.,  dutycycle = 0.9),
+ 6:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-31 02:00:00', hours = 3,  upper_mag = 1800, frequency =  150., dutycycle = 0.2),
+ 7:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-31 18:00:00', hours = 4,  upper_mag = 1800,  frequency = 150., dutycycle = 0.2),
+ 8:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-08-02 01:00:00', hours = 2,  upper_mag = 1800,  frequency = 140.,   dutycycle = 0.3),
+ 9:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-08-02 18:00:00', hours = 3,  upper_mag = 1800, frequency  = 140., dutycycle = 0.3)
+}
+
+
+fridge_anomalies = {
+    # first two correspond to elongated and last two with frequent anomalies
+ 0:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-22 05:00:00', hours = 9, upper_mag =  100, frequency = 12.,  dutycycle = 0.9999),
+ 1:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-27 00:00:00', hours = 5,  upper_mag =  100, frequency = 9.,  dutycycle = 0.999),
+ 2:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-27 18:00:00', hours = 5, upper_mag =   100, frequency = 9., dutycycle = 0.999),
+ 3:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-07-28 06:00:00', hours = 10,  upper_mag = 100, frequency = 200., dutycycle = 0.9),
+ 4:generate_synthetic_seconds_timeseries_anomaly(timestart = '2013-08-03 01:00:00', hours = 5,  upper_mag =  100, frequency = 150., dutycycle = 0.9),
+ 5: generate_synthetic_seconds_timeseries_anomaly(timestart= '2013-08-03 18:00:00', hours = 6, upper_mag =   100, frequency = 150., dutycycle=0.9)
+ }
+----------------------------------------
+
+REDD, Home # 6:
+
+ ac_anomalies = {
+    # first three correspond to elongated and last two with frequent anomalies
+ 0:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-28 08:00:00', hours = 7,  upper_mag = 1000,  frequency = 4/5., dutycycle = 0.8),
+ 1:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-29 00:00:00', hours = 6,  upper_mag = 1200,  frequency = 4/5., dutycycle = 0.9),
+ 2:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-29 18:00:00', hours = 6,  upper_mag = 1200,  frequency = 4/5., dutycycle = 0.9),
+ 3:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-09 18:00:00', hours = 7,  upper_mag = 1200, frequency  =  4.,  dutycycle = 0.2),
+ 4:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-11 10:00:00', hours = 8,  upper_mag = 1000,  frequency = 12., dutycycle = 0.2),
+ 5:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-13 17:00:00', hours = 6,  upper_mag = 1200,  frequency = 4.,   dutycycle = 0.4)
+}
+
+
+fridge_anomalies = {
+    # First three  lines are to make training data clean, since some training data was ambigious on these dates.
+    # since first two correspond to elongated and last two with frequent anomalies
+0: generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-24 00:00:00', hours=3, upper_mag=150,frequency=1., dutycycle=0.5),
+1: generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-24 17:00:00', hours=6, upper_mag=150, frequency=1., dutycycle=0.5),
+ 2:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-25 00:00:00', hours = 6, upper_mag    = 150, frequency = 1., dutycycle=0.5),
+ 3:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-30 06:00:00', hours = 10, upper_mag   = 150, frequency = 4/7.,  dutycycle = 0.85),
+ 4:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-08 00:00:00', hours = 5,  upper_mag   = 150, frequency = 4/20., dutycycle = 0.95),
+ 5:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-08 17:00:00', hours = 6,  upper_mag   = 150, frequency = 4/20.,  dutycycle = 0.95),
+ 6:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-12 06:00:00', hours = 11, upper_mag   = 150, frequency = 6., dutycycle = 0.2),
+ 7:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-10 00:00:00', hours = 6,  upper_mag   = 150, frequency = 90., dutycycle = 0.9),
+ 8:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-06-10 17:00:00', hours = 6,  upper_mag   = 150, frequency = 90., dutycycle = 0.9)
+ }
+
+
+-------------------------------------
+
+----------------------------------------
