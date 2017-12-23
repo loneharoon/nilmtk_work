@@ -18,8 +18,8 @@
       <file leaf-file-name="run_LBM_code.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_LBM_code.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            <state relative-caret-position="184">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
                 <element signature="e#102#121#0" expanded="true" />
               </folding>
@@ -27,43 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="localize_main_context_V_2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/localize_main_context_V_2.py">
+      <file leaf-file-name="LBM_disaggregation_error.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LBM_disaggregation_error.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="20" column="76" lean-forward="true" selection-start-line="20" selection-start-column="76" selection-end-line="20" selection-end-column="76" />
+            <state relative-caret-position="145">
+              <caret line="23" column="68" lean-forward="true" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo_latentBayesianMelding.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demo_latentBayesianMelding.py">
+      <file leaf-file-name="compare_dissagregation_algos.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/compare_dissagregation_algos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-233">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="latent_Bayesian_melding.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/latent_Bayesian_melding.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14816">
-              <caret line="926" column="61" lean-forward="true" selection-start-line="926" selection-start-column="61" selection-end-line="926" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fhmm_relaxed.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fhmm_relaxed.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="523">
+              <caret line="68" column="0" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="68" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,6 +53,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jupyter Notebook" />
+        <option value="Python Unit Test" />
         <option value="Python Script" />
       </list>
     </option>
@@ -127,6 +106,8 @@
         <option value="$PROJECT_DIR$/latent_Bayesian_melding.py" />
         <option value="$PROJECT_DIR$/fhmm_relaxed.py" />
         <option value="$PROJECT_DIR$/run_LBM_code.py" />
+        <option value="$PROJECT_DIR$/LBM_dissagregation_error.py" />
+        <option value="$PROJECT_DIR$/LBM_disaggregation_error.py" />
       </list>
     </option>
   </component>
@@ -421,7 +402,7 @@
     <frame x="0" y="23" width="1276" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21636952" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21636952" sideWeight="0.49156117" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2642336" sideWeight="0.4932593" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24817519" sideWeight="0.5083267" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32554746" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -493,25 +474,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/oracle_dissag_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/localize_appliance_support.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5475">
-          <caret line="365" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
-          <folding>
-            <element signature="e#62#96#0" expanded="true" />
-            <element signature="e#8540#12009#0" expanded="false" />
-            <element signature="e#12130#14000#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scratchpad.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
@@ -629,13 +591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compare_dissagregation_algos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -815,20 +770,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/latent_Bayesian_melding.py">
+    <entry file="file://$PROJECT_DIR$/LBM_dissagregation_error.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14816">
-          <caret line="926" column="61" lean-forward="true" selection-start-line="926" selection-start-column="61" selection-end-line="926" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run_LBM_code.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        <state relative-caret-position="184">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#102#121#0" expanded="true" />
           </folding>
@@ -847,6 +800,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-233">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/latent_Bayesian_melding.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14816">
+          <caret line="926" column="61" lean-forward="true" selection-start-line="926" selection-start-column="61" selection-end-line="926" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/compare_dissagregation_algos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LBM_disaggregation_error.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="23" column="68" lean-forward="true" selection-start-line="23" selection-start-column="68" selection-end-line="23" selection-end-column="68" />
           <folding />
         </state>
       </provider>
