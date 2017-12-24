@@ -1,0 +1,4 @@
+24 decemeber 2017:
+LBM: 
+1. Population models are obtained from file LBM_features_main.py and this file is stored in AD of UniOfStra project. This is stored in different folder becuase all coding is done in python 3 while the current project works in python 2.7. Since the core LBM is in python 2.7
+2. Obtain population models from above step and then use LBM_disaggregation_error.py to compute normalized disaggregation for each appliance of a home 
