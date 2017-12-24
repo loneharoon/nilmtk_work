@@ -821,7 +821,7 @@ class LatentBayesianMelding(object):
         print("\n log(datalikelihood*prior)={}\n".format(optimalObjective))
         return optimalObjective
 
-    def import_model(self, meterlist, filename):
+    def import_model(self, meterlist, filepath,filetype):
         """Loads learned model from file.
         Required to be overridden for learned models to persist.
 
@@ -838,8 +838,13 @@ class LatentBayesianMelding(object):
         # input parameter:
         # meterlist is a list of appliances for disaggregation
         # filename = 'appliance_model_induced_density.json'
-        with open(filename) as infile:
-            self.model = json.load(infile)
+        #changed by Haroon to get read pikle files
+        if filetype == 'pkl':
+            with open(filepath, 'rb') as f:
+                self.model = pickle.load(f)
+        else:
+            with open(filename) as infile:
+                self.model = json.load(infile)
 
         # read the model prameters for the meterlist
         individual = OrderedDict()
