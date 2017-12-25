@@ -6,14 +6,15 @@ Created on Sun Dec 24 15:08:42 2017
 
 @author: haroonr
 """
+from latent_Bayesian_melding import LatentBayesianMelding
 
-lbm_decoder(test_dset,parameters_path,main_meter = "use", filetype = "pkl")
-
-mains = meterdata['use']
-
-meterlist = test_dset.columns
-lbm = LatentBayesianMelding()
-individual_model = lbm.import_model(meterlist, parameters_path,filetype)
-results = lbm.disaggregate_chunk(mains)
-infApplianceReading = results['inferred appliance energy']
-return(infApplianceReadings)
+def lbm_decoder(meterdata,parameters_path,main_meter = "use", filetype = "pkl"): 
+    import pickle
+    mains = meterdata[main_meter]
+    meterlist = meterdata.columns.tolist()
+    meterlist.remove(main_meter)
+    lbm = LatentBayesianMelding()
+    individual_model = lbm.import_model(meterlist, parameters_path,filetype)
+    results = lbm.disaggregate_chunk(mains)
+    infApplianceReading = results['inferred appliance energy']
+    return(infApplianceReadings)
