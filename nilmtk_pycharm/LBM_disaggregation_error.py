@@ -35,11 +35,9 @@ del df_new['use']# drop stale aggregate column
 df_new['use'] = df_new.sum(axis=1).values # create new aggregate column
 #%%
 meterdata = df_new.truncate(before="2014-07-01", after="2014-08-29 23:59:59")
-# read population parameters stored in pickle or json file 
-
-#with open(model_path + pklobject, 'rb') as f:
-#    population_parameters = pickle.load(f)
+#meterdata = df_new.truncate(before="2014-07-01", after="2014-07-10 23:59:59")
 #%%
+# experiments show that we should provide day level chunks intead of allday once. and changing sample_seconds does not affect accuracy
 #lbm_result = lbm_decoder(meterdata, population_parameters, main_meter = "use", filetype = "pkl")
 main_meter = 'use'
 filetype = 'pkl'
@@ -48,11 +46,27 @@ meterlist = meterdata.columns.tolist()
 meterlist.remove(main_meter)
 lbm = LatentBayesianMelding()
 individual_model = lbm.import_model(meterlist, population_parameters,filetype)
-results = lbm.disaggregate_chunk(mains)
-infApplianceReading = results['inferred appliance energy']
-#return(infApplianceReadings)
+#results = lbm.disaggregate_chunk(mains)
+#infApplianceReading = results['inferred appliance energy']
+mains_group = mains.groupby(mains.index.date)
+res = []
+for key,val in mains_group:
+    print(key)
+    results = lbm.disaggregate_chunk(val)
+    infApplianceReading = results['inferred appliance energy']
+    res.append(infApplianceReading)
+#infApplianceReading = pd.concat([res[0],res[1],res[2],res[3],res[4]])
+infApplianceReading = pd.concat(res)
+#infApplianceReading.to_csv("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/lbm_dissag_results/pure_data/" + hos) # save diss_data for furthe processing
 #%%
-infApplianceReading.to_csv(savedir+"115.csv")
+#infApplianceReading.to_csv(savedir+"115.csv")
+#%% TEMPORARY CELL
+gt = meterdata[meterlist]
+lbm_result = {'actaul_power':gt,'decoded_power':infApplianceReading}
+norm_lbm = accuracy_metric_norm_error(lbm_result)
+print (norm_lbm)
+
+
 #%%
 gt = meterdata[meterlist] # drops aggregate column internally
 lbm_rmse = compute_rmse(gt,infApplianceReading)
