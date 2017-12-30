@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import os
 np.random.seed(123)
-
+#%%
 # List all houses in a directory
 #dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_fhmm.py")

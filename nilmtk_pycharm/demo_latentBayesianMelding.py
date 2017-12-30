@@ -63,7 +63,7 @@ building_information = 'ukdale/building2/2013-06-08'
 #meterdata = meterdata_ukdale['meterdata']
 
 
-meterdata = pd.read_hdf('/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/meterdata_ukdale.h5')
+meterdata = pd.read_hdf('/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/meterdata_ukdale.h5')
 
 # Map the keywords of appliances between HES and UKDALE
 appliance_map = {'cooker':"('cooker', 1)",

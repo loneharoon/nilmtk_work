@@ -1,9 +1,11 @@
 from __future__ import print_function, division
 import pandas as pd
 import numpy as np
+import pickle
 import json
 from collections import OrderedDict
 import timeit
+
 
 # mosek fusion modules
 # import mosek.fusion
@@ -18,7 +20,9 @@ np.random.seed(SEED)
 
 # set the maximum depth of the Python interpreter stack.
 sys.setrecursionlimit(100000)
-
+###################changes done by haroon##################
+# made it to read pickle file along with json file
+###########################################################
 
 class LatentBayesianMelding(object):
     """
@@ -99,7 +103,7 @@ class LatentBayesianMelding(object):
         self.beta = 1e-6
 
         # number of states of HMM, more could be better?
-        self.numberOfStates = 3
+        self.numberOfStates = 3 # gets overridden while importing/reading json or pickle file
 
         # optimization objective values
         self.primalObjValue = 0.0
@@ -157,7 +161,8 @@ class LatentBayesianMelding(object):
 
         resample_rule = '{:d}S'.format(resample_seconds)
         timeframes = []
-
+        print('method disaggregate is called') # tesing by Haroon
+        
         for chunk in mains.power_series(**load_kwargs):
 
             # Check that chunk is sensible size before resampling
@@ -835,6 +840,7 @@ class LatentBayesianMelding(object):
         train the model here. Instead we train all the appliances beforehand
         and thus we read the learnt model parameters from a file
         """
+        import pickle
         # input parameter:
         # meterlist is a list of appliances for disaggregation
         # filename = 'appliance_model_induced_density.json'

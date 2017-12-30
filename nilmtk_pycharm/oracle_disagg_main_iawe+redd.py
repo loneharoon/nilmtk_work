@@ -5,7 +5,7 @@ import pandas as pd
 np.random.seed(123)
 import os
 # ALT=+ shift + e
-
+#%%
 # List all houses in a directory
 #dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
@@ -29,7 +29,7 @@ df_new['use'] = df_new.sum(axis=1)# create new aggregate column
 #FOR iawe
 #train_dset = df_new.truncate(before="2013-07-13", after="2013-07-20 23:59:59")
 #test_dset = df_new.truncate(before="2013-07-21", after="2013-08-04 23:59:59")
-#test_dset = df_new.truncate(before="2013-07-30", after="2013-08-02 23:59:59")
+
 
 # For redd homes
 train_dset = df_new.truncate(before="2011-05-24", after="2011-05-27 23:59:59") # continuous data

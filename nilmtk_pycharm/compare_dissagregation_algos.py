@@ -1,10 +1,17 @@
+"""
+This file explicitly computes dissaggregation error metrics on minutes level data. Data used is entirely dataport
+and approaches tested include CO and FHMM
+Created on 
+
+@author: haroonr
+"""
+#%%
 import warnings
 warnings.filterwarnings("ignore")
 import numpy as np
 import pandas as pd
 np.random.seed(123)
-
-
+#%%
 # List all houses in a directory
 dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/"
 savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
@@ -15,7 +22,7 @@ execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/utils.py")
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/co.py")
 
-
+#%%
 def run_dissaggreation_algos():
     #sel_homes = [1169, 130, 1314, 1463, 2075, 2864, 3039, 3538, 936, 2366]# FOUND IN FIRST 200 HOMES
     sel_homes = [3864,3893,410,434,4514,4641,4703,4864,4874,490,4927] # FOUND BETWEEN 200-300 HOMES
