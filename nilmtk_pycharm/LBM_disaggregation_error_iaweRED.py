@@ -22,8 +22,8 @@ dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/
 savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_disaggregation_puredata/"
 savedir_error = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
 
-hos = "meter_2.csv"  #3538
-pklobject = "meter_2.pkl"
+hos = "redd_home_6.csv" #"meter_2.csv"  
+pklobject = "redd_home_6.pkl"  # "meter_2.pkl"
 model_path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_population_models/"
 #%%
 population_parameters = model_path + pklobject
@@ -36,8 +36,8 @@ df_new = df[high_energy_apps]
 del df_new['use']# drop stale aggregate column
 df_new['use'] = df_new.sum(axis=1).values # create new aggregate column
 #%%
-meterdata = df_new.truncate(before="2013-07-21", after="2013-08-04 23:59:59") #for iawe
-
+#meterdata = df_new.truncate(before="2013-07-21", after="2013-08-04 23:59:59") #for iawe
+meterdata = df_new.truncate(before="2011-05-30", after="2011-06-13 23:59:58") #for redd home
 #%%
 # experiments show that we should provide day level chunks intead of allday once. and changing sample_seconds does not affect accuracy
 #lbm_result = lbm_decoder(meterdata, population_parameters, main_meter = "use", filetype = "pkl")

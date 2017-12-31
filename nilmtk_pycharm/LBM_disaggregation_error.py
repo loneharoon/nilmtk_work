@@ -1,7 +1,8 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-This file only computes disagregation error using LBM technique
+This file only computes disagregation error using LBM technique for only dataport. Please
+use another file for homes with seconds data
 Created on Sun Dec 24 14:52:10 2017
 
 @author: haroonr
@@ -22,14 +23,15 @@ savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results
 savedir_error = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
 
 hos = "3538.csv"  #3538
-pklobject = "490.pkl"
+pklobject = "3538.pkl"
 model_path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_population_models/"
 population_parameters = model_path + pklobject
 df = pd.read_csv(dir + hos, index_col='localminute')  
 df.index = pd.to_datetime(df.index)
 df = df["2014-06-01":"2014-08-29 23:59:59"]
 res = df.sum(axis=0)
-high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
+#high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
+high_energy_apps = ['use','air1','furnace1','refrigerator1','microwave1','kitchenapp2']#3538.csv
 df_new = df[high_energy_apps]
 del df_new['use']# drop stale aggregate column
 df_new['use'] = df_new.sum(axis=1).values # create new aggregate column
@@ -41,13 +43,12 @@ meterdata = df_new.truncate(before="2014-07-02", after="2014-08-29 23:59:59")
 #lbm_result = lbm_decoder(meterdata, population_parameters, main_meter = "use", filetype = "pkl")
 main_meter = 'use'
 filetype = 'pkl'
-mains = meterdata[main_meter]["2014-07-02"]
+mains = meterdata[main_meter]
 meterlist = meterdata.columns.tolist()
 meterlist.remove(main_meter)
 lbm = LatentBayesianMelding()
+#meterlist=["refrigerator1",'bedroom1']
 individual_model = lbm.import_model(meterlist, population_parameters,filetype)
-#results = lbm.disaggregate_chunk(mains)
-#infApplianceReading = results['inferred appliance energy']
 mains_group = mains.groupby(mains.index.date)
 res = []
 for key,val in mains_group:
@@ -55,7 +56,6 @@ for key,val in mains_group:
     results = lbm.disaggregate_chunk(val)
     infApplianceReading = results['inferred appliance energy']
     res.append(infApplianceReading)
-#infApplianceReading = pd.concat([res[0],res[1],res[2],res[3],res[4]])
 infApplianceReading = pd.concat(res)
 infApplianceReading.to_csv("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/lbm_dissag_results/pure_data/" + hos) # save diss_data for furthe processing
 #%%
