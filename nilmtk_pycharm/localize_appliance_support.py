@@ -489,8 +489,8 @@ def accuracy_metric_norm_error(dis_result):
     gt = dis_result['actaul_power']
     error = {}
     for app in gt.columns:
-        numerator = sum(abs(pred[app].values - gt[app].values))
-        denominator = sum(gt[app]) * 1.0
+        numerator = np.nansum(abs(pred[app].values - gt[app].values))
+        denominator = np.nansum(gt[app]) * 1.0
         error[app] = np.divide(numerator,denominator)
     result = pd.DataFrame.from_dict(error, orient='index')
     return result
