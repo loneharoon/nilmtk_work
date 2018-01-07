@@ -15,6 +15,9 @@ source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/R_support/suppor
 source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/R_codesDirectory/R_Codes/Matrix_division/Samys_support.R") #
 source("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/R_codesDirectory/R_Codes/Matrix_division/hp_support.R") #SAMY METHOD
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plots/")
+
+Sys.timezone()
+Sys.setenv('TZ' ="Asia/Kolkata")
 df <- fread(paste0(path2,file1))
 df_xts <- xts(df[,2:dim(df)[2]],fasttime::fastPOSIXct(df$localminute)-19800)
 head(df,2)[,1]
@@ -24,6 +27,7 @@ dat <- df_xts$use
 dat <- dat['2014-06-22/2014-08-30 23:59:59']
 colnames(dat) <- "power"
 temp = dat
+# Now I create groups of days, where each group consists of consecutive 14 days. I believe I am doing because AD will takes 14 at a time and compute anomaly score
 temp$day = rep(c(1:5),each=1440*14)#creating factors for grouping days, split.xts does not work perfectly
 dat_month <- split(temp,f=temp$day)
 dat_month <- lapply(dat_month, function(x){
