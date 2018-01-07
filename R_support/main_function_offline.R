@@ -1,3 +1,4 @@
+# In this file, I perform anomaly detection using OMNI and baselines on minutes data of Dataport homes only.
 library(xts)
 library(data.table)
 library(ggplot2)
