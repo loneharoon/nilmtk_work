@@ -294,6 +294,7 @@ class LatentBayesianMelding(object):
             nosOfVariables = 0
             nosOfConstrs = 0
             for i, appliance in enumerate(self.individual):
+                print("Current appliance is {}".format(appliance)) #by Haroon
                 # print("\n Declare variables and constraints for appliance: '{}'"
                 #        .format(appliance))
 

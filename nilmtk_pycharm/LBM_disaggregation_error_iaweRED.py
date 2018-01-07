@@ -14,16 +14,17 @@ warnings.filterwarnings("ignore")
 import numpy as np
 import pandas as pd
 np.random.seed(42)
-import pickle
+
+import matplotlib.pyplot as plt
+
 from latent_Bayesian_melding import LatentBayesianMelding
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
 #%% Read one home at a time
 dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
-savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_disaggregation_puredata/"
 savedir_error = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
 
-hos = "redd_home_6.csv" #"meter_2.csv"  
-pklobject = "redd_home_6.pkl"  # "meter_2.pkl"
+hos = "redd_home_6.csv" # "meter_2.csv"  # 
+pklobject =  "redd_home_6.pkl"  #  "meter_2.pkl" #
 model_path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_population_models/"
 #%%
 population_parameters = model_path + pklobject
@@ -31,13 +32,17 @@ df = pd.read_csv(dir + hos, index_col='localminute')
 df.index = pd.to_datetime(df.index)
 #%%
 res = df.sum(axis=0)
-high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
+#high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
+#high_energy_apps = ['use','air1','refrigerator1','laptop','tv','water_filter'] # for aiwe
+high_energy_apps = ['use','air1','refrigerator1','electric_heat','stove','bathroom_gfi'] # for redd_home
 df_new = df[high_energy_apps]
 del df_new['use']# drop stale aggregate column
 df_new['use'] = df_new.sum(axis=1).values # create new aggregate column
 #%%
 #meterdata = df_new.truncate(before="2013-07-21", after="2013-08-04 23:59:59") #for iawe
-meterdata = df_new.truncate(before="2011-05-30", after="2011-06-13 23:59:58") #for redd home
+meterdata = df_new.truncate(before="2011-05-28", after="2011-06-13 23:59:58") #for redd home
+#if(meterdata.isnull().values.any()): # note I am replacing na values with direct 0
+#    meterdata = meterdata.fillna(0)
 #%%
 # experiments show that we should provide day level chunks intead of allday once. and changing sample_seconds does not affect accuracy
 #lbm_result = lbm_decoder(meterdata, population_parameters, main_meter = "use", filetype = "pkl")
@@ -46,17 +51,26 @@ filetype = 'pkl'
 mains = meterdata[main_meter]
 meterlist = meterdata.columns.tolist()
 meterlist.remove(main_meter)
-lbm = LatentBayesianMelding()
-individual_model = lbm.import_model(meterlist, population_parameters,filetype)
 #%%
+savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_disaggregation_puredata/redd_home6_daywise/"
+lbm = LatentBayesianMelding()
+lbm.NosOfIters = 1
+individual_model = lbm.import_model(meterlist, population_parameters,filetype)
+
 mains_group = mains.groupby(mains.index.date)
-res = []
+#res = []
 for key,val in mains_group:
     print(key)
-    results = lbm.disaggregate_chunk(val)
-    infApplianceReading = results['inferred appliance energy']
-    res.append(infApplianceReading)
-infApplianceReading = pd.concat(res)
+    try:
+         results = lbm.disaggregate_chunk(val)
+         infApplianceReading = results['inferred appliance energy']
+         #res.append(infApplianceReading)
+         infApplianceReading.to_csv(savedir + str(key)+ "-second"+  ".csv")
+    except:
+        print ("*******exception occured**********")
+    continue
+#infApplianceReading = pd.concat(res)
+print("disaggregation finished")
 #%%
 infApplianceReading.to_csv("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/lbm_dissag_results/pure_data/" + hos) # save diss_data for furthe processing
 #%%

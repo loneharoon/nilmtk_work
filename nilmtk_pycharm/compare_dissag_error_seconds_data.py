@@ -24,11 +24,13 @@ execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/utils.py")
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/co.py")
 #%%
-hos = "redd_home_6.csv"#"meter_2.csv"
+hos = "meter_2.csv"# "redd_home_6.csv"#"meter_2.csv"
 df = pd.read_csv(dir + hos, index_col='localminute')  
-df.index = pd.to_datetime(df.index)df
+df.index = pd.to_datetime(df.index)
 res = df.sum(axis=0)
-high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
+#high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
+#high_energy_apps = ['use','air1','refrigerator1','electric_heat','stove','bathroom_gfi'] # for redd_home
+high_energy_apps = ['use','air1','refrigerator1','laptop','tv','water_filter'] # for aiwe
 df_new = df[high_energy_apps]
 #%%
 del df_new['use']# drop stale aggregate column
@@ -36,12 +38,12 @@ df_new['use'] = df_new.sum(axis=1) # create new aggregate column
 #%%
 
 #FOR iawe
-#train_dset = df_new.truncate(before="2013-07-13", after="2013-07-25 23:59:59")
-#test_dset = df_new.truncate(before="2013-07-26", after="2013-08-04 23:59:59")
+train_dset = df_new.truncate(before="2013-07-13", after="2013-07-25 23:59:59")
+test_dset = df_new.truncate(before="2013-07-26", after="2013-08-04 23:59:59")
 
 # For redd homes
-train_dset = df_new.truncate(before="2011-05-24", after="2011-05-27 23:59:59") # continuous data
-test_dset = df_new.truncate(before="2011-05-28", after="2011-06-13 23:59:59")
+#train_dset = df_new.truncate(before="2011-05-24", after="2011-05-27 23:59:59") # continuous data
+#test_dset = df_new.truncate(before="2011-05-28", after="2011-06-13 23:59:59")
 
 if(test_dset.isnull().values.any()): # note I am replacing na values with direct 0
     test_dset = test_dset.fillna(0)
