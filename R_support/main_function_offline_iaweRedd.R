@@ -115,3 +115,17 @@ sub_dir <- strsplit(file1,'[.]')[[1]][1]
 dir.create(file.path(base_directory, sub_dir))
 write.csv(fortify(agg_score),file=paste0(base_directory,sub_dir,"/","energy_score.csv"),row.names = FALSE)
 }
+
+
+# now compute accuracy metric
+
+#LOGIC TO COMPUTE F-SCORE,PRECISION AND RECALL
+house = "Reddhome6.csv"# "iawemeter2.csv"
+result <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/",strsplit(house,'[.]')[[1]][1],"/","energy_score.csv")
+#gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/ground_truth/"
+gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth/"
+gt <- fread(paste0(gt_directory,house))
+#gt <- fread(paste0(gt_directory,"490.csv"))
+gt$Index <- as.Date(gt$Index,tz="Asia/Kolkata")
+res_df <- fread(result)
+compute_f_score_REDDandIawe(res_df,gt,threshold = 0.80)

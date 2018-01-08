@@ -164,3 +164,37 @@ compute_f_score <- function(res_df,gt,threshold){
   return(l)
 }
 
+compute_f_score_REDDandIawe <- function(res_df,gt,threshold){
+  # this function is same as that of compute_f_score. It does subseet the dataset as is done in the mentioned ones
+  if(is.xts(res_df)) {
+    res_df_xts =  res_df
+  }else{
+    res_df_xts <- xts(res_df[,2:NCOL(res_df)],as.Date(res_df$Index,tz="Asia/Kolkata"))
+  }
+  #res_df_xts <- res_df_xts["2014-07-01/2014-08-30 23:59:59"]
+  #print("Only retaining july and Aug res")
+  #threshold = 0.8
+  f_score <- vector(mode="numeric")
+  precise <- vector(mode="numeric")
+  recal <- vector(mode="numeric")
+  for (i in 1:NCOL(res_df_xts)){
+    dat <- res_df_xts[,i]
+    dat <- dat[dat >= threshold]
+    f_dates <- index(dat)
+    a_dates <- gt$Index
+    tp <- f_dates[f_dates %in% a_dates]
+    fp <- f_dates[!f_dates %in% a_dates]
+    fn <- a_dates[!a_dates %in% f_dates]
+    precision = length(tp)/(length(tp)+length(fp))
+    recall =  length(tp)/(length(tp)+length(fn))
+    f_score[i] <- round( 2*(precision*recall)/(precision+recall),2)
+    precise[i] <- round(precision,2)
+    recal[i] <- round(recall,2)
+   # browser()
+  }
+  l <- rbind(f_score,precise,recal)
+  #colnames(l) <- colnames(res_df[,2:NCOL(res_df)])
+  #print(l)
+  return(l)
+}
+
