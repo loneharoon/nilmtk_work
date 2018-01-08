@@ -4,4 +4,7 @@ LBM:
 2. Obtain population models from above step and then use LBM_disaggregation_error.py to compute normalized disaggregation for each appliance of a home 
 
 07-January 2018:
-1. To compute anomaly scores at aggregate level, we use OMNI algorithm along with few baselines. This is done in main_function_offline.R stored in R_support folder of this directory. For seconds level data, I use replica of same file in order to handle all things clearly and the file name is main_function_offline_iaweRedd.R
+1. F-SCORE,PRECISION AND RECALL for OMNI: To compute anomaly scores at aggregate level, we use OMNI algorithm along with few baselines. This is done in main_function_offline.R stored in R_support folder of this directory. For seconds level data, I use replica of same file in order to handle all things clearly and the file name is main_function_offline_iaweRedd.R
+2. All plots in buildys 2017 paper are plotted usin R script with name plot_Results.R
+3. F_score, precison and recall of UNUM on appliance data(AC, fridge): Use oracle_disagg_main script
+4. F_score, precison and recall of UNUM on disaggregated appliance data(AC, fridge): Run script  "localize_main_context...." to get anomalies detected using disaggregated appliance data
