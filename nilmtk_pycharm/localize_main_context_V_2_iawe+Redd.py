@@ -13,6 +13,7 @@ execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm
 #execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plot_functions.py")
 path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 aggregate_result = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
+dissagg_result_save= "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/"
 #%%
 homes =  "meter_2.csv"#, redd_home_6.csv
 #file1 ="101.csv"
@@ -38,6 +39,7 @@ df_new['use'] = df_new.sum(axis=1) # create new aggregate column
 train_result = compute_appliance_statistic(train_dset,context=True) # training, using day and night context
 
 fhmm_result  =  fhmm_decoding(train_dset,test_dset) #
+fhmm_result['decoded_power'].to_csv(dissagg_result_save+"fhmm/"+homes)
 #%%
 #plot_actual_vs_decoded(fhmm_result)
 sel_appliances = ["air1","refrigerator1"] # for iawe dataset

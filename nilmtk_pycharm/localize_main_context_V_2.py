@@ -13,9 +13,10 @@ execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm
 #execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plot_functions.py")
 path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 aggregate_result = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
-
+dissagg_result_save= "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/"
+#%%
 #homes = ["115.csv","434.csv","490.csv","1463.csv","3538.csv"]
-homes = ["115.csv"]
+homes = ["490.csv"]
 #file1 ="101.csv"
 #houses = [f for f in os.listdir(dir)]
 #df = pd.read_csv(dir+houses[6],index_col='localminute') # USE HOUSE (6,115)
@@ -40,8 +41,10 @@ for i in range(len(homes)):
     train_result = compute_appliance_statistic(train_dset,context=True) # training, using day and night context
 
     fhmm_result  =  fhmm_decoding(train_dset,test_dset) #
+   # fhmm_result['decoded_power'].to_csv(dissagg_result_save+"fhmm/"+homes[i])
+
     #plot_actual_vs_decoded(fhmm_result)
     sel_appliances = ["air1","refrigerator1"]
     dis_res = localize_anomalous_appliance(fhmm_result['decoded_power'][sel_appliances],train_result,appliance_count=100,take_context=True) # appliance anomaly detection
     save_path_disresults = aggregate_result + "fhmm/"
-    dis_res.to_csv(save_path_disresults+homes[i])
+    #dis_res.to_csv(save_path_disresults+homes[i])

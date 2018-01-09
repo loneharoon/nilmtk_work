@@ -47,7 +47,7 @@ train_result = compute_appliance_statistic(train_dset[sel_appliances], context=T
 
 #sel_dates=['2014-07-04','2014-07-11','2014-07-19','2014-07-27','2014-07-29']
 #test_dset = test_dset.query('@test_dset.indeåx.normalize()in @sel_dates')
-
+#%%
 orac_results = localize_anomalous_appliance(test_dset[sel_appliances], train_result, appliance_count=100, take_context=True)# appliance anomaly detect
 print(orac_results)
 #%%
