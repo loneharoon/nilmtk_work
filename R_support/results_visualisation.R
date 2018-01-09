@@ -1,3 +1,7 @@
+# I have done various things in this script: Some of them which I recall are
+# 1. Compute F-score,precison and recall of UNUM  on both disaggregated and normal appliance data.  
+
+
 # dissagregation
 # RMSE _NORMALISATION ERROR
 house_no = c(115,434,490,1463,3538)
@@ -33,8 +37,8 @@ do.call(rbind,accu)
 
 # COMPUTE APPLIANCE WISE ANOMALY DETECTION ACCURACY METRICS AFTER APPLYING DISSAGREGATION
 # stage 3: For appAD and Oracle
-
-home= "3538.csv"
+rm(list=ls())
+home= "meter_2.csv" #"3538.csv" # "meter_2.csv" #"redd_home_6.csv"
 gt <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"
 oracle <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/oracle/"
 fhmm <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/fhmm/"

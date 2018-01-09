@@ -1,3 +1,6 @@
+# I use this scipt to plot all bar charts of Buildsys 2017 paper.
+# The data is computed mostly from python and then noted on note book and finally inserted here
+
 AGGREGATE_LEVLE <- function(){
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
 fscore_df = data.frame("1463"=c(0.81,0.70,0.50),
