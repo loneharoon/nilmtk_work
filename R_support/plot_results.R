@@ -75,12 +75,15 @@ scale_fill_manual(values=c('#8856a7','#9ebcda'))
 
 APPLIANCE_LEVEL <- function() {
 ##############################APPLIANCE LEVEL SCORES#########################
-setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
-
+setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
+# the numbers presented here are obtained by running results_visualization.R
 ac_fscore_df = data.frame("1463"=c(0.40,0.67),
                           "3538"=c(0.64,0.72),#"3538"=c(0.71,0.70),
                           "490"=c(0.70,0.82),
-                          "115"=c(0.44,0.83))
+                          "115"=c(0.44,0.83),
+                          "iawe"=c(0.89,0.89),
+                          "redd"=c(0.44,1)
+                          )
 #row.names(ac_fscore_df) <- c("FHMM_P","Oracle_Q")
 row.names(ac_fscore_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(ac_fscore_df))
@@ -90,7 +93,9 @@ plot_bar_plots_appliance(df,"F-score","ac_fscore")
 ac_precision_df = data.frame("1463"=c(0.50,0.67),
                              "3538"=c(0.70,0.75), #"3538"=c(0.86,0.70),
                              "490"=c(0.70,0.82),
-                             "115"=c(0.67,0.83))
+                             "115"=c(0.67,0.83),
+                             "iawe"=c(0.80,0.80),
+                             "redd"=c(0.50,1))
 #row.names(ac_precision_df) <- c("FHMM","Oracle")
 row.names(ac_precision_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(ac_precision_df))
@@ -100,7 +105,9 @@ plot_bar_plots_appliance(df,"Precision","ac_precision")
 ac_recall_df = data.frame("1463"=c(0.33,0.67),
                           "3538"=c(0.60,0.70),
                           "490"=c(0.70,0.82),
-                          "115"=c(0.33,0.83))
+                          "115"=c(0.33,0.83),
+                          "iawe"=c(1,1),
+                          "redd"=c(0.40,0.1))
 #row.names(ac_recall_df) <- c("FHMM","Oracle")
 row.names(ac_recall_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(ac_recall_df))
@@ -110,7 +117,9 @@ plot_bar_plots_appliance(df,"Recall","ac_recall")
 fridge_fscore_df = data.frame("1463"=c(0.15,0.86),
                               "3538"=c(0.07,0.86),
                               "490"=c(0.27,0.83),
-                              "115"=c(0.16,0.86))
+                              "115"=c(0.16,0.86),
+                              "iawe"=c(0.47,0.80),
+                              "redd"=c(0.55,0.80))
 #row.names(fridge_fscore_df) <- c("FHMM","Oracle")
 row.names(fridge_fscore_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(fridge_fscore_df))
@@ -119,7 +128,9 @@ plot_bar_plots_appliance(df,"F-score","fridge_fscore")
 fridge_precision_df = data.frame("1463"=c(0.08,1),
                                  "3538"=c(0.04,1),
                                  "490"=c(0.16,0.77),
-                                 "115"=c(0.09,0.86))
+                                 "115"=c(0.09,0.86),
+                                 "iawe"=c(0.38,0.67),
+                                 "redd"=c(0.42,1))
 #row.names(fridge_precision_df) <- c("FHMM","Oracle")
 row.names(fridge_precision_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(fridge_precision_df))
@@ -128,7 +139,9 @@ plot_bar_plots_appliance(df,"Precision","fridge_precision")
 fridge_recall_df = data.frame("1463"=c(0.80,0.75),
                               "3538"=c(0.25,0.75),
                               "490"=c(0.92,0.91),
-                              "115"=c(0.88,0.86))
+                              "115"=c(0.88,0.86),
+                              "iawe"=c(0.6,1),
+                              "redd"=c(0.80,0.67))
 #row.names(fridge_recall_df) <- c("FHMM","Oracle")
 row.names(fridge_recall_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(fridge_recall_df))
@@ -137,13 +150,14 @@ plot_bar_plots_appliance(df,"Recall","fridge_recall")
 
 plot_bar_plots_appliance <- function(df,ylabel,savename){
   library(ggplot2)
-  df$idcol = seq(1,4)
+  df$idcol = seq(1,6)
   df_melt <- reshape2::melt(df,id.vars=c("idcol"))
-  g <- ggplot(df_melt,aes(idcol,value,fill=variable)) + geom_bar(position="dodge",stat="identity",width = 0.7)
+  g <- ggplot(df_melt,aes(idcol,value,fill=variable)) + geom_bar(position="dodge",stat="identity",width = 0.4)
   g <- g +  labs(x="Home #",y = ylabel) + theme_grey(base_size = 10) 
-  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 9))
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 8))
+  g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
   g
-  ggsave(paste0(savename,".pdf"), width = 6, height = 6,units="cm") 
+  ggsave(paste0(savename,".pdf"), width = 3, height = 3,units="in") 
 }
 
 }
