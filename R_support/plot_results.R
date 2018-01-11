@@ -1,12 +1,15 @@
 # I use this scipt to plot all bar charts of Buildsys 2017 paper.
 # The data is computed mostly from python and then noted on note book and finally inserted here
+library(ggplot2)
 
 AGGREGATE_LEVLE <- function(){
-setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
+setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
 fscore_df = data.frame("1463"=c(0.81,0.70,0.50),
                        "3538"=c(0.83,0.52,0.28),
                        "490"=c(0.73,0.57,0.38),
-                       "115"=c(0.72,0.57,0.53))
+                       "115"=c(0.72,0.57,0.53),
+                       'iawe'=c(0.50,0.36,0.50),
+                       'redd'=c(0.43,0.43,0.59))
 #row.names(fscore_df) = c("Lof","Muser","hp")
 row.names(fscore_df) = c("OMNI","MBM","NNBM")
 df = as.data.frame(t(fscore_df))
@@ -15,7 +18,9 @@ plot_bar_plots(df,"F-score")
 prec_df = data.frame("1463"=c(0.92,1,0.54),
                      "3538"=c(1,0.67,0.27),
                      "490"=c(1,0.86,0.45),
-                     "115"=c(0.90,1,0.53))
+                     "115"=c(0.90,1,0.53),
+                     'iawe'=c(1,1,0.57),
+                     'redd'=c(1,1,0.83))
 #row.names(prec_df) = c("Lof","Muser","hp")
 row.names(prec_df) = c("OMNI","MBM","NNBM")
 df = as.data.frame(t(prec_df))
@@ -25,20 +30,23 @@ plot_bar_plots(df,"Precision")
 recall_df = data.frame("1463"=c(0.73,0.53,0.47),
                        "3538"=c(0.71,0.43,0.29),
                        "490"=c(0.57,0.43,0.33),
-                       "115"=c(0.60,0.40,0.53))
+                       "115"=c(0.60,0.40,0.53),
+                       'iawe'=c(0.33,0.22,0.44),
+                       'redd'=c(0.27,0.27,0.45))
 #row.names(recall_df) = c("Lof","Muser","hp")
 row.names(recall_df) = c("OMNI","MBM","NNBM")
 df = as.data.frame(t(recall_df))
 plot_bar_plots(df,"Recall")
 
 plot_bar_plots <- function(df,ylabel){
-  df$idcol = seq(1,4)
+  df$idcol = seq(1,6)
   df_melt <- reshape2::melt(df,id.vars=c("idcol"))
-  g <- ggplot(df_melt,aes(idcol,value,fill=variable)) + geom_bar(position="dodge",stat="identity",width = 0.7)
+  g <- ggplot(df_melt,aes(idcol,value,fill=variable)) + geom_bar(position="dodge",stat="identity",width = 0.4)
   g <- g +  labs(x="Home #",y = ylabel) + theme_grey(base_size = 10) 
-  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 9))
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.position = "top",legend.title=element_blank(),legend.background = element_rect(fill = alpha('white',0.3)),legend.text = element_text(size = 8))
+  g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
   g
-  ggsave(paste0(ylabel,".pdf"), width = 6, height = 6,units="cm") 
+  ggsave(paste0(ylabel,".pdf"), width = 3, height = 3,units="in") 
 }
 
 }

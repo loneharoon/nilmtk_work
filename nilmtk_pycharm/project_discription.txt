@@ -7,3 +7,8 @@ LBM:
 1. F-SCORE,PRECISION AND RECALL for OMNI: To compute anomaly scores at aggregate level, we use OMNI algorithm along with few baselines. This is done in main_function_offline.R stored in R_support folder of this directory. For seconds level data, I use replica of same file in order to handle all things clearly and the file name is main_function_offline_iaweRedd.R
 2. All plots in buildys 2017 paper are plotted usin R script with name plot_Results.R
 3. F_score, precison and recall of UNUM on AC, fridge: Use oracle_disagg_main script and  "localize_main_context...." to get anomalies detected using non disaggregated and  disaggregated appliance data and store results in files. Next use results_visualization.R, which is R script to compute required metrics
+
+11-January 2018: [PLOTTING]
+Complete details how to plot the results
+
+1. F-score at aggregate level: Use plot_results.R in R directory
