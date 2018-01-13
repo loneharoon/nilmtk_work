@@ -34,10 +34,18 @@ df2 = pd.read_csv(path+homes,index_col='localminute') # injected anomalies
 df2.index = pd.to_datetime(df2.index)
 #%%
 temp = pd.concat([oracle_dset['air1'],df2['air1']],axis=1)
-temp.columns = ["oracle","disagg"]
+temp.columns = ["Submetered","Disaggregated"]
 temp.plot(subplots=True)
-temp['2013-07-21'].plot(subplots=True)
+#temp['2013-07-21'].plot(subplots=True)
 # Conclusion: After plotting data of several days I found indeed disaggregation has worked very well in this house
+#%% now plotting part
+p  = temp
+p['Timestamp'] = p.index
+t = pd.melt(p,id_vars=['Timestamp'],value_vars=["Submetered","Disaggregated"],var_name='Data',value_name='Power (W)')
+pal = dict(Submetered="black", Disaggregated="blue")
+sobj = sns.FacetGrid(t,row='Data',sharex=True,margin_titles=True,hue='Data',palette=pal)
+sobj.map(plt.plot,'Timestamp','Power (W)')
+
 #%% While comparing nomarlized error of AC across homes in pape we find that home 3 (490) has also same error as that of iawe then why Fscore of 490 for ac is lower as compared to iawe
 #Read oracle data of 490
 path= "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
