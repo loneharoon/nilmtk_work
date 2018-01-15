@@ -38,7 +38,7 @@ do.call(rbind,accu)
 # COMPUTE APPLIANCE WISE ANOMALY DETECTION ACCURACY METRICS AFTER APPLYING DISSAGREGATION
 # stage 3: For appAD and Oracle
 rm(list=ls())
-home= "meter_2.csv" #"3538.csv" # "meter_2.csv" #"redd_home_6.csv"
+home= "redd_home_6.csv" #"3538.csv" # "meter_2.csv" #"redd_home_6.csv"
 gt <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"
 oracle <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/oracle/"
 fhmm <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/fhmm/"

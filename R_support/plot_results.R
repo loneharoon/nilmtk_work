@@ -9,7 +9,7 @@ fscore_df = data.frame("1463"=c(0.81,0.70,0.50),
                        "490"=c(0.73,0.57,0.38),
                        "115"=c(0.72,0.57,0.53),
                        'iawe'=c(0.50,0.36,0.50),
-                       'redd'=c(0.43,0.43,0.59))
+                       'redd'=c(0.50,0.50,0.67))
 #row.names(fscore_df) = c("Lof","Muser","hp")
 row.names(fscore_df) = c("OMNI","MBM","NNBM")
 df = as.data.frame(t(fscore_df))
@@ -32,7 +32,7 @@ recall_df = data.frame("1463"=c(0.73,0.53,0.47),
                        "490"=c(0.57,0.43,0.33),
                        "115"=c(0.60,0.40,0.53),
                        'iawe'=c(0.33,0.22,0.44),
-                       'redd'=c(0.27,0.27,0.45))
+                       'redd'=c(0.33,0.33,0.56))
 #row.names(recall_df) = c("Lof","Muser","hp")
 row.names(recall_df) = c("OMNI","MBM","NNBM")
 df = as.data.frame(t(recall_df))
@@ -108,7 +108,7 @@ ac_recall_df = data.frame("1463"=c(0.33,0.67),
                           "490"=c(0.70,0.82),
                           "115"=c(0.33,0.83),
                           "iawe"=c(1,1),
-                          "redd"=c(0.40,0.1))
+                          "redd"=c(0.40,1.0))
 #row.names(ac_recall_df) <- c("FHMM","Oracle")
 row.names(ac_recall_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(ac_recall_df))
@@ -120,7 +120,7 @@ fridge_fscore_df = data.frame("1463"=c(0.15,0.86),
                               "490"=c(0.27,0.83),
                               "115"=c(0.16,0.86),
                               "iawe"=c(0.47,0.80),
-                              "redd"=c(0.55,0.80))
+                              "redd"=c(0.59,1.0))
 #row.names(fridge_fscore_df) <- c("FHMM","Oracle")
 row.names(fridge_fscore_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(fridge_fscore_df))
@@ -142,7 +142,7 @@ fridge_recall_df = data.frame("1463"=c(0.80,0.75),
                               "490"=c(0.92,0.91),
                               "115"=c(0.88,0.86),
                               "iawe"=c(0.6,1),
-                              "redd"=c(0.80,0.67))
+                              "redd"=c(1,1))
 #row.names(fridge_recall_df) <- c("FHMM","Oracle")
 row.names(fridge_recall_df) <- c("UNUM_D","UNUM_S")
 df <- as.data.frame(t(fridge_recall_df))

@@ -53,11 +53,14 @@ colnames(orac_df) <- c("Submetered")
 dis_orac_sub = orac_df["2013-07-21/"]
 
 df = cbind(dis_orac_sub,dissag_df)
+#df_samp = resample_data_minutely(df,1)
+
 df_fort = fortify(df)
 df_melt = melt(df_fort,id="Index")
 
 f <- ggplot(df_melt,aes(Index,variable=variable)) + facet_grid(variable~.,scales = "free") + geom_line(aes(y=value/1000)) 
 f <- f +  labs(x="Timestamp",y = "Power (kW)") + theme_grey(base_size = 10) 
 f <- f + theme(axis.text = element_text(color="Black",size=9))
-ggsave("insights_home5.pdf", width = 6, height = 3,units="in") 
+f
+ggsave("insights_home5.png", width = 6, height = 3,units="in") 
 }
