@@ -12,3 +12,19 @@ LBM:
 Complete details how to plot the results
 
 1. F-score at aggregate level: Use plot_results.R in R directory
+2. Disaggregation accuarcy: use plot_results.R
+3. F-score at appliance level: use plot_results.R
+
+Insights plots: These plots in the paper are drawn in plots_eEnergy2018.R
+
+Tables showing missing anomalies for OMNI and UNUM:
+follow below procedure
+ UNUM TABLE:
+1. Read files corresponding to homes in the directory "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/oracle/" to get results of UNUM on submetered data
+2. Next read the file "inserted_anomlies_home_wise" placed in nilmtk_pycharm folder to get the actual inserted anomalies
+3. Now compare results of step 1 and 2 and compute table entries
+
+OMNI TABLE:
+1. Read file named as "energy_score.csv" stored in the folder corresponding to each home with home name on path "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
+2.  Next read the file "inserted_anomlies_home_wise" placed in nilmtk_pycharm folder to get the actual inserted anomalies
+3. Now compare results of step 1 and 2 and compute table entries
