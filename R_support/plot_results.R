@@ -71,6 +71,7 @@ g
 
 scale_fill_manual(values=c('#8856a7','#9ebcda'))
 #ggsave("accuracy.pdf", width = 8, height = 6,units="cm") 
+
 }
 
 APPLIANCE_LEVEL <- function() {
