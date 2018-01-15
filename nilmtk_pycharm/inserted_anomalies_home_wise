@@ -143,7 +143,7 @@ REDD, Home # 6:
 
 fridge_anomalies = {
     # First three  lines are to make training data clean, since some training data was ambigious on these dates.
-    # since first two correspond to elongated and last two with frequent anomalies
+    # TAKE CARE OF THIS WHILE CREATING GROUND TRUTH FILE, BECUASE THESE SHOULD NOT BE COUNTED DURING TESTING TIME
 0: generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-24 00:00:00', hours=3, upper_mag=150,frequency=1., dutycycle=0.5),
 1: generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-24 17:00:00', hours=6, upper_mag=150, frequency=1., dutycycle=0.5),
  2:generate_synthetic_seconds_timeseries_anomaly(timestart = '2011-05-25 00:00:00', hours = 6, upper_mag    = 150, frequency = 1., dutycycle=0.5),
