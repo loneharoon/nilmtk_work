@@ -36,6 +36,56 @@ f
 ggsave("insights_home3.pdf", width = 6, height = 3,units="in") 
 }
 
+insights_figure_home3_version2 <- function(){
+  # In this version, I only plot AC data and show it in facet_grid format
+  setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
+  
+  dis_path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/fhmm/490.csv"
+  orac_path= "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/490.csv"
+  
+  df_diss = read.csv(dis_path)
+  df_orac = read.csv(orac_path)
+  dis_xts =  xts(df_diss$air1, fastPOSIXct(df_diss$localminute))
+  colnames(dis_xts) <- c("AC")
+  dis_orac = xts(df_orac$air1, fastPOSIXct(df_orac$localminute))
+  colnames(dis_orac) <- c("AC")
+  
+  dis_disagg = dis_xts["2014-07-25"]
+  dis_orac = dis_orac["2014-07-25"]
+
+  df <- fortify(cbind(dis_orac,dis_disagg))
+  colnames(df) <- c("Index","Submetered","Disaggregated")
+  df_melt <- melt(df,id="Index") 
+ # df_melt$variable_order <- as.factor(df_melt$variable,levels = c("Disaggregated","Submetered"))
+  levels(df_melt$variable) <- c("Disaggregated","Submetered")
+  
+  anomaly = dis_orac["T05:58/T17:30"]
+  disagg_same_duration = dis_disagg["T05:58/T17:30"]
+  disagg_same_duration$AC <- NA # forcing them to be NULL for intended purpose
+  df2 <- fortify(cbind(anomaly,disagg_same_duration))
+  colnames(df2) <- c("Index","Submetered","Disaggregated")
+  
+  df2_melt <- melt(df2,id="Index") 
+  levels(df2_melt$variable) <- c("Disaggregated","Submetered")
+  
+  anomaly_fort <- fortify(anomaly)
+  anomaly_fort['variable'] = "Submetered"
+  colnames(anomaly_fort) <- c("Index","value","variable")
+  
+  f <- ggplot(df_melt,aes(Index,variable=variable)) + facet_grid(variable~.,scales = "free") + geom_line(aes(y=value/1000)) 
+  f <- f +  labs(x="Timestamp",y = "Power (kW)") + theme_grey(base_size = 10) 
+  f
+  f <- f + geom_line(data=df2_melt,aes(x=Index,y=value/1000),color="red")
+  f
+  f <- f + theme(axis.text = element_text(color="Black",size=9)) 
+  f
+  ggsave("insights_home3_ver2.pdf", width = 6, height = 3,units="in") 
+}
+
+
+
+
+
 insights_figure_home5 <-function() {
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
 dis_path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/fhmm/meter_2.csv"
