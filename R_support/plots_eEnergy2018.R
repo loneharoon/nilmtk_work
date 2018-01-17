@@ -1,4 +1,4 @@
-# in this script I will plots figures for eEnergy 2018 paper [OMNI and UNUM]
+# in this script I plot insights figures for eEnergy 2018 paper [OMNI and UNUM]
 # Date: 15 Jan 2018
 library(ggplot2)
 library(xts)
@@ -57,7 +57,7 @@ insights_figure_home3_version2 <- function(){
   colnames(df) <- c("Index","Submetered","Disaggregated")
   df_melt <- melt(df,id="Index") 
  # df_melt$variable_order <- as.factor(df_melt$variable,levels = c("Disaggregated","Submetered"))
-  levels(df_melt$variable) <- c("Disaggregated","Submetered")
+ # levels(df_melt$variable) <- c("Disaggregated","Submetered")
   
   anomaly = dis_orac["T05:58/T17:30"]
   disagg_same_duration = dis_disagg["T05:58/T17:30"]
@@ -66,7 +66,7 @@ insights_figure_home3_version2 <- function(){
   colnames(df2) <- c("Index","Submetered","Disaggregated")
   
   df2_melt <- melt(df2,id="Index") 
-  levels(df2_melt$variable) <- c("Disaggregated","Submetered")
+ # levels(df2_melt$variable) <- c("Disaggregated","Submetered")
   
   anomaly_fort <- fortify(anomaly)
   anomaly_fort['variable'] = "Submetered"
@@ -79,14 +79,11 @@ insights_figure_home3_version2 <- function(){
   f
   f <- f + theme(axis.text = element_text(color="Black",size=9)) 
   f
-  ggsave("insights_home3_ver2.pdf", width = 6, height = 3,units="in") 
+  ggsave("insights_home3_ver2.pdf", width = 5, height = 2,units="in") 
 }
 
-
-
-
-
 insights_figure_home5 <-function() {
+  
 setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
 dis_path = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/fhmm/meter_2.csv"
 orac_path= "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/meter_2.csv"
