@@ -28,3 +28,7 @@ OMNI TABLE:
 1. Read file named as "energy_score.csv" stored in the folder corresponding to each home with home name on path "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
 2.  Next read the file "inserted_anomlies_home_wise" placed in nilmtk_pycharm folder to get the actual inserted anomalies
 3. Now compare results of step 1 and 2 and compute table entries
+ 
+Precision/recall and F_score of disagg techniques:
+1. Follow script metric_accuracy.py to compute results first
+2. Use plots_accuracy_disagg.R to plot data of step 1
