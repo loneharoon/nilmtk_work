@@ -10,6 +10,9 @@ Created on Tue Jan  9 10:12:21 2018
 import numpy as np
 import pandas as pd
 np.random.seed(123)
+import seaborn as sns
+sns.set_context("paper")
+import matplotlib.pyplot as plt
 #%%
 # Insight: The F-score of iawe home with FHMM and oracle is same. Does this mean disaggregation worked perfectly in this home. Let's plot AC data of both cases and understand things
 
@@ -46,7 +49,7 @@ pal = dict(Submetered="black", Disaggregated="blue")
 sobj = sns.FacetGrid(t,row='Data',sharex=True,margin_titles=True,hue='Data',palette=pal)
 sobj.map(plt.plot,'Timestamp','Power (W)')
 
-#%% While comparing nomarlized error of AC across homes in pape we find that home 3 (490) has also same error as that of iawe then why Fscore of 490 for ac is lower as compared to iawe
+#%% While comparing nomarlized error of AC across homes in paper we find that home 3 (490) has also same error as that of iawe then why Fscore of 490 for ac is lower as compared to iawe
 #Read oracle data of 490
 path= "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 homes = "490.csv"
@@ -68,8 +71,12 @@ temp = pd.concat([oracle_dset['air1'],df2['air1']],axis=1)
 temp.columns = ["oracle","disagg"]
 temp.plot(subplots=True) # from 2014-07-01 to 2014-08-30
 temp['2014-07-21'].plot(subplots=True)
-
-sel_app = ['air1','clotheswasher1','furnace1']
-df2['2014-07-25'][sel_app].plot(subplots=True)
-oracle_dset['2014-07-25'][sel_app].plot(subplots=True)
+savedir = "/Volumes/MacintoshHD2/Users/haroonr/Downloads/tempres/"
+sel_app = ['air1','clotheswasher1','furnace1','dishwasher1','refrigerator1']
+#%%
+mydate =  '2014-07-04'
+df2[mydate][sel_app].plot(subplots=True)
+plt.savefig(savedir+mydate+"_disagg.pdf")
+oracle_dset[mydate][sel_app].plot(subplots=True)
+plt.savefig(savedir+mydate+"_orac.pdf")
 # I found that this home has clotheswasher and furance and at time the AC usage gets wrongly distriubuted in these appliances as a result the net energy consumed by AC decreases. Therefore these cases are not flagged as anomalies. This means when we have more similar energy consuming appliances then anomaly detection is even harder.

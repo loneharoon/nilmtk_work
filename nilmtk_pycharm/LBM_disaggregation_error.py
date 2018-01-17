@@ -17,6 +17,7 @@ np.random.seed(42)
 import pickle
 from latent_Bayesian_melding import LatentBayesianMelding
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
+dissagg_result_save= "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/"
 #%% Read one home at a time
 dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/"
 savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/lbm_disaggregation_puredata/"
@@ -57,7 +58,7 @@ for key,val in mains_group:
     infApplianceReading = results['inferred appliance energy']
     res.append(infApplianceReading)
 infApplianceReading = pd.concat(res)
-infApplianceReading.to_csv("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/lbm_dissag_results/pure_data/" + hos) # save diss_data for furthe processing
+infApplianceReading.to_csv(dissagg_result_save+"lbm/" + hos) # save diss_data for furthe processing
 #%%
 #infApplianceReading.to_csv(savedir+"115.csv")
 #%% TEMPORARY CELL

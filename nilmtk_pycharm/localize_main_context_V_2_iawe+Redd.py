@@ -10,6 +10,9 @@ np.random.seed(123)
 #dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default_3months/"
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_fhmm.py")
 execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
+execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/cluster_file.py")
+execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/utils.py")
+execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/co.py")
 #execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plot_functions.py")
 path2 = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
 aggregate_result = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/"
@@ -40,6 +43,8 @@ train_result = compute_appliance_statistic(train_dset,context=True) # training, 
 
 fhmm_result  =  fhmm_decoding(train_dset,test_dset) #
 fhmm_result['decoded_power'].to_csv(dissagg_result_save+"fhmm/"+homes)
+co_result = co_decoding(train_dset,test_dset)
+co_result['decoded_power'].to_csv(dissagg_result_save+"co/"+homes[i])
 #%%
 #plot_actual_vs_decoded(fhmm_result)
 sel_appliances = ["air1","refrigerator1"] # for iawe dataset

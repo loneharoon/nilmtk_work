@@ -22,4 +22,12 @@ plt.xlabel("Timestamp")
 plt.ylabel("Power (W)")
 plt.tight_layout()
 plt.savefig(savepath+"insights_iawe1.pdf")
-#%%
+#%% 
+res = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/fhmm/redd_home_6.csv"
+res_df =  pd.read_csv(res)
+
+res = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/oracle/meter_2.csv"
+res_df =  pd.read_csv(res)
+
+res = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/redd_home_6/energy_score.csv"
+res_df =  pd.read_csv(res)
