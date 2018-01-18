@@ -39,6 +39,53 @@ anom_score_threshold_sensitivity <- function(df,label,thresholds,house) {
 
 }
 
+anomaly_score_threshold_VERSION_eEnergy2018 <- function() {
+  library(data.table)
+  library(xts)
+  library(ggplot2)
+  
+  # FOR  SENSITIVITY ANALYSIS OF on anomaly threshold score
+  house="115.csv"
+  result <- paste0("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/",strsplit(house,'[.]')[[1]][1],"/","energy_score.csv")
+  #gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/ground_truth/"
+  gt_directory <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth/"
+  gt <- fread(paste0(gt_directory,house))
+  #gt <- fread(paste0(gt_directory,"490.csv"))
+  gt$Index <- as.Date(gt$Index,tz="Asia/Kolkata")
+  res_df <- fread(result)
+  store <- list()
+  thresholds <- seq(0.5,1,by=0.1)
+  for (i in 1:length(thresholds)){
+    store[[i]] <- compute_f_score(res_df,gt,threshold = thresholds[i])
+  }
+  fin_result <- do.call(rbind,store)
+  colnames(fin_result) <- c("OMNI","MBM","NNBM")
+  f_score <- data.frame(fin_result[row.names(fin_result)=='f_score',],row.names = NULL)
+  precision <- data.frame(fin_result[row.names(fin_result)=='precise',],row.names = NULL)
+  recall <- data.frame(fin_result[row.names(fin_result)=='recal',],row.names = NULL)
+ 
+  f_score["Metric"] <- "Fscore"
+  f_score["Threshold"] <- thresholds
+
+  precision["Metric"] <- "Precision"
+  precision["Threshold"] <- thresholds
+
+  recall["Metric"] <- "Recall"
+  recall["Threshold"] <- thresholds
+  
+  df_comb <- rbind(f_score,precision,recall)
+  df_melt <- reshape2::melt(df_comb,id.vars=c("Metric","Threshold"),variable.name="Method")
+  
+  g <- ggplot(df_melt,aes(Threshold,value,color=Method)) + facet_grid(.~ Metric) + geom_line(size= 0.6) + geom_point(aes(shape=Method))
+  g <- g +  labs(x="Threshold on Anomaly score",y = "Value") + theme_grey(base_size = 10) 
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8))
+  #g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
+  g
+  ggsave("sensitivity_anomaly_score.pdf", width = 9, height = 2.0,units="in")
+
+}
+
+
 effect_of_change_in_sigma <- function()
 {
   gt <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"
@@ -128,6 +175,95 @@ effect_of_change_in_sigma <- function()
   }
   
 }
+
+
+
+effect_of_change_in_sigma_eEnergy2018 <- function()
+{
+  gt <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/ground_truth_appliance/"
+  oracle <- "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/oracle_sensitivity/"
+  
+  home = "3538.csv"
+  fls <- list.files(oracle,pattern = paste0(strsplit(home,'[.]')[[1]][1],'_*'))
+  # FOR AC
+  gt_df <- read.csv(paste0(gt,home))
+  res1 <- list()
+  for (i in 1:length(fls)){
+    orac_df <- read.csv(paste0(oracle,fls[i]))
+    gt_ac <- gt_df[gt_df$ac==1,] 
+    #fhmm_ac <- fhmm_df[fhmm_df$air1==1,]
+    oracle_ac <- orac_df[orac_df$air1==1,]
+    res1[[i]] <- compute_accuracy_statistics(gt_ac,oracle_ac)
+  }
+  res1 <- do.call(rbind,res1)
+  colnames(res1) <- c("Precision","Recall","Fscore")
+  res1['thresholds'] <-  c(0.5,1.0,1.5,2.0,2.5)
+  res1['Appliance'] = "AC"
+
+  #sigma_sensitivity(res,thresholds,device,home)
+  
+  # FOR REFRIGERATOR
+  gt_df <- read.csv(paste0(gt,home))
+  res2 <- list()
+  for (i in 1:length(fls)){
+    orac_df <- read.csv(paste0(oracle,fls[i]))
+    gt_ac <- gt_df[gt_df$fridge==1,] 
+    #fhmm_ac <- fhmm_df[fhmm_df$air1==1,]
+    oracle_ac <- orac_df[orac_df$refrigerator1==1,]
+    res2[[i]] <- compute_accuracy_statistics(gt_ac,oracle_ac)
+  }
+  res2 <- do.call(rbind,res2)
+  colnames(res2) <- c("Precision","Recall","Fscore")
+  res2['thresholds'] <-  c(0.5,1.0,1.5,2.0,2.5)
+  res2['Appliance'] = "Refrigerator"
+
+  
+  #  FOR BOTH AC AND FRIDGE
+  gt_df <- read.csv(paste0(gt,home))
+  res3 <- list()
+  for (i in 1:length(fls)){
+    orac_df <- read.csv(paste0(oracle,fls[i]))
+    gt_ac <- gt_df[gt_df$ac==1 | gt_df$fridge==1,] 
+    #fhmm_ac <- fhmm_df[fhmm_df$air1==1,]
+    oracle_ac <- orac_df[orac_df$air==1 | orac_df$refrigerator1==1,]
+    res3[[i]] <- compute_accuracy_statistics(gt_ac,oracle_ac)
+  }
+  res3 <- do.call(rbind,res3)
+  colnames(res3) <- c("Precision","Recall","Fscore")
+  res3['thresholds'] <-  c(0.5,1.0,1.5,2.0,2.5)
+  res3['Appliance'] = "Refrigerator + AC"
+  
+  
+  df_comb <- rbind(res1,res2,res3)
+  df_melt <- reshape2::melt(df_comb,id.vars=c("Appliance","thresholds"),variable.name="Metric")
+  
+  g <- ggplot(df_melt,aes(thresholds,value,color=Metric)) + facet_grid(.~ Appliance) + geom_line(size= 0.6) + geom_point(aes(shape=Metric))
+  g <- g +  labs(x="Number of Standard deviations",y = "Anomay Score") + theme_grey(base_size = 10) 
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8))
+  #g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
+  g
+  ggsave("sensitivity_sigma.pdf", width = 9, height = 2.0,units="in")
+  
+  compute_accuracy_statistics <- function(gt_ac,fhmm_ac){
+    gt = gt_ac
+    ob = fhmm_ac
+    #oracle = oracle_ac
+    a_dates <- as.Date(gt$Index,tz="Asia/Kolkata")
+    f_dates <- as.Date(ob$Date,tz="Asia/Kolkata")
+    f_score <- vector(mode="numeric")
+    precise <- vector(mode="numeric")
+    recal <- vector(mode="numeric")
+    tp <- f_dates[f_dates %in% a_dates]
+    fp <- f_dates[!f_dates %in% a_dates]
+    fn <- a_dates[!a_dates %in% f_dates]
+    precision = round(length(tp)/(length(tp)+length(fp)),2)
+    recall =  round(length(tp)/(length(tp)+length(fn)),2)
+    f_score <- round( 2*(precision*recall)/(precision+recall),2)
+    return(data.frame(precision,recall,f_score))
+  }
+  
+}
+
 
 k_sensitivity <- function() {
   # this function is used to show sensitivity of k value on LOF
