@@ -54,7 +54,7 @@ insights_figure_home3_version2 <- function(){
   dis_orac = dis_orac["2014-07-25"]
 
   df <- fortify(cbind(dis_orac,dis_disagg))
-  colnames(df) <- c("Index","Submetered","Disaggregated")
+  colnames(df) <- c("Index","Metered","NILM")
   df_melt <- melt(df,id="Index") 
  # df_melt$variable_order <- as.factor(df_melt$variable,levels = c("Disaggregated","Submetered"))
  # levels(df_melt$variable) <- c("Disaggregated","Submetered")
@@ -63,23 +63,30 @@ insights_figure_home3_version2 <- function(){
   disagg_same_duration = dis_disagg["T05:58/T17:30"]
   disagg_same_duration$AC <- NA # forcing them to be NULL for intended purpose
   df2 <- fortify(cbind(anomaly,disagg_same_duration))
-  colnames(df2) <- c("Index","Submetered","Disaggregated")
+  colnames(df2) <- c("Index","Metered","NILM")
   
   df2_melt <- melt(df2,id="Index") 
  # levels(df2_melt$variable) <- c("Disaggregated","Submetered")
   
   anomaly_fort <- fortify(anomaly)
-  anomaly_fort['variable'] = "Submetered"
+  anomaly_fort['variable'] = "Metered"
   colnames(anomaly_fort) <- c("Index","value","variable")
   
   f <- ggplot(df_melt,aes(Index,variable=variable)) + facet_grid(variable~.,scales = "free") + geom_line(aes(y=value/1000)) 
   f <- f +  labs(x="Timestamp",y = "Power (kW)") + theme_grey(base_size = 10) 
   f
   f <- f + geom_line(data=df2_melt,aes(x=Index,y=value/1000),color="red")
+  label_df <- data.frame(Index=df$Index[500], y = 4.5,lab="Inserted Anomaly",variable= factor("Metered",levels = c("Metered","NILM")))
+  f <- f + annotate("text",label = "Inserted Anomaly", x=x_index , y=4.5,color="red",aes(variable="Metered"))
   f
+  
   f <- f + theme(axis.text = element_text(color="Black",size=9)) 
   f
-  ggsave("insights_home3_ver2.pdf", width = 5, height = 2,units="in") 
+ 
+  
+  
+  
+   ggsave("insights_home3_ver2.pdf", width = 5, height = 2,units="in") 
 }
 
 insights_figure_home5 <-function() {
@@ -92,9 +99,9 @@ df_diss = read.csv(dis_path)
 df_orac = read.csv(orac_path)
 
 dissag_df =  xts(df_diss$air1, fastPOSIXct(df_diss$localminute))
-colnames(dissag_df) <- c("Disaggregated")
+colnames(dissag_df) <- c("NILM")
 orac_df = xts(df_orac$air1, fastPOSIXct(df_orac$localminute))
-colnames(orac_df) <- c("Submetered")
+colnames(orac_df) <- c("Metered")
 
 
 dis_orac_sub = orac_df["2013-07-21/"]
@@ -108,6 +115,5 @@ df_melt = melt(df_fort,id="Index")
 f <- ggplot(df_melt,aes(Index,variable=variable)) + facet_grid(variable~.,scales = "free") + geom_line(aes(y=value/1000)) 
 f <- f +  labs(x="Timestamp",y = "Power (kW)") + theme_grey(base_size = 10) 
 f <- f + theme(axis.text = element_text(color="Black",size=9))
-f
-ggsave("insights_home5.png", width = 6, height = 3,units="in") 
+ggsave("insights_home5.png", width = 4, height = 2,units="in") 
 }
