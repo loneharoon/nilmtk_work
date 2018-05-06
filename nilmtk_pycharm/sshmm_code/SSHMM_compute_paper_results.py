@@ -15,7 +15,7 @@ sys.path.append('/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_
 import localize_appliance_support as las
 #%%
 filepath = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/inter_results/disagg_outputs/sshmm/"
-house = "115.pkl" 
+house = "redd_home_6.pkl"  # meter_2.pkl, redd_home_6.pkl
 pickle_in = open(filepath + house,"rb")
 dict_data = pickle.load(pickle_in)
 actual_power = dict_data['actual_power']
@@ -26,3 +26,4 @@ decoded_power = dict_data['decoded_power']
 #%%
 
 norm_sshmss = las.accuracy_metric_norm_error(dict_data)
+norm_sshmss

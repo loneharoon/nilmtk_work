@@ -7,8 +7,7 @@ Created on Sat May  5 10:09:16 2018
 """
 
 """
-This file explicitly computes dissaggregation error metrics on minutes level data. Data used is entirely dataport
-and approaches tested is SSHMM.
+This file explicitly computes dissaggregation error metrics on minutes level data and second level data. Data used is dataport, iawe and redd and approaches tested is SSHMM.
 Created on 
 
 @author: haroonr
@@ -24,29 +23,24 @@ import numpy as np
 import pandas as pd
 
 np.random.seed(123)
-#%%
-# List all houses in a directory
-dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default3/"
-savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
-#execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_fhmm.py")
-execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/localize_appliance_support.py")
-#execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/plot_functions.py")
-#execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/cluster_file.py")
-#execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/utils.py")
-#execfile("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/nilmtk_pycharm/co.py")
 
+# List all houses in a directory
+dir = "/Volumes/MacintoshHD2/Users/haroonr/Detailed_datasets/Dataport/mix_homes/default/injected_anomalies/"
+savedir = "/Volumes/MacintoshHD2/Users/haroonr/Dropbox/nilmtk_work/disagg_results/"
 #%%
 def run_dissaggreation_algos():
     #sel_homes = [1169, 130, 1314, 1463, 2075, 2864, 3039, 3538, 936, 2366]# FOUND IN FIRST 200 HOMES
-    sel_homes = [3864,3893,410,434,4514,4641,4703,4864,4874,490,4927] # FOUND BETWEEN 200-300 HOMES
-    sel_homes = ["115.csv","434.csv","490.csv","1463.csv","3538.csv"]
-    houses = map(lambda x: str(x) + ".csv", sel_homes)
+    #sel_homes = [3864,3893,410,434,4514,4641,4703,4864,4874,490,4927] # FOUND BETWEEN 200-300 HOMES
+    sel_homes = ["115.csv","490.csv","1463.csv","3538.csv"]
+    
+    #houses = map(lambda x: str(x) + ".csv", sel_homes)
     #houses = [f for f in os.listdir(dir)]
-    for hos in houses:
+    for hos in sel_homes:
         #df = pd.read_csv(dir+houses[0],index_col='localminute') # USE HOUSE (6,115)
+        hos = "redd_home_6.csv" # "meter_2.csv"  # 
         df = pd.read_csv(dir + hos, index_col='localminute')  # USE HOUSE (6,115)
         df.index = pd.to_datetime(df.index)
-        df = df["2014-06-01":"2014-08-29 23:59:59"]
+        #df = df["2014-06-01":"2014-08-29 23:59:59"]
         res = df.sum(axis=0)
         high_energy_apps = res.nlargest(6).keys() # CONTROL : selects few appliances
         df_new = df[high_energy_apps]
@@ -55,8 +49,28 @@ def run_dissaggreation_algos():
 
         train_dset = df_new.truncate(before="2014-06-01", after="2014-06-30 23:59:59")
         test_dset = df_new.truncate(before="2014-07-01", after="2014-08-29 23:59:59")
-        # keep tab on context option - creates day and night divison
-        #train_result = compute_appliance_statistic(train_dset,context=True) # training, using day and night context
+#%% for iawe and redd data only this cell
+        hos = "redd_home_6.csv" # 
+        # or
+        hos = "meter_2.csv"  # 
+        df = pd.read_csv(dir + hos, index_col='localminute')  # USE HOUSE (6,115)
+        df.index = pd.to_datetime(df.index)
+        res = df.sum(axis=0)
+        high_energy_apps = ['use','air1','refrigerator1','laptop','tv','water_filter'] # for aiwe
+        #high_energy_apps = ['use','air1','refrigerator1','electric_heat','stove','bathroom_gfi'] # for redd_home
+        df_new = df[high_energy_apps]
+        del df_new['use']# drop stale aggregate column
+        df_new['use'] = df_new.sum(axis=1).values # create new aggregate column
+        df_new = df_new.dropna()
+        
+        # for iawe
+        train_dset = df_new.truncate(before="2013-07-13", after="2013-07-20 23:59:59")
+        test_dset = df_new.truncate(before="2013-07-21", after="2013-08-04 23:59:59")
+        # for redd
+      
+        train_dset = df_new.truncate(before="2011-05-24", after = "2011-05-27 23:59:59")
+        test_dset = df_new.truncate(before="2011-05-28", after="2011-06-13 23:59:59")
+#%%
         
         ids = train_dset.columns.values.tolist()
         ids.remove('use')
@@ -77,7 +91,7 @@ def run_dissaggreation_algos():
         algo_name = 'SparseViterbi'
         limit ="all"
         print('Testing %s algorithm load disagg...' % algo_name)
-        disagg_algo = getattr(__import__('algo_' + algo_name, fromlist=['disagg_algo']), 'disagg_algo')
+        disagg_algo = getattr(__import__('algo_' + algo_name, fromlist = ['disagg_algo']), 'disagg_algo')
         sshmms_result = mks.perform_testing(test_dset, sshmms, labels, disagg_algo, limit)
         sshmms_result['train_power'] = train_dset # required during anomaly detection logic
         #%
@@ -90,41 +104,3 @@ def run_dissaggreation_algos():
         #pickle.dump(your_object, your_file, protocol=2)
         handle.close()
         print('I am done')
-
-
-
-        #fhmm_result  =  fhmm_decoding(train_dset,test_dset) # dissagreation
-        #co_result = co_decoding(train_dset,test_dset)
-        #plot_actual_vs_decoded(co_result)
-
-        #fhmm_rmse = compute_rmse(fhmm_result['actaul_power'],fhmm_result['decoded_power'])
-        #co_rmse = compute_rmse(co_result['actaul_power'],co_result['decoded_power'])
-        #fhmm_rmse = pd.DataFrame.from_dict(fhmm_rmse)
-        #co_rmse = pd.DataFrame.from_dict(co_rmse)
-
-        #fhmm_rmse.to_csv(savedir+"fhmm_rmse_"+hos)
-        #co_rmse.to_csv(savedir+"co_rmse_"+hos)
-
-        aggregate = sum(test_dset['use'])
-        sshmm_kotler = diss_accu_metric_kotler_1(sshmms_result,aggregate)
-        #co_kotler = diss_accu_metric_kotler_1(co_result,aggregate)
-
-
-        norm_sshmss = accuracy_metric_norm_error(sshmms_result)
-        #norm_co = accuracy_metric_norm_error(co_result)
-
-        concat_res = pd.concat([fhmm_rmse,co_rmse,norm_fhmm,norm_co],axis=1)
-        concat_res.columns = ['fhmm_rmse','co_rmse','fhmm_norm','co_norm']
-        concat_res = concat_res.round(2)
-        concat_res.to_csv(savedir+"norm_rmse_"+hos)
-
-        res_frame = pd.DataFrame(data={'algo':['fhmm_acc','co_acc'],'accuracy':[fhmm_kotler,co_kotler]})
-
-        res_frame = res_frame.round(2)
-        res_frame.to_csv(savedir+"accuracy_kolter_"+hos,index=False)
-
-# METRICS TAKEN FROM GAMELLO PAPER
-#fhmm_accu = compute_dissagg_accuracy(fhmm_result)
-#co_accu = compute_dissagg_accuracy(co_result)
-#fhmm_accu.to_csv(savedir + "fhmm_gammello_accu" + hos)
-#co_accu.to_csv(savedir + "co_gamello_accu" + hos)
