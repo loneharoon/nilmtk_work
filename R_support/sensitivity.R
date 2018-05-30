@@ -59,7 +59,8 @@ anomaly_score_threshold_VERSION_eEnergy2018 <- function() {
     store[[i]] <- compute_f_score(res_df,gt,threshold = thresholds[i])
   }
   fin_result <- do.call(rbind,store)
-  colnames(fin_result) <- c("OMNI","MBM","NNBM")
+  #colnames(fin_result) <- c("OMNI","MBM","NNBM")
+  colnames(fin_result) <- c("AGGR","MBM","NNBM")
   f_score <- data.frame(fin_result[row.names(fin_result)=='f_score',],row.names = NULL)
   precision <- data.frame(fin_result[row.names(fin_result)=='precise',],row.names = NULL)
   recall <- data.frame(fin_result[row.names(fin_result)=='recal',],row.names = NULL)
@@ -82,6 +83,44 @@ anomaly_score_threshold_VERSION_eEnergy2018 <- function() {
   #g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
   g
   ggsave("sensitivity_anomaly_score.pdf", width = 9, height = 2.0,units="in")
+  
+  
+  
+  compute_f_score <- function(res_df,gt,threshold){
+    if(is.xts(res_df)) {
+      res_df_xts =  res_df
+    }else{
+      res_df_xts <- xts(res_df[,2:NCOL(res_df)],as.Date(res_df$Index,tz="Asia/Kolkata"))
+    }
+    res_df_xts <- res_df_xts["2014-07-01/2014-08-30 23:59:59"]
+    print("Only retaining july and Aug res")
+    #threshold = 0.8
+    f_score <- vector(mode="numeric")
+    precise <- vector(mode="numeric")
+    recal <- vector(mode="numeric")
+    for (i in 1:NCOL(res_df_xts)){
+      dat <- res_df_xts[,i]
+      dat <- dat[dat >= threshold]
+      f_dates <- index(dat)
+      a_dates <- gt$Index
+      tp <- f_dates[f_dates %in% a_dates]
+      fp <- f_dates[!f_dates %in% a_dates]
+      fn <- a_dates[!a_dates %in% f_dates]
+      precision = length(tp)/(length(tp)+length(fp))
+      recall =  length(tp)/(length(tp)+length(fn))
+      f_score[i] <- round( 2*(precision*recall)/(precision+recall),2)
+      precise[i] <- round(precision,2)
+      recal[i] <- round(recall,2)
+      #browser()
+    }
+    l <- rbind(f_score,precise,recal)
+    #colnames(l) <- colnames(res_df[,2:NCOL(res_df)])
+    #print(l)
+    return(l)
+  }
+  
+  
+  
 
 }
 

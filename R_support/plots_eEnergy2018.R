@@ -73,20 +73,15 @@ insights_figure_home3_version2 <- function(){
   colnames(anomaly_fort) <- c("Index","value","variable")
   
   f <- ggplot(df_melt,aes(Index,variable=variable)) + facet_grid(variable~.,scales = "free") + geom_line(aes(y=value/1000)) 
-  f <- f +  labs(x="Timestamp",y = "Power (kW)") + theme_grey(base_size = 10) 
   f
   f <- f + geom_line(data=df2_melt,aes(x=Index,y=value/1000),color="red")
-  label_df <- data.frame(Index=df$Index[500], y = 4.5,lab="Inserted Anomaly",variable= factor("Metered",levels = c("Metered","NILM")))
-  f <- f + annotate("text",label = "Inserted Anomaly", x=x_index , y=4.5,color="red",aes(variable="Metered"))
+  text_df <- data.frame(Index=df$Index[650], value= 4.7,lab="Inserted Anomaly",variable= factor("Metered",levels = c("Metered","NILM")))
+  f <- f + geom_text(data=text_df,y = text_df$value,label="Inserted Anomaly",color="red" )
   f
-  
+  f <- f +  labs(x="Timestamp",y = "Power (kW)") + theme_grey(base_size = 10) 
   f <- f + theme(axis.text = element_text(color="Black",size=9)) 
   f
- 
-  
-  
-  
-   ggsave("insights_home3_ver2.pdf", width = 5, height = 2,units="in") 
+ ggsave("insights_home3_ver2.pdf", width = 4.5, height = 2,units="in") 
 }
 
 insights_figure_home5 <-function() {

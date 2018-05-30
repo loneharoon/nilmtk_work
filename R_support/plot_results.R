@@ -50,9 +50,11 @@ plot_bar_plots <- function(df,ylabel){
 }
 
 }
+
 AGGREGATE_LEVLE_VERSION2_eEnergy2018 <- function(){
   #this version plots the above one in facet_grid format
   setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
+  setwd('/Volumes/MacintoshHD2/Users/haroonr/Desktop/paper_pics/')
   fscore_df = data.frame("1463"=c(0.81,0.70,0.50),
                          "3538"=c(0.83,0.52,0.28),
                          "490"=c(0.73,0.57,0.38),
@@ -93,6 +95,7 @@ AGGREGATE_LEVLE_VERSION2_eEnergy2018 <- function(){
   df_recal["Metric"] <- "Recall"
  # plot_bar_plots(df,"Recall")
   df_comb <- rbind(df_fscore,df_prec,df_recal)
+  colnames(df_comb) <- c("AGGR","MBM","NNBM","Home","Metric")
   df_melt <- reshape2::melt(df_comb,id.vars=c("Home","Metric"),variable.name="Method")
   
   g <- ggplot(df_melt,aes(Home,value,fill=Method)) + facet_grid(.~ Metric) + geom_bar(position="dodge",stat="identity",width = 0.45)
@@ -100,7 +103,9 @@ AGGREGATE_LEVLE_VERSION2_eEnergy2018 <- function(){
   g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8))
   g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
   g
-  ggsave("anomaly_aggregate_scores.pdf", width = 9, height = 2.0,units="in")
+  #ggsave("anomaly_aggregate_scores.pdf", width = 9, height = 2.0,units="in")
+  ggsave("anomaly_aggregate_scores_buildsys18.pdf", width = 9, height = 2.0,units="in")
+  
   
   
 }
@@ -321,6 +326,113 @@ APPLIANCE_LEVEL_VERSION2_eEnergy2018 <- function() {
   
     
 
+}
+
+
+
+APPLIANCE_LEVEL_VERSION2_BuildSys2018 <- function() {
+  #this version plots the above one in facet_grid format
+  setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
+  # the numbers presented here are obtained by running results_visualization.R
+  ac_fscore_df = data.frame("1463"=c(0.67),
+                            "3538"=c(0.72),#"3538"=c(0.71,0.70),
+                            "490"=c(0.82),
+                            "115"=c(0.83),
+                            "iawe"=c(0.89),
+                            "redd"=c(1)
+  )
+  #row.names(ac_fscore_df) <- c("FHMM_P","Oracle_Q")
+  row.names(ac_fscore_df) <- c("UNUM_S")
+  ac_fscore <- as.data.frame(t(ac_fscore_df))
+  ac_fscore["Home"] <- c(1:6)
+  ac_fscore["Metric"] <- "Fscore"
+  ac_fscore["Appliance"] <- "AC"
+  #plot_bar_plots_appliance(df,"F-score","ac_fscore")
+  
+  
+  ac_precision_df = data.frame("1463"=c(0.67),
+                               "3538"=c(0.75), #"3538"=c(0.86,0.70),
+                               "490"=c(0.82),
+                               "115"=c(0.83),
+                               "iawe"=c(0.80),
+                               "redd"=c(1))
+  #row.names(ac_precision_df) <- c("FHMM","Oracle")
+  row.names(ac_precision_df) <- c("UNUM_S")
+  ac_prec <- as.data.frame(t(ac_precision_df))
+  ac_prec["Home"] <- c(1:6)
+  ac_prec["Metric"] <- "Precision"
+  ac_prec["Appliance"] <- "AC"
+  #plot_bar_plots_appliance(df,"Precision","ac_precision")
+  
+  
+  ac_recall_df = data.frame("1463"=c(0.67),
+                            "3538"=c(0.70),
+                            "490"=c(0.82),
+                            "115"=c(0.83),
+                            "iawe"=c(1),
+                            "redd"=c(1.0))
+  #row.names(ac_recall_df) <- c("FHMM","Oracle")
+  row.names(ac_recall_df) <- c("UNUM_S")
+  ac_recal <- as.data.frame(t(ac_recall_df))
+  ac_recal["Home"] <- c(1:6)
+  ac_recal["Metric"] <- "Recall"
+  ac_recal["Appliance"] <- "AC"
+  ###########%%%%%%%%%%%%%%%%%%%%%%%%%FRIDGE######################
+  
+  fridge_fscore_df = data.frame("1463"=c(0.86),
+                                "3538"=c(0.86),
+                                "490"=c(0.83),
+                                "115"=c(0.86),
+                                "iawe"=c(0.80),
+                                "redd"=c(1.0))
+  #row.names(fridge_fscore_df) <- c("FHMM","Oracle")
+  row.names(fridge_fscore_df) <- c("UNUM_S")
+  fridge_fscore <- as.data.frame(t(fridge_fscore_df))
+  fridge_fscore["Home"] <- c(1:6)
+  fridge_fscore["Metric"] <- "Fscore"
+  fridge_fscore["Appliance"] <- "Refrigerator"
+  #plot_bar_plots_appliance(df,"F-score","fridge_fscore")
+  
+  fridge_precision_df = data.frame("1463"=c(1),
+                                   "3538"=c(1),
+                                   "490"=c(0.77),
+                                   "115"=c(0.86),
+                                   "iawe"=c(0.67),
+                                   "redd"=c(1))
+  #row.names(fridge_precision_df) <- c("FHMM","Oracle")
+  row.names(fridge_precision_df) <- c("UNUM_S")
+  fridge_prec <- as.data.frame(t(fridge_precision_df))
+  fridge_prec["Home"] <- c(1:6)
+  fridge_prec["Metric"] <- "Precision"
+  fridge_prec["Appliance"] <- "Refrigerator"
+  #plot_bar_plots_appliance(df,"Precision","fridge_precision")
+  
+  fridge_recall_df = data.frame("1463"=c(0.75),
+                                "3538"=c(0.75),
+                                "490"=c(0.91),
+                                "115"=c(0.86),
+                                "iawe"=c(1),
+                                "redd"=c(1))
+  #row.names(fridge_recall_df) <- c("FHMM","Oracle")
+  row.names(fridge_recall_df) <- c("UNUM_S")
+  fridge_recal <- as.data.frame(t(fridge_recall_df))
+  fridge_recal["Home"] <- c(1:6)
+  fridge_recal["Metric"] <- "Recall"
+  fridge_recal["Appliance"] <- "Refrigerator"
+  #plot_bar_plots_appliance(df,"Recall","fridge_recall")
+  
+  df_comb <- rbind(ac_fscore,ac_prec,ac_recal,fridge_fscore,fridge_prec,fridge_recal)
+  df_melt <- reshape2::melt(df_comb,id.vars=c("Home","Metric","Appliance"),variable.name="Method")
+  
+  g <- ggplot(df_melt,aes(Home,value,fill=Appliance)) + facet_grid(~ Metric) + geom_bar(position="dodge",stat="identity",width = 0.45)
+  g <- g +  labs(x="Home",y = "Value") + theme_grey(base_size = 10) 
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8),legend.position = "top")
+  g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
+  g
+ # ggsave("anomaly_appliance_scores_buildSys18.pdf", width = 4, height = 2.0,units="in")
+  
+  
+  
 }
 
 methodology_figures <- function(){
