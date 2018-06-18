@@ -78,11 +78,11 @@ anomaly_score_threshold_VERSION_eEnergy2018 <- function() {
   df_melt <- reshape2::melt(df_comb,id.vars=c("Metric","Threshold"),variable.name="Method")
   
   g <- ggplot(df_melt,aes(Threshold,value,color=Method)) + facet_grid(.~ Metric) + geom_line(size= 0.6) + geom_point(aes(shape=Method))
-  g <- g +  labs(x="Threshold on Anomaly score",y = "Value") + theme_grey(base_size = 10) 
-  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8))
-  #g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
+  g <- g +  labs(x="Threshold on Anomaly score",y = "Value") + theme_grey(base_size = 9) 
+  g <- g + theme(axis.text = element_text(color="Black",size=8),legend.text = element_text(size = 8),legend.position = 'top')
+  #g <- g + scale_x_continuous(breaks=c(1:3),labels = c(1:6))
   g
-  ggsave("sensitivity_anomaly_score.pdf", width = 9, height = 2.0,units="in")
+  ggsave("sensitivity_anomaly_score.pdf", width = 4, height = 2.0,units="in")
   
   
   
@@ -353,9 +353,11 @@ k_sensitivity <- function() {
   for (i in 1:length(agg_score)) {
     norm_score[[i]] <- normalise_my_score(agg_score[[i]])
   }
-  setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/plots/")
+  setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Buildsys18/appliance-aggregate/plots/")
   
   plot_k_sensitivity(norm_score[[3]])
+  or 
+  score_mat =  norm_score[[3]]
   
   outlierfactor_sensitivity <- function(daymat){
     library(Rlof)
@@ -370,6 +372,7 @@ k_sensitivity <- function() {
   }
   
   plot_k_sensitivity <- function(score_mat){
+    
     df.lof2 <- score_mat
     k_val = 1:dim(df.lof2)[2]
     df_melt <-melt(df.lof2)
@@ -383,7 +386,7 @@ k_sensitivity <- function() {
       scale_color_manual(name="k", labels=c(3,4,5,6,7),values=c("brown","black","blue","green", "red"))+
       theme(axis.text = element_text(color="Black",size=8),legend.position="top",
             legend.title=element_text(size=8),axis.title = element_text(color="Black",size=8))
-    ggsave(file="k_sensitivity2.pdf", width=8, height=7, units="cm")
+    ggsave(file="k_sensitivity2.pdf", width = 4, height=2, units="in")
   }
   
   normalise_my_score <- function(df.lof2){

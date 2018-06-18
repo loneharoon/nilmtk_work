@@ -53,8 +53,8 @@ plot_bar_plots <- function(df,ylabel){
 
 AGGREGATE_LEVLE_VERSION2_eEnergy2018 <- function(){
   #this version plots the above one in facet_grid format
-  setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
-  setwd('/Volumes/MacintoshHD2/Users/haroonr/Desktop/paper_pics/')
+  #setwd("/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Localize/eEnergy_2018/plots/")
+  setwd('/Volumes/MacintoshHD2/Users/haroonr/Dropbox/Writings/Buildsys18/appliance-aggregate/plots/')
   fscore_df = data.frame("1463"=c(0.81,0.70,0.50),
                          "3538"=c(0.83,0.52,0.28),
                          "490"=c(0.73,0.57,0.38),
@@ -100,11 +100,11 @@ AGGREGATE_LEVLE_VERSION2_eEnergy2018 <- function(){
   
   g <- ggplot(df_melt,aes(Home,value,fill=Method)) + facet_grid(.~ Metric) + geom_bar(position="dodge",stat="identity",width = 0.45)
   g <- g +  labs(x="Home",y = "Value") + theme_grey(base_size = 10) 
-  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8))
+  g <- g + theme(axis.text = element_text(color="Black",size=9),legend.text = element_text(size = 8),legend.position = 'top')
   g <- g + scale_x_continuous(breaks=c(1:6),labels = c(1:6))
   g
   #ggsave("anomaly_aggregate_scores.pdf", width = 9, height = 2.0,units="in")
-  ggsave("anomaly_aggregate_scores_buildsys18.pdf", width = 9, height = 2.0,units="in")
+  ggsave("anomaly_aggregate_scores_buildsys18.pdf", width = 4, height = 2.0,units="in")
   
   
   
